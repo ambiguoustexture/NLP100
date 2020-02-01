@@ -1,3 +1,5 @@
+# Author：ambiguoustexture
+# Date: 2020-02-02
 import re
 
 def sequence_to_words(sequence):
