@@ -46,7 +46,7 @@
 # In Python Interective Shell
 >>> str = "Hi He Lied Because Boron Could Not Oxidize Fluorine. New Nations Might Also Sign Peace Security Clause. Arthur King Can."
 >>> import re
->>> words = re.split('\W+', str)
+>>> words = re.split('\W+', str)[:-1]
 >>> for i in ralen(words)):
 ...     if i in nums:
 ...         dic[words[i][0]] = i
@@ -58,7 +58,57 @@
 ```
 ## 05. n-gram
 与えられたシーケンス（文字列やリストなど）からn-gramを作る関数を作成せよ．この関数を用い，"I am an NLPer"という文から単語bi-gram，文字bi-gramを得よ．
+```Python
+import re
 
+def sequence_to_words(sequence):
+    """clean the given sequence
+    :param sequence:    given sequence (string, list, etc.)
+    :return:            words in the sequence
+    """
+    sequence = re.sub('\n+', ' ', sequence).lower()
+    words = re.split('\W+', sequence)
+
+    return words
+
+def get_n_gram(sequence, n, key):
+    """naive implement of n-gram based on word or letter
+    :param sequence:    given sequence (string, list, etc.)
+    :param n:           n-gram for n=2
+    :param key:         switch word based or letter based
+    :return:            n-gram dictionary
+    """
+    words = sequence_to_words(sequence)
+    if key == "word":
+        n_gram_dic = {}
+        for i in range(len(words) - n + 1):
+            n_gram_current = " ".join(words[i:i + n])
+            if n_gram_current not in n_gram_dic:
+                n_gram_dic[n_gram_current] = 1
+            else:
+                n_gram_dic[n_gram_current] += 1
+
+    elif key == "letter":
+        str = ''.join(words)
+        n_gram_dic = {}
+        for i in range(len(str) - n - 1):
+            n_gram_current = " ".join(str[i:i + n])
+            if n_gram_current not in n_gram_dic:
+                n_gram_dic[n_gram_current] = 1
+            else:
+                n_gram_dic[n_gram_current] += 1
+
+    return n_gram_dic
+
+if __name__ == "__main__":
+    # sequence = open("poem.txt").read()
+    sequence = "I am an NLPer"
+    bi_gram_word_based = get_n_gram(sequence, 2, key = "word")
+    bi_gram_letter_based = get_n_gram(sequence, 2, key = "letter")
+    print("Sentence: I am an NLPer")
+    print("Word based bi-gram of the sentence is:\n" + str(bi_gram_word_based))
+    print("letter based bi-gram of the sentence is\n:" + str(bi_gram_letter_based))
+```
 ## 06. 集合
 "paraparaparadise"と"paragraph"に含まれる文字bi-gramの集合を，それぞれ, XとYとして求め，XとYの和集合，積集合，差集合を求めよ．さらに，'se'というbi-gramがXおよびYに含まれるかどうかを調べよ．
 
