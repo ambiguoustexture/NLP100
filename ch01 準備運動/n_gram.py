@@ -15,6 +15,8 @@ def get_n_gram(sequence, n, key):
     :param sequence:    given sequence (string, list, etc.)
     :param n:           n-gram for n=2
     :param key:         switch word based or letter based
+                        "key = word" for word based
+                        "key = letter" for letter based
     :return:            n-gram dictionary
     """
     words = sequence_to_words(sequence)
