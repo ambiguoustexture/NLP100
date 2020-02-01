@@ -1,2 +1,2 @@
 # 100 Language Processing Knocks
-Amateur exercises and handmade codes.
+Amateur practices and handmade codes in separate chapter folder.
