@@ -24,9 +24,16 @@
 # In Python Interective Shell
 >>> str0 = "パトカー"
 >>> str1 = "タクシー"
->>> res = str0 + str1
+>>> res  = ""
+>>> str(res)
+>>> for i in range(len(str0)):
+...     for j in range(len(str1)):
+...             res += str0[i]
+...             res += str1[i]
+...             break
+...
 >>> res
-'パトカータクシー'
+'パタトクカシーー'
 ```
 ## 03. 円周率
 "Now I need a drink, alcoholic of course, after the heavy lectures involving quantum mechanics."という文を単語に分解し，各単語の（アルファベットの）文字数を先頭から出現順に並べたリストを作成せよ．
