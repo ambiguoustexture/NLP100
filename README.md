@@ -1,1 +1,2 @@
-# Gengo-Shori-100-Pon-Nokku
+# 100 Language Processing Knocks
+Amateur exercises and handmade codes.
