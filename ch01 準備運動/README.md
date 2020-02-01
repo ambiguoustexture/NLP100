@@ -42,7 +42,20 @@
 ```
 ## 04. 元素記号
 "Hi He Lied Because Boron Could Not Oxidize Fluorine. New Nations Might Also Sign Peace Security Clause. Arthur King Can."という文を単語に分解し，1, 5, 6, 7, 8, 9, 15, 16, 19番目の単語は先頭の1文字，それ以外の単語は先頭に2文字を取り出し，取り出した文字列から単語の位置（先頭から何番目の単語か）への連想配列（辞書型もしくはマップ型）を作成せよ．
-
+```Python
+# In Python Interective Shell
+>>> str = "Hi He Lied Because Boron Could Not Oxidize Fluorine. New Nations Might Also Sign Peace Security Clause. Arthur King Can."
+>>> import re
+>>> words = re.split('\W+', str)
+>>> for i in ralen(words)):
+...     if i in nums:
+...         dic[words[i][0]] = i
+...     else:
+...         dic[words[i][1]] = i
+...
+>>> print(dic)
+{'i': 18, 'H': 1, 'e': 14, 'o': 4, 'C': 19, 'N': 9, 'O': 7, 'F': 8, 'a': 10, 'l': 12, 'S': 15, 'r': 17}
+```
 ## 05. n-gram
 与えられたシーケンス（文字列やリストなど）からn-gramを作る関数を作成せよ．この関数を用い，"I am an NLPer"という文から単語bi-gram，文字bi-gramを得よ．
 
