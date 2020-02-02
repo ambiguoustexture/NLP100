@@ -121,8 +121,35 @@ if __name__ == "__main__":
     print("Word based bi-gram of the sentence is:\n" + str(bi_gram_word_based))
     print("letter based bi-gram of the sentence is\n:" + str(bi_gram_letter_based))
 ```
+```Python
+ch01 準備運動 git:(master) ✗ python n_gram.py
+Sentence: I am an NLPer
+Word based bi-gram of the sentence is:
+{'i am': 1, 'am an': 1, 'an nlper': 1}
+letter based bi-gram of the sentence is
+:{'i a': 1, 'a m': 1, 'm a': 1, 'a n': 1, 'n n': 1, 'n l': 1, 'l p': 1, 'p e': 1, 'e r': 1}
+```
+
 ## 06. 集合
 "paraparaparadise"と"paragraph"に含まれる文字bi-gramの集合を，それぞれ, XとYとして求め，XとYの和集合，積集合，差集合を求めよ．さらに，'se'というbi-gramがXおよびYに含まれるかどうかを調べよ．
+```Python
+# In Python Interective Shell
+>>> from n_gram import *
+>>> str0 = "paraparaparadise"
+>>> str1 = "paragraph"
+>>> X = set(get_n_gram(str0, 2, key = "letter"))
+>>> Y = set(get_n_gram(str1, 2, key = "letter"))
+>>> print("Union :", X | Y)
+Union : {'d i', 'p h', 'r a', 'a r', 's e', 'a d', 'a g', 'i s', 'g r', 'a p', 'p a'}
+>>> print("Intersection :", X & Y)
+Intersection : {'p a', 'r a', 'a p', 'a r'}
+>>> print("Difference :", X - Y)
+Difference : {'d i', 'i s', 's e', 'a d'}
+>>> 's e' in X
+True
+>>> 's e' in Y
+False
+```
 
 ## 07. テンプレートによる文生成
 引数x, y, zを受け取り「x時のyはz」という文字列を返す関数を実装せよ．さらに，x=12, y="気温", z=22.4として，実行結果を確認せよ．
