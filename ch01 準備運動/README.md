@@ -69,7 +69,7 @@ for word, index in zip(str, range(len(str))):
 
 print(res)
 ```
-```Python
+```Shell
 ch01 準備運動 git:(master) ✗ python 04.py
 ['H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne', 'Na', 'Mi', 'Al', 'Si', 'P', 'S', 'Cl', 'Ar', 'K', 'Ca']
 ```
@@ -132,7 +132,7 @@ if __name__ == "__main__":
     print("Word based bi-gram of the sentence is:\n" + str(bi_gram_word_based))
     print("letter based bi-gram of the sentence is\n:" + str(bi_gram_letter_based))
 ```
-```Python
+```Shell
 ch01 準備運動 git:(master) ✗ python n_gram.py
 Sentence: I am an NLPer
 Word based bi-gram of the sentence is:
