@@ -150,7 +150,7 @@ letter based bi-gram of the sentence is
 >>> str1 = "paragraph"
 >>> X = set(get_n_gram(str0, 2, key = "letter"))
 >>> Y = set(get_n_gram(str1, 2, key = "letter"))
->>> x.union(y)
+>>> X.union(Y)
 {'ph', 'gr', 'pa', 'is', 'ar', 'ra', 'di', 'ap', 'se', 'ad', 'ag'}
 >>> X.intersection(Y)
 {'pa', 'ar', 'ap', 'ra'}
