@@ -183,9 +183,9 @@ True
 # Date:   2020-02-02
 
 def cipher (sequence):
-    """replace with lowercase (219 - ascii code)
-    :param sequence:    given string
-    :return:            encrypted string
+    """replace with lowercase (219 - ascii of character)
+    :param sequence:    given text
+    :return:            encrypted text
     """
     sequence_list = []
     res = ''
@@ -211,3 +211,36 @@ I zn mlg zm NLPvi.
 ```
 ## 09. Typoglycemia
 スペースで区切られた単語列に対して，各単語の先頭と末尾の文字は残し，それ以外の文字の順序をランダムに並び替えるプログラムを作成せよ．ただし，長さが４以下の単語は並び替えないこととする．適当な英語の文（例えば"I couldn't believe that I could actually understand what I was reading : the phenomenal power of the human mind ."）を与え，その実行結果を確認せよ．
+```Python
+# Author：ambiguoustexture
+# Date:   2020-02-02
+
+import random
+
+def typoglycemia(sequence):
+    """
+    Function that leaves the characters at the beginning and end of each word,
+    and rearranges the order of the other characters randomly.
+    However, words with a length of 4 or less are not rearranged.
+    :param sequence:    given text
+    :return:            rearranged text
+    """
+    words = sequence.split()
+
+    for i in range(len(words)):
+        if len(words[i]) > 4:
+            word_partial = list(words[i][1:-1])
+            random.shuffle(word_partial)
+            word_shuffle = "".join(word_partial)
+            words[i] = words[i][0] + word_shuffle + words[i][-1]
+
+    return ' '.join(words[:-1]) + words[-1]
+
+if __name__ == "__main__":
+    sequence = "I couldn't believe that I could actually understand what I was reading : the phenomenal power of the human mind ."
+    print(typoglycemia(sequence))
+```
+```Shell
+ch01 準備運動 git:(master) ✗ python 09.py
+I clu'nodt belviee that I cluod alatcluy ursdtnnead what I was rednaig : the pemnnheoal peowr of the human mind.
+```
