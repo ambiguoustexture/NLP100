@@ -20,7 +20,7 @@ def typoglycemia(sequence):
             word_shuffle = "".join(word_partial)
             words[i] = words[i][0] + word_shuffle + words[i][-1]
     
-    return ' '.join(words[:-1]) + words[-1]
+    return ' '.join(words)
 
 if __name__ == "__main__":
     sequence = "I couldn't believe that I could actually understand what I was reading : the phenomenal power of the human mind ."
