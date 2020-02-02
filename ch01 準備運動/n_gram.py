@@ -34,8 +34,8 @@ def get_n_gram(sequence, n, key):
     elif key == "letter":
         str = ''.join(words)
         n_gram_dic = {}
-        for i in range(len(str) - n - 1):
-            n_gram_current = " ".join(str[i:i + n])
+        for i in range(len(str) - n + 1):
+            n_gram_current = str[i:i + n]
             if n_gram_current not in n_gram_dic:
                 n_gram_dic[n_gram_current] = 1
             else:
