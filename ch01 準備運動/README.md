@@ -43,12 +43,10 @@
 ```Python
 # In Python Interective Shell
 >>> str = "Now I need a drink, alcoholic of course, after the heavy lectures involving quantum mechanics."
->>> import re
->>> words = re.split('\W+', str)[:-1]
-# sort by the number of characters in each word
->>> words.sort(key = len) 
->>> words
-['I', 'a', 'of', 'Now', 'the', 'need', 'drink', 'after', 'heavy', 'course', 'quantum', 'lectures', 'alcoholic', 'involving', 'mechanics']
+>>> str = str.split(' ')
+>>> str_len = [len(word.rstrip('.,')) for word in str]
+>>> print(str_len)
+[3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5, 8, 9, 7, 9]
 ```
 
 ## 04. 元素記号
@@ -117,7 +115,7 @@ def get_n_gram(sequence, n, key):
         str = ''.join(words)
         n_gram_dic = {}
         for i in range(len(str) - n + 1):
-            n_gram_current = " ".join(str[i:i + n])
+            n_gram_current = str[i:i + n]
             if n_gram_current not in n_gram_dic:
                 n_gram_dic[n_gram_current] = 1
             else:
@@ -140,7 +138,7 @@ Sentence: I am an NLPer
 Word based bi-gram of the sentence is:
 {'i am': 1, 'am an': 1, 'an nlper': 1}
 letter based bi-gram of the sentence is
-:{'i a': 1, 'a m': 1, 'm a': 1, 'a n': 1, 'n n': 1, 'n l': 1, 'l p': 1, 'p e': 1, 'e r': 1}
+:{'ia': 1, 'am': 1, 'ma': 1, 'an': 1, 'nn': 1, 'nl': 1, 'lp': 1, 'pe': 1, 'er': 1}
 ```
 
 ## 06. 集合
@@ -152,16 +150,14 @@ letter based bi-gram of the sentence is
 >>> str1 = "paragraph"
 >>> X = set(get_n_gram(str0, 2, key = "letter"))
 >>> Y = set(get_n_gram(str1, 2, key = "letter"))
->>> print("Union :", X | Y)
-Union : {'d i', 'p h', 'r a', 'a r', 's e', 'a d', 'a g', 'i s', 'g r', 'a p', 'p a'}
->>> print("Intersection :", X & Y)
-Intersection : {'p a', 'r a', 'a p', 'a r'}
->>> print("Difference :", X - Y)
-Difference : {'d i', 'i s', 's e', 'a d'}
->>> 's e' in X
+>>> x.union(y)
+{'ph', 'gr', 'pa', 'is', 'ar', 'ra', 'di', 'ap', 'se', 'ad', 'ag'}
+>>> X.intersection(Y)
+{'pa', 'ar', 'ap', 'ra'}
+>>> X.difference(Y)
+{'di', 'is', 'se', 'ad'}
+>>> 'se' in X.union(Y)
 True
->>> 's e' in Y
-False
 ```
 
 ## 07. テンプレートによる文生成
