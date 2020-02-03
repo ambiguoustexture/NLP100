@@ -54,9 +54,6 @@ Amateur practices and handmade codes in separate chapter folder.
 ### 04. 元素記号
 "Hi He Lied Because Boron Could Not Oxidize Fluorine. New Nations Might Also Sign Peace Security Clause. Arthur King Can."という文を単語に分解し，1, 5, 6, 7, 8, 9, 15, 16, 19番目の単語は先頭の1文字，それ以外の単語は先頭に2文字を取り出し，取り出した文字列から単語の位置（先頭から何番目の単語か）への連想配列（辞書型もしくはマップ型）を作成せよ．
 ```Python
-# Author：ambiguoustexture
-# Date:   2020-02-02
-
 str = "Hi He Lied Because Boron Could Not Oxidize Fluorine. New Nations Might Also Sign Peace Security Clause. Arthur King Can."
 
 str = str.split(" ")
@@ -79,9 +76,6 @@ ch01 準備運動 git:(master) ✗ python 04.py
 ### 05. n-gram
 与えられたシーケンス（文字列やリストなど）からn-gramを作る関数を作成せよ．この関数を用い，"I am an NLPer"という文から単語bi-gram，文字bi-gramを得よ．
 ```Python
-# Author：ambiguoustexture
-# Date:   2020-02-02
-
 import re
 
 def sequence_to_words(sequence):
@@ -135,7 +129,7 @@ if __name__ == "__main__":
     print("letter based bi-gram of the sentence is\n:" + str(bi_gram_letter_based))
 ```
 ```Shell
-ch01 準備運動 git:(master) ✗ python n_gram.py
+➜ python n_gram.py
 Sentence: I am an NLPer
 Word based bi-gram of the sentence is:
 {'i am': 1, 'am an': 1, 'an nlper': 1}
@@ -181,9 +175,6 @@ True
 - その他の文字はそのまま出力
 - この関数を用い，英語のメッセージを暗号化・復号化せよ．
 ```Python
-# Author：ambiguoustexture
-# Date:   2020-02-02
-
 def cipher (sequence):
     """replace with lowercase (219 - ascii of character)
     :param sequence:    given text
@@ -208,16 +199,13 @@ if __name__ == "__main__":
     print(cipher(sequence))
 ```
 ```Python
-ch01 準備運動 git:(master) ✗ python cipher.py
+➜ python cipher.py
 I zn mlg zm NLPvi.
 ```
 
 ### 09. Typoglycemia
 スペースで区切られた単語列に対して，各単語の先頭と末尾の文字は残し，それ以外の文字の順序をランダムに並び替えるプログラムを作成せよ．ただし，長さが４以下の単語は並び替えないこととする．適当な英語の文（例えば"I couldn't believe that I could actually understand what I was reading : the phenomenal power of the human mind ."）を与え，その実行結果を確認せよ．
 ```Python
-# Author：ambiguoustexture
-# Date:   2020-02-02
-
 import random
 
 def typoglycemia(sequence):
@@ -244,7 +232,7 @@ if __name__ == "__main__":
     print(typoglycemia(sequence))
 ```
 ```Shell
-ch01 準備運動 git:(master) ✗ python 09.py
+➜ python 09.py
 I clu'nodt belviee that I cluod alatcluy ursdtnnead what I was rednaig : the pemnnheoal peowr of the human mind .
 ```
 
