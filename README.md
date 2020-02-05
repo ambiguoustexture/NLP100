@@ -126,15 +126,15 @@ if __name__ == "__main__":
     bi_gram_letter_based = get_n_gram(sequence, 2, key = "letter")
     print("Sentence: I am an NLPer")
     print("Word based bi-gram of the sentence is:\n" + str(bi_gram_word_based))
-    print("letter based bi-gram of the sentence is\n:" + str(bi_gram_letter_based))
+    print("letter based bi-gram of the sentence is:\n:" + str(bi_gram_letter_based))
 ```
 ```Shell
 ➜ python n_gram.py
 Sentence: I am an NLPer
 Word based bi-gram of the sentence is:
 {'i am': 1, 'am an': 1, 'an nlper': 1}
-letter based bi-gram of the sentence is
-:{'ia': 1, 'am': 1, 'ma': 1, 'an': 1, 'nn': 1, 'nl': 1, 'lp': 1, 'pe': 1, 'er': 1}
+letter based bi-gram of the sentence is:
+{'ia': 1, 'am': 1, 'ma': 1, 'an': 1, 'nn': 1, 'nl': 1, 'lp': 1, 'pe': 1, 'er': 1}
 ```
 
 ### 06. 集合
