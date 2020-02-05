@@ -255,7 +255,7 @@ number of lines:  24
 ```
 ### 11. タブをスペースに置換
 タブ1文字につきスペース1文字に置換せよ．確認にはsedコマンド，trコマンド，もしくはexpandコマンドを用いよ．
-```Python
+```Shell
 # In Python Interective Shell
 >>> f = 'hightemp.txt'
 >>> with open(f) as text:
