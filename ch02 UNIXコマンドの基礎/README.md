@@ -11,13 +11,15 @@
 number of lines:  24
 >>> f.close()
 ```
+with *wc*
 ```Shell
 ➜ wc -l hightemp.txt
 24 hightemp.txt
 ```
+
 ### 11. タブをスペースに置換
 タブ1文字につきスペース1文字に置換せよ．確認にはsedコマンド，trコマンド，もしくはexpandコマンドを用いよ．
-```Python
+```Shell
 # In Python Interective Shell
 >>> f = 'hightemp.txt'
 >>> with open(f) as text:
@@ -30,17 +32,17 @@ number of lines:  24
 ...
 ```
 
-with sed **failed**
+with *sed* but failed
 ```Shell
 ➜ sed 's/\t/ /g' hightemp.txt
 ```
 
-with tr successed
+with *tr*
 ```Shell
 ➜ tr '\t' ' ' < hightemp.txt
 ```
 
-with expand successed
+with *expand*
 ```Shell
 ➜ expand -t 1 hightemp.txt
 ```
@@ -59,7 +61,7 @@ with open(file) as text:
         col1.write(items[0] + '\n')
         col2.write(items[1] + '\n')
 ```
-
+with *cut*
 ```Shell
 cut -f1 hightemp.txt > col1_cut.txt
 cut -f2 hightemp.txt > col2_cut.txt
@@ -75,7 +77,7 @@ with open('col1.txt') as col1:
     for col1_line, col2_line in zip(col1, col2):
         res.write(col1_line.rstrip() + '\t' + col2_line.rstrip() + '\n')
 ```
-with paste
+with *paste*
 ```Shell
 ➜ paste col1.txt col2.txt > col1\&2_paste.txt
 ➜ diff col1\&2.txt col1\&2_paste.txt
@@ -102,7 +104,7 @@ N: 4
 岐阜県	多治見	40.9	2007-08-16
 山形県	山形	40.8	1933-07-25
 ```
-with head
+with *head*
 ```Shell
 ➜ head -4 hightemp.txt
 高知県	江川崎	41	    2013-08-12
@@ -113,13 +115,100 @@ with head
 
 ### 15. 末尾のN行を出力
 自然数Nをコマンドライン引数などの手段で受け取り，入力のうち末尾のN行だけを表示せよ．確認にはtailコマンドを用いよ．
+```Python
+file = 'hightemp.txt'
+n = int(input('N: '))
+
+with open(file) as text:
+    lines = text.readlines()
+
+for line in lines[-n:]:
+    print(line.rstrip())
+```
+```Python
+➜ python 15.py
+N: 4
+大阪府	豊中	39.9	1994-08-08
+山梨県	大月	39.9	1990-07-19
+山形県	鶴岡	39.9	1978-08-03
+愛知県	名古屋	39.9	1942-08-02
+```
+with *tail*
+```Shell
+➜ tail -4 hightemp.txt
+大阪府	豊中	39.9	1994-08-08
+山梨県	大月	39.9	1990-07-19
+山形県	鶴岡	39.9	1978-08-03
+愛知県	名古屋	39.9	1942-08-02
+```
 
 ### 16. ファイルをN分割する
 自然数Nをコマンドライン引数などの手段で受け取り，入力のファイルを行単位でN分割せよ．同様の処理をsplitコマンドで実現せよ．
+```Python
+lines_count = len(lines)
 
+for index, flag in enumerate(range(0, lines_count, n), 1):
+    with open('hightemp_split_{:02d}.txt'.format(index), 'w') as split_file:        for line in lines[flag:flag + n]:
+            split_file.write(line)
+```
+```Shell
+➜ python 16.py
+N: 4
+➜ ls
+hightemp_split_01.txt
+hightemp_split_02.txt
+hightemp_split_03.txt
+hightemp_split_04.txt
+hightemp_split_05.txt
+hightemp_split_06.txt
+➜ diff hightemp_aa hightemp_split_01.txt
+➜
+```
+with *split*
+```Shell
+➜ split -4 hightemp.txt hightemp_;ls
+
+hightemp_aa
+hightemp_ab
+hightemp_ac
+hightemp_ad
+hightemp_ae
+hightemp_af
+```
 ### 17. １列目の文字列の異なり
 1列目の文字列の種類（異なる文字列の集合）を求めよ．確認にはsort, uniqコマンドを用いよ．
+```Python
+file = 'hightemp.txt'
+with open(file) as text:
+    items = set()
+    for line in text:
+        cols = line.split('\t')
+        items.add(cols[0])
 
+for item in items:
+    print(item)
+```
+```Shell
+➜ python 17.py
+静岡県
+千葉県
+愛媛県
+和歌山県
+群馬県
+高知県
+大阪府
+岐阜県
+埼玉県
+愛知県
+山形県
+山梨県
+```
+with *sort* & *uniq*
+```Shell
+➜ cut -f1 hightemp.txt | sort | uniq > hightemp_sort_uniq.txt
+➜ python 17.py | sort | > hightemp_sort_uniq_without.txt;diff hightemp_sort_uniq_without.txt hightemp_sort_uniq.txt
+➜ 
+```
 ### 18. 各行を3コラム目の数値の降順にソート
 各行を3コラム目の数値の逆順で整列せよ（注意: 各行の内容は変更せずに並び替えよ）．確認にはsortコマンドを用いよ（この問題はコマンドで実行した時の結果と合わなくてもよい）．
 
