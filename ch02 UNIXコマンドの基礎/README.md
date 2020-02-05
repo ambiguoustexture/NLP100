@@ -209,8 +209,47 @@ with *sort* & *uniq*
 ➜ python 17.py | sort | > hightemp_sort_uniq_without.txt;diff hightemp_sort_uniq_without.txt hightemp_sort_uniq.txt
 ➜ 
 ```
+
 ### 18. 各行を3コラム目の数値の降順にソート
 各行を3コラム目の数値の逆順で整列せよ（注意: 各行の内容は変更せずに並び替えよ）．確認にはsortコマンドを用いよ（この問題はコマンドで実行した時の結果と合わなくてもよい）．
+```Python
+file = 'hightemp.txt'
+lines = open(file).readlines()
+lines.sort(key = lambda line: float(line.split('\t')[2]), reverse = True)
+
+for line in lines:
+    print(line, end='')
+    # there will be another blank line without "end=''"
+```
+with *sort*
+```Shell
+➜ sort -n -k 3 -r hightemp.txt
+# -n   : sort by number
+# -k 3 : sort by the 3rd col
+# -r   : reverse
+```
 
 ### 19. 各行の1コラム目の文字列の出現頻度を求め，出現頻度の高い順に並べる
 各行の1列目の文字列の出現頻度を求め，その高い順に並べて表示せよ．確認にはcut, uniq, sortコマンドを用いよ．
+```Python
+from itertools import groupby
+
+file = 'hightemp.txt'
+lines = open(file).readlines()
+items = list(line.split('\t')[0] for line in lines)
+
+items.sort()
+res = [(item, len(list(group))) for item, group in groupby(items)]
+res.sort(key = lambda item : item[1], reverse = True)
+
+for item in res:
+    print('{item}({count})'.format(item = item[0], count = item[1]))
+```
+with *cut* & *uniq* & *sort*
+```Shell
+➜ cut -f1 hightemp.txt | sort | uniq -c | sort -r
+# -f1     : the 1st col
+# uniq -c : make a set and count
+# sort -r : sort reversely
+```
+
