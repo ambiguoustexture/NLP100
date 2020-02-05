@@ -1,6 +1,6 @@
 # 100 Language Processing Knocks
 Amateur practices and handmade codes in separate chapter folder.
-
+Mr.[segavvy](https://qiita.com/segavvy)'s posts on [qiita](https://qiita.com) and internet help a lot. Thanks!
 ## 第1章: 準備運動
 
 ### 00. 文字列の逆順
