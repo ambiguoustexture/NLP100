@@ -20,7 +20,6 @@ with open(file) as file_current:
             break
 ```
 ```Shell
-➜ python 20.py > UK.txt ;
 ➜ python 20.py > UK.txt ; head UK.txt
 {{redirect|UK}}
 {{基礎情報 国
