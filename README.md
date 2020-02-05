@@ -361,7 +361,7 @@ with open(file) as text:
 for line in lines[-n:]:
     print(line.rstrip())
 ```
-```Python
+```Shell
 ➜ python 15.py
 N: 4
 大阪府	豊中	39.9	1994-08-08
