@@ -384,7 +384,8 @@ with *tail*
 lines_count = len(lines)
 
 for index, flag in enumerate(range(0, lines_count, n), 1):
-    with open('hightemp_split_{:02d}.txt'.format(index), 'w') as split_file:        for line in lines[flag:flag + n]:
+    with open('hightemp_split_{:02d}.txt'.format(index), 'w') as split_file:
+        for line in lines[flag:flag + n]:
             split_file.write(line)
 ```
 ```Shell
