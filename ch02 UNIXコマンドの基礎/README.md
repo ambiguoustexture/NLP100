@@ -99,7 +99,7 @@ with open(file) as text:
 ```Shell
 ➜ python 14.py
 N: 4
-高知県	江川崎	41	    2013-08-12
+高知県	江川崎	41      2013-08-12
 埼玉県	熊谷	40.9	2007-08-16
 岐阜県	多治見	40.9	2007-08-16
 山形県	山形	40.8	1933-07-25
@@ -125,7 +125,7 @@ with open(file) as text:
 for line in lines[-n:]:
     print(line.rstrip())
 ```
-```Python
+```Shell
 ➜ python 15.py
 N: 4
 大阪府	豊中	39.9	1994-08-08
@@ -148,7 +148,8 @@ with *tail*
 lines_count = len(lines)
 
 for index, flag in enumerate(range(0, lines_count, n), 1):
-    with open('hightemp_split_{:02d}.txt'.format(index), 'w') as split_file:        for line in lines[flag:flag + n]:
+    with open('hightemp_split_{:02d}.txt'.format(index), 'w') as split_file:        
+        for line in lines[flag:flag + n]:
             split_file.write(line)
 ```
 ```Shell
