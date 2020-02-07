@@ -528,7 +528,7 @@ with open(file) as file_current:
 ### 21. カテゴリ名を含む行を抽出
 記事中でカテゴリ名を宣言している行を抽出せよ．
 ```Python
-pattern = re.compile(r'''
+pattern_category = re.compile(r'''
         ^       # Head of line
         (       # Start capturing target group
         .*      # Zero or more arbitrary characters
@@ -560,7 +560,7 @@ pattern = re.compile(r'''
 ### 22. カテゴリ名の抽出
 記事のカテゴリ名を（行単位ではなく名前で）抽出せよ．
 ```Python
-pattern = re.compile(r'''
+pattern_category_name = re.compile(r'''
         ^               # Head of line
         .*              # Zero or more arbitrary characters
         \[\[Category:
@@ -582,7 +582,7 @@ G8加盟国
 ### 23. セクション構造
 記事中に含まれるセクション名とそのレベル（例えば"== セクション名 =="なら1）を表示せよ．
 ```Python
-pattern = re.compile(r'''
+pattern_section_name = re.compile(r'''
         ^       # Head of line
         (={2,}) # Capture target, two or more '='
         \s*     # Zero or more extra whitespace
@@ -598,7 +598,7 @@ pattern = re.compile(r'''
 file = 'UK.txt'
 with open(file) as text:
     text = text.read()
-    res = pattern.findall(text)
+    res = pattern_section_name.findall(text)
     for line in res:
         level = len(line[0]) - 1
         print('{indent}{section}({level})'.format(
@@ -612,10 +612,10 @@ with open(file) as text:
 歴史(1)
 ...
 ```
-### 24. ファイル参照の抽出
+### 24. ファイルi参照の抽出
 記事から参照されているメディアファイルをすべて抜き出せ．
 ```Python
-pattern = re.compile(r'''
+pattern_file = re.compile(r'''
         (?:File|ファイル)   # Uncaptured, 'File' or 'ファイル'
         :
         (.+?)               # Capture target,

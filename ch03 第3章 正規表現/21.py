@@ -2,7 +2,7 @@
 # Date: 2020-02-05
 import re
 
-pattern = re.compile(r'''
+pattern_category = re.compile(r'''
 	^	# Head of line
 	(	# Start capturing target group
 	.*	# Zero or more arbitrary characters
@@ -28,7 +28,7 @@ lines = file.readlines()
 file.close()
 
 for line in lines:
-    if re.match(pattern, line):
+    if re.match(pattern_category, line):
         print(line, end='')
 
 

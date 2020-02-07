@@ -3,7 +3,7 @@
 
 import re
 
-pattern = re.compile(r'''
+pattern_file = re.compile(r'''
         (?:File|ファイル)   # Uncaptured, 'File' or 'ファイル'
         :
         (.+?)               # Capture target,
@@ -15,7 +15,7 @@ pattern = re.compile(r'''
 file = 'UK.txt'
 with open(file) as text:
     text = text.read()
-    res = pattern.findall(text)
+    res = pattern_file.findall(text)
     for line in res:
         print(line)
 

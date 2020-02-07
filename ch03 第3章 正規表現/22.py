@@ -2,7 +2,7 @@
 # Date: 2020-02-06
 import re
 
-pattern = re.compile(r'''
+pattern_category_name = re.compile(r'''
 	^		# Head of line
 	.*		# Zero or more arbitrary characters
 	\[\[Category:
@@ -15,7 +15,7 @@ pattern = re.compile(r'''
 file = 'UK.txt'
 with open(file) as text:
     text = text.read()
-    res = pattern.findall(text)
+    res = pattern_category_name.findall(text)
     for line in res:
         print(line)
 

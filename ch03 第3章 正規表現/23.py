@@ -3,7 +3,7 @@
 
 import re
 
-pattern = re.compile(r'''
+pattern_section_name = re.compile(r'''
         ^       # Head of line
         (={2,}) # Capture target, two or more '='
         \s*     # Zero or more extra whitespace
@@ -19,7 +19,7 @@ pattern = re.compile(r'''
 file = 'UK.txt'
 with open(file) as text:
     text = text.read()
-    res = pattern.findall(text)
+    res = pattern_section_name.findall(text)
     for line in res:
         level = len(line[0]) - 1
         print('{indent}{section}({level})'.format(
