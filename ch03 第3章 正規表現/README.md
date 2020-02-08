@@ -141,15 +141,129 @@ Battle of Waterloo 1815.PNG
 ### 25. テンプレートの抽出
 記事中に含まれる「基礎情報」テンプレートのフィールド名と値を抽出し，辞書オブジェクトとして格納せよ．
 
+Extract the field names and values of the "基礎情報" template included in the article 
+and store them as dictionary objects.
+```Python
+pattern_contents = re.compile(r' ^\{\{基礎情報.*?$ (.*?) ^\}\}$', re.MULTILINE + re.VERBOSE + re.DOTALL)
+
+pattern_fields = re.compile(r'^\| (.+?) \s* = \s* (.+?) (?: (?=\n\|) | (?=\n$) )', re.MULTILINE + re.VERBOSE + re.DOTALL)
+
+file = 'UK.txt'
+
+with open(file) as text:
+    text = text.read()
+    contents = pattern_contents.findall(text)
+    fields = pattern_fields.findall(contents[0])
+
+    res = {}
+    keys = []
+    for field in fields:
+        res[field[0]] = field[1]
+        keys.append(field[0])
+
+    # use keys for confirmation in sorting
+    for item in sorted(res.items(),
+            key = lambda field: keys.index(field[0])):
+        print(item)
+```
+
 ### 26. 強調マークアップの除去
 25の処理時に，テンプレートの値からMediaWikiの強調マークアップ（弱い強調，強調，強い強調のすべて）を除去してテキストに変換せよ（参考: マークアップ早見表）．
+
+In Step 25, remove MediaWiki's emphasis markup (weak emphasis, emphasis, and strong emphasis) from the template value and convert it to text.
+
+    weak emphasis       ''italics''
+    emphasis            '''bold'''
+    strong emphasis     '''''both'''''
+
+```Python
+pattern_emphasis = re.compile(r' \'{2,5}', re.MULTILINE + re.VERBOSE)
+# use pattern.sub() to substitute emphasis markups
+```
+```Shell
+➜ python 26.py > basic_information_without_emphasis.txt; diff basic_information_with_emphasis.txt basic_information_without_emphasis.txt
+42c42
+< ('確立形態4', "現在の国号「'''グレートブリテン及び北アイルランド連合王国'''」に変更")
+---
+> ('確立形態4', '現在の国号「グレートブリテン及び北アイルランド連合王国」に変更')
+```
 
 ### 27. 内部リンクの除去
 26の処理に加えて，テンプレートの値からMediaWikiの内部リンクマークアップを除去し，テキストに変換せよ（参考: マークアップ早見表）．
 
+In addition to the processing of 26, remove MediaWiki's internal link markup from the template value and convert it to text.
+
+    MediaWiki's internal link markup        [[]]
+```Python
+pattern_interlink = re.compile(r' \[\[ (?:[^|]*?\|) ?? ([^|]*?) \]\] ', re.MULTILINE + re.VERBOSE)
+# use pattern.sub() to substitute MediaWiki's internal link markups
+```
+```Shell
+➜ python 27.py > basic_information_without_interlink.txt
+➜ diff basic_information_without_emphasis.txt basic_information_without_interlink.txt
+
+...
+43,44c43,44
+< ('確立年月日4', '[[1927年]]')
+< ('通貨', '[[スターリング・ポンド|UKポンド]] (&pound;)')
+---
+> ('確立年月日4', '1927年')
+> ('通貨', 'UKポンド (&pound;)')
+49c49
+< ('ccTLD', '[[.uk]] / [[.gb]]<ref>使用は.ukに比べ圧倒的少数。</ref>')
+---
+> ('ccTLD', '.uk / .gb<ref>使用は.ukに比べ圧倒的少数。</ref>')
+```
+
 ### 28. MediaWikiマークアップの除去
 27の処理に加えて，テンプレートの値からMediaWikiマークアップを可能な限り除去し，国の基本情報を整形せよ．
 
+In addition to the processing of 27, remove MediaWiki markup from template values as much as possible, and format basic country information.
+
+```Python
+def clean(text):
+    pattern_emphasis = re.compile(r' (\'{2,5}) (.*?) (\1) ', re.MULTILINE + re.VERBOSE)
+    text = pattern_emphasis.sub(r'\2', text)
+
+    pattern_interlink = re.compile(r' \[\[ (?: [^|] *? \|) *? ([^|]*?) \]\] ', re.MULTILINE + re.VERBOSE)
+    text = pattern_interlink.sub(r'\1',text)
+
+    pattern_language = re.compile(r' \{\{lang (?: [^|] *? \|) *? ([^|]*?) \}\} ', re.MULTILINE + re.VERBOSE)
+    text = pattern_language.sub(r'\1', text)
+
+    pattern_outerlink = re.compile(r' \[http:\/\/ (?: [^\s] *? \s) ? ([^]] *?) \] ', re.MULTILINE + re.VERBOSE)
+    text = pattern_outerlink.sub(r'\1', text)
+
+    pattern_br_ref = re.compile(r' < \/? [br | ref] [^>] *? > ', re.MULTILINE + re.VERBOSE)
+    text = pattern_br_ref.sub('', text)
+
+    return text
+```
+
 ### 29. 国旗画像のURLを取得する
 テンプレートの内容を利用し，国旗画像のURLを取得せよ．（ヒント: MediaWiki APIのimageinfoを呼び出して，ファイル参照をURLに変換すればよい）
+
+Get the URL of the flag image using the contents of the template. (Hint: Call imageinfo of MediaWiki API to convert file references to URLs)
+```Python
+file_name = res['国旗画像']
+
+url = 'https://www.mediawiki.org/w/api.php?' \
+    + 'action=query' \
+    + '&titles=File:' + urllib.parse.quote(file_name) \
+    + '&format=json' \
+    + '&prop=imageinfo' \
+    + '&iiprop=url'
+
+request = urllib.request.Request(url)
+connection = urllib.request.urlopen(request)
+data = json.loads(connection.read().decode())
+
+url_real = data['query']['pages'].popitem()[1]['imageinfo'][0]['url']
+print(url_real)
+```
+```Shell
+➜ python 29.py
+https://upload.wikimedia.org/wikipedia/commons/a/ae/Flag_of_the_United_Kingdom.svg
+```
+![UK flag](https://upload.wikimedia.org/wikipedia/commons/a/ae/Flag_of_the_United_Kingdom.svg)
 
