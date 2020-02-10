@@ -1,8 +1,8 @@
 # 100 Language Processing Knocks
 Amateur practices and handmade codes in separate chapter folder.
-[Mr.segavvy](https://qiita.com/segavvy)'s posts on [qiita](https://qiita.com) and internet help a lot. Thanks!
-## 第1章: 準備運動
+The Internet and Search Engine help a lot.
 
+## 第1章: 準備運動
 ### 00. 文字列の逆順
 文字列"stressed"の文字を逆に（末尾から先頭に向かって）並べた文字列を得よ．
 ```Python
