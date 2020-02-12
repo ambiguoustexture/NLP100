@@ -1,4 +1,4 @@
-## 第4章: 形態素解析
+#ii# 第4章: 形態素解析
 夏目漱石の小説『吾輩は猫である』の文章（[neko.txt](http://www.cl.ecei.tohoku.ac.jp/nlp100/data/neko.txt)）をMeCabを使って形態素解析し，その結果をneko.txt.mecabというファイルに保存せよ．このファイルを用いて，以下の問に対応するプログラムを実装せよ．
 
 Morphologically analyze the text of Soseki Natsume's novel "I am a cat" using MeCab, 
@@ -15,18 +15,140 @@ For problems 37, 38, and 39, use matplotlib or Gnuplot.
 Implement a program that reads the result of morphological analysis (neko.txt.mecab).
 However, each morpheme is stored in a mapping type with the surface type (surface), basic type (base), part of speech (pos), and part of speech class 1 (pos1) as keys, and one sentence is represented as a list of morphemes (mapping type) Please.
 Use the program you created here for the rest of Chapter 4.
+```Python
+import MeCab
 
+def morphology_map(file_parsed):
+    with open(file_parsed) as mecab_parsed:
+        mecab_parsed = mecab_parsed.read()
+    mecab_parsed = mecab_parsed.lstrip('\n')
+    lines = mecab_parsed.splitlines()
+    res = []
+
+    for line in lines:
+        line_current = line.replace('\t',',').split(',')
+        if line_current[0] == 'EOS':
+            break
+        else:
+            dict = {
+                    'surface' :line_current[0],
+                    'base'    :line_current[-3],
+                    'pos'     :line_current[1],
+                    'pos1'    :line_current[2]
+                    }
+            res.append(dict)
+    return res
+
+if __name__ == "__main__":
+    file = './neko.txt'
+    file_parsed = './neko.txt.mecab'
+
+    with open(file) as text, open(file_parsed, 'w') as text_parsed:
+        mecab_tagger = MeCab.Tagger()
+        mecab_parsed = mecab_tagger.parse(text.read())
+        text_parsed.write(mecab_parsed)
+
+    res = morphology_map(file_parsed)
+    for item in res:
+        print(item)
+```
+```Shell
+➜ python morphological_analysis.py > morphological_analysis.txt; head -4 morphological_analysis.txt
+{'surface': '一', 'base': '一', 'pos': '名詞', 'pos1': '数'}
+{'surface': '\u3000', 'base': '\u3000', 'pos': '記号', 'pos1': '空白'}
+{'surface': '吾輩', 'base': '吾輩', 'pos': '名詞', 'pos1': '代名詞'}
+{'surface': 'は', 'base': 'は', 'pos': '助詞', 'pos1': '係助詞'}
+```
 ### 31. 動詞
 動詞の表層形をすべて抽出せよ．
 
+Extract all verb surface forms.
+```Python
+from morphological_analysis import morphology_map
+
+file_parsed = "./neko.txt.mecab"
+
+verbs = set()
+verbs_order = []
+
+words = morphology_map(file_parsed)
+for word in words:
+    if word['pos'] == '動詞':
+        verbs.add(word['surface'])
+        verbs_order.append(word['surface'])
+
+verbs = sorted(verbs, key=verbs_order.index)
+for verb in verbs:
+    print(verb)
+```
+```Shell
+➜ python verbs.py > verbs.txt; head -4 verbs.txt
+生れ
+つか
+し
+泣い
+```
 ### 32. 動詞の原形
 動詞の原形をすべて抽出せよ．
+
+Extract all verb forms.
+```Python
+words = morphology_map(file_parsed)
+for word in words:
+    if word['pos'] == '動詞':
+        verbs.add(word['base'])
+        verbs_order.append(word['base'])
+```
+```Shell
+➜ python verbs_primitive.py > verbs_primitive.txt; head -4 verbs_primitive.txt
+生れる
+つく
+する
+泣く
+```
 
 ### 33. サ変名詞
 サ変接続の名詞をすべて抽出せよ．
 
+Extract all nouns which verbs can be formed by adding "する" to.
+```Python
+words = morphology_map(file_parsed)
+for word in words:
+    if word['pos'] == '名詞' and word['pos1'] == 'サ変接続':
+        items.add(word['surface'])
+        items_order.append(word['surface'])
+```
+```Shell
+➜ python nouns_suru.py > nouns_suru.txt; head -4 nouns_suru.txt
+見当
+記憶
+話
+装飾
+```
+
 ### 34. 「AのB」
 2つの名詞が「の」で連結されている名詞句を抽出せよ．
+
+Extract a noun phrase where two nouns are connected by "の".
+```Python
+items_list = []
+words = morphology_map(file_parsed)
+for i in range(1, len(words) - 1):
+    if words[i]['surface'] == 'の' and words[i - 1]['pos'] == '名詞' and words[i + 1]['pos'] == '名詞':
+            items_list.append(words[i - 1]['surface'] + 'の' + words[i + 1]['surface'])
+
+items = set(items_list)
+items = sorted(items, key=items_list.index)
+for item in items:
+    print(item)
+```
+```Shell
+➜ python nouns_connected_with_no.py > nouns_connected_with_no.txt; head -4 nouns_connected_with_no.txt
+彼の掌
+掌の上
+書生の顔
+はずの顔
+```
 
 ### 35. 名詞の連接
 名詞の連接（連続して出現する名詞）を最長一致で抽出せよ．
