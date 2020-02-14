@@ -25,8 +25,6 @@ class Morph:
         self.pos     = pos
         self.pos1    = pos1
 
-    def __str__(self):
-        return 'surface[{}]\tbase[{}]\tpos[{}]\tpos1[{}]'.format(self.surface, self.base, self.pos, self.pos1)
 ```
 The morpheme sequence of the third sentence.
 ```Shell
