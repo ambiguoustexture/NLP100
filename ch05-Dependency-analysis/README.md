@@ -10,7 +10,6 @@ Analysis dependency of the text ([neko.txt](http://www.cl.ecei.tohoku.ac.jp/nlp1
 
 Implement the class Morph that represents a morpheme. This class has surface, base, part of speech (pos), and part of speech classification 1 (pos1) as member variables. In addition, read the analysis result of CaboCha (neko.txt.cabocha), store each sentence as a list of Morph objects, and display the morpheme sequence of the third sentence.
 ```Python
-```
 import CaboCha
 
 def dependency_analysis():
