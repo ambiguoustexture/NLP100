@@ -980,16 +980,16 @@ for item in items:
 出現頻度が高い10語とその出現頻度をグラフ（例えば棒グラフなど）で表示せよ．
 
 Display the 10 most frequently occurring words and their frequency of occurrence in a graph (eg a bar graph).
-![bar graph](https://github.com/ambiguoustexture/NLP-100-Knocks/blob/master/ch04%20形態素解析/ten_most_frequently_occurring_words.png)
+![bar graph](https://github.com/ambiguoustexture/NLP-100-Knocks/blob/master/ch04-Morphological-analysis/ten_most_frequently_occurring_words.png)
 
 ### 38. ヒストグラム
 単語の出現頻度のヒストグラム（横軸に出現頻度，縦軸に出現頻度をとる単語の種類数を棒グラフで表したもの）を描け．
 
 Draw a histogram of the frequency of occurrence of the word (the horizontal axis represents the frequency of appearance, and the vertical axis represents the number of types of words whose appearance frequency is represented by a bar graph).
-![histrogram graph](https://github.com/ambiguoustexture/NLP-100-Knocks/blob/master/ch04%20形態素解析/histogram.png)
+![histrogram graph](https://github.com/ambiguoustexture/NLP-100-Knocks/blob/master/ch04-Morphological-analysis/histogram.png)
 ### 39. Zipfの法則
 単語の出現頻度順位を横軸，その出現頻度を縦軸として，両対数グラフをプロットせよ．
 
 Plot a log-logarithmic graph with the frequency of occurrence of words on the horizontal axis and the frequency of occurrence on the vertical axis.
-![zipf law](https://github.com/ambiguoustexture/NLP-100-Knocks/blob/master/ch04%20形態素解析/zipf_law.png)
+![zipf law](https://github.com/ambiguoustexture/NLP-100-Knocks/blob/master/ch04-Morphological-analysis/zipf_law.png)
 
