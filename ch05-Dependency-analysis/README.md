@@ -8,8 +8,47 @@ Analysis dependency of the text ([neko.txt](http://www.cl.ecei.tohoku.ac.jp/nlp1
 ### 40. 係り受け解析結果の読み込み（形態素）
 形態素を表すクラス**Morph**を実装せよ．このクラスは表層形（**surface**），基本形（**base**），品詞（**pos**），品詞細分類1（**pos1**）をメンバ変数に持つこととする．さらに，CaboChaの解析結果（neko.txt.cabocha）を読み込み，各文を**Morph**オブジェクトのリストとして表現し，3文目の形態素列を表示せよ．
 
+Implement the class Morph that represents a morpheme. This class has surface, base, part of speech (pos), and part of speech classification 1 (pos1) as member variables. In addition, read the analysis result of CaboCha (neko.txt.cabocha), store each sentence as a list of Morph objects, and display the morpheme sequence of the third sentence.
+```Python
+```
+import CaboCha
+
+def dependency_analysis():
+    with open(file) as text, open(file_parsed, 'w') as text_parsed:
+        cabocha = CaboCha.Parser()
+        for line in text:
+            text_parsed.write(cabocha.parse(line).toString(CaboCha.FORMAT_LATTICE))
+
+class Morph:
+    def __init__(self, surface, base, pos, pos1):
+        self.surface = surface
+        self.base    = base
+        self.pos     = pos
+        self.pos1    = pos1
+
+    def __str__(self):
+        return 'surface[{}]\tbase[{}]\tpos[{}]\tpos1[{}]'.format(self.surface, self.base, self.pos, self.pos1)
+```
+The morpheme sequence of the third sentence.
+```Shell
+➜ python dependency_analysis.py
+surface=どこ	base=どこ	pos=名詞	pos1=代名詞
+surface=で	base=で	pos=助詞	pos1=格助詞
+surface=生れ	base=生れる	pos=動詞	pos1=自立
+surface=た	base=た	pos=助動詞	pos1=*
+surface=か	base=か	pos=助詞	pos1=副助詞／並立助詞／終助詞
+surface=とんと	base=とんと	pos=副詞	pos1=一般
+surface=見当	base=見当	pos=名詞	pos1=サ変接続
+surface=が	base=が	pos=助詞	pos1=格助詞
+surface=つか	base=つく	pos=動詞	pos1=自立
+surface=ぬ	base=ぬ	pos=助動詞	pos1=*
+surface=。	base=。	pos=記号	pos1=句点
+```
+
 ### 41. 係り受け解析結果の読み込み（文節・係り受け）
 40に加えて，文節を表すクラス**Chunk**を実装せよ．このクラスは形態素（**Morph**オブジェクト）のリスト（**morphs**），係り先文節インデックス番号（**dst**），係り元文節インデックス番号のリスト（**srcs**）をメンバ変数に持つこととする．さらに，入力テキストのCaboChaの解析結果を読み込み，１文を**Chunk**オブジェクトのリストとして表現し，8文目の文節の文字列と係り先を表示せよ．第5章の残りの問題では，ここで作ったプログラムを活用せよ．
+
+In addition to 40, implement a class Chunk that represents a clause. This class shall have a list of morphemes (Morph objects) (morphs), a target clause index number (dst), and a list of source clause index numbers (srcs) as member variables. Furthermore, read the analysis result of CaboCha of the input text, express one sentence as a list of Chunk objects, and display the character string of the eighth sentence and the destination. Use the program you created here for the rest of Chapter 5.
 
 ### 42. 係り元と係り先の文節の表示
 係り元の文節と係り先の文節のテキストをタブ区切り形式ですべて抽出せよ．ただし，句読点などの記号は出力しないようにせよ．
