@@ -7,17 +7,16 @@ Analysis dependency of the text ([neko.txt](http://www.cl.ecei.tohoku.ac.jp/nlp1
 使用 CaboCha 对夏目漱石的小说《我是猫》的文本（[neko.txt](http://www.cl.ecei.tohoku.ac.jp/nlp100/data/neko.txt)）进行依存句法分析，并将结果保存在名为 neko.txt.cabocha 的文件中。 使用此文件实现解决以下问题的程序：
 
 ### 40. 係り受け解析結果の読み込み（形態素）
-形態素を表すクラス**Morph**を実装せよ．このクラスは表層形（**surface**），基本形（**base**），品詞（**pos**），品詞細分類1（**pos1**）をメンバ変数に持つこととする．さらに，CaboChaの解析結果（neko.txt.cabocha）を読み込み，各文を**Morph**オブジェクトのリストとして表現し，3文目の形態素列を表示せよ．
+Reading dependency analysis results (morpheme) <br/>
+读取依存关系分析结果（语素）
 
-Implement the class Morph that represents a morpheme. This class has surface, base, part of speech (pos), and part of speech classification 1 (pos1) as member variables. In addition, read the analysis result of CaboCha (neko.txt.cabocha), store each sentence as a list of Morph objects, and display the morpheme sequence of the third sentence.
+形態素を表すクラス**Morph**を実装せよ．このクラスは表層形（**surface**），基本形（**base**），品詞（**pos**），品詞細分類1（**pos1**）をメンバ変数に持つこととする．さらに，CaboChaの解析結果（neko.txt.cabocha）を読み込み，各文を**Morph**オブジェクトのリストとして表現し，3文目の形態素列を表示せよ．<br/>
+Implement the class Morph that represents a morpheme. This class has surface, base, part of speech (pos), and part of speech classification 1 (pos1) as member variables. In addition, read the analysis result of CaboCha (neko.txt.cabocha), store each sentence as a list of Morph objects, and display the morpheme sequence of the third sentence. <br/>
+实现代表词素的类Morph。 此类具有**surface**，**base**，**pos**（词性）和**pos1**作为成员变量。
+另外，读取 CaboCha（neko.txt.cabocha）的分析结果，将每个句子存储为Morph对象列表，并显示第三个句子的词素列表。
+
 ```Python
 import CaboCha
-
-def dependency_analysis():
-    with open(file) as text, open(file_parsed, 'w') as text_parsed:
-        cabocha = CaboCha.Parser()
-        for line in text:
-            text_parsed.write(cabocha.parse(line).toString(CaboCha.FORMAT_LATTICE))
 
 class Morph:
     def __init__(self, surface, base, pos, pos1):
@@ -26,27 +25,53 @@ class Morph:
         self.pos     = pos
         self.pos1    = pos1
 
+def morpheme_analysis(file_parsed):
+    sentence, sentences = [], []
+    with open('neko.txt.cabocha') as text_parsed:
+        for line in text_parsed:
+            if line[0] == "*" :
+                next
+            if "\t" in line:
+                item = line.strip().split("\t")
+                try:
+                    surf = item[0]
+                    items = item[1].split(",")
+                except IndexError:
+                    next
+                if not item == ['記号,空白,*,*,*,*,\u3000,\u3000,']:
+                    sentence.append(Morph(surf, items[6], items[0], items[1]))
+            elif "EOS" in line:
+                if len(sentence) > 0:
+                    sentences.append(sentence)
+                sentence = []
+    return sentences
 ```
 The morpheme sequence of the third sentence.
 ```Shell
-➜ python dependency_analysis.py
-surface=どこ	base=どこ	pos=名詞	pos1=代名詞
-surface=で	base=で	pos=助詞	pos1=格助詞
-surface=生れ	base=生れる	pos=動詞	pos1=自立
-surface=た	base=た	pos=助動詞	pos1=*
-surface=か	base=か	pos=助詞	pos1=副助詞／並立助詞／終助詞
-surface=とんと	base=とんと	pos=副詞	pos1=一般
-surface=見当	base=見当	pos=名詞	pos1=サ変接続
-surface=が	base=が	pos=助詞	pos1=格助詞
-surface=つか	base=つく	pos=動詞	pos1=自立
-surface=ぬ	base=ぬ	pos=助動詞	pos1=*
-surface=。	base=。	pos=記号	pos1=句点
+➜ python morphology_analysis.py
+surface = どこ   	 base = どこ 	 pos = 名詞 	 pos1 = 代名詞
+surface = で    	 base = で 	     pos = 助詞 	 pos1 = 格助詞
+surface = 生れ   	 base = 生れる 	 pos = 動詞 	 pos1 = 自立
+surface = た    	 base = た 	     pos = 助動詞 	 pos1 = *
+surface = か    	 base = か 	     pos = 助詞 	 pos1 = 副助詞／並立助詞／終助詞
+surface = とんと  	 base = とんと 	 pos = 副詞 	 pos1 = 一般
+surface = 見当   	 base = 見当 	 pos = 名詞 	 pos1 = サ変接続
+surface = が    	 base = が 	     pos = 助詞 	 pos1 = 格助詞
+surface = つか   	 base = つく 	 pos = 動詞 	 pos1 = 自立
+surface = ぬ    	 base = ぬ 	     pos = 助動詞 	 pos1 = *
+surface = 。    	 base = 。 	     pos = 記号 	 pos1 = 句点
 ```
 
 ### 41. 係り受け解析結果の読み込み（文節・係り受け）
-40に加えて，文節を表すクラス**Chunk**を実装せよ．このクラスは形態素（**Morph**オブジェクト）のリスト（**morphs**），係り先文節インデックス番号（**dst**），係り元文節インデックス番号のリスト（**srcs**）をメンバ変数に持つこととする．さらに，入力テキストのCaboChaの解析結果を読み込み，１文を**Chunk**オブジェクトのリストとして表現し，8文目の文節の文字列と係り先を表示せよ．第5章の残りの問題では，ここで作ったプログラムを活用せよ．
+Reading dependency analysis results (phrase / dependency) <br/>
+读取依存关系分析结果（短语/依存关系）
 
-In addition to 40, implement a class Chunk that represents a clause. This class shall have a list of morphemes (Morph objects) (morphs), a target clause index number (dst), and a list of source clause index numbers (srcs) as member variables. Furthermore, read the analysis result of CaboCha of the input text, express one sentence as a list of Chunk objects, and display the character string of the eighth sentence and the destination. Use the program you created here for the rest of Chapter 5.
+40に加えて，文節を表すクラス**Chunk**を実装せよ．このクラスは形態素（**Morph**オブジェクト）のリスト（**morphs**），係り先文節インデックス番号（**dst**），係り元文節インデックス番号のリスト（**srcs**）をメンバ変数に持つこととする．さらに，入力テキストのCaboChaの解析結果を読み込み，１文を**Chunk**オブジェクトのリストとして表現し，8文目の文節の文字列と係り先を表示せよ．第5章の残りの問題では，ここで作ったプログラムを活用せよ．<br/>
+In addition to 40, implement a class Chunk that represents a clause. This class shall have a list of morphemes (Morph objects) (morphs), a target clause index number (dst), and a list of source clause index numbers (srcs) as member variables. Furthermore, read the analysis result of CaboCha of the input text, express one sentence as a list of Chunk objects, and display the character string of the eighth sentence and the destination. Use the program you created here for the rest of Chapter 5. <br/>
+在**40**的基础上，实现代表词组的**Chunk**类。
+此类拥有一个词素列表（**Morph**对象）（**morphs**），一个目标词组索引号（**dst**）和一个依存关系源词组索引号（**srcs**）作为成员变量。
+之后，读取输入文本的CaboCha的分析结果，将一个句子表示为**Chunk**对象的列表，并显示第八句的**dst**和**srcs**。
+将这里创建的程序用于第5章的其余部分。
 
 ### 42. 係り元と係り先の文節の表示
 係り元の文節と係り先の文節のテキストをタブ区切り形式ですべて抽出せよ．ただし，句読点などの記号は出力しないようにせよ．
