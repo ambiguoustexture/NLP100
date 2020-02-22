@@ -3,12 +3,6 @@
 
 import CaboCha
 
-def dependency_analysis():
-    with open(file) as text, open(file_parsed, 'w') as text_parsed:
-        cabocha = CaboCha.Parser()
-        for line in text:
-            text_parsed.write(cabocha.parse(line).toString(CaboCha.FORMAT_LATTICE))
-
 class Morph:
     def __init__(self, surface, base, pos, pos1):
         self.surface = surface
@@ -16,20 +10,8 @@ class Morph:
         self.pos     = pos
         self.pos1    = pos1
 
-class Chunk:
-    def __init__(self, sentence, morphs, dst, srcs):
-        self.sentence = sentence
-        self.morphs = morphs
-        self.dst    = dst
-        self.srcs   = srcs
-
-if __name__ == '__main__':
-    file = './neko.txt'
-    file_parsed = './neko.txt.cabocha'
-    dependency_analysis()
-    
-    sentences = []
-    sentence  = []
+def morpheme_analysis(file_parsed):
+    sentence, sentences = [], []
     with open('neko.txt.cabocha') as text_parsed:
         for line in text_parsed:
             if line[0] == "*" :
@@ -47,7 +29,18 @@ if __name__ == '__main__':
                 if len(sentence) > 0:
                     sentences.append(sentence)
                 sentence = []
+    return sentences
 
+if __name__ == '__main__':
+    file_raw, file_parsed = './neko.txt', './neko.txt.cabocha'
+    with open(file_raw) as text, open(file_parsed, 'w') as text_parsed:
+        cabocha = CaboCha.Parser()
+        for line in text:
+            text_parsed.write(cabocha.parse(line).toString(CaboCha.FORMAT_LATTICE))
+    
+    sentences = morpheme_analysis(file_parsed)
     for morpheme in sentences[3]:
-        print ('surface=%s\tbase=%s\tpos=%s\tpos1=%s' % (morpheme.surface, morpheme.base, morpheme.pos, morpheme.pos1))
+        print ('surface = %- 4s \t base = %s \t pos = %s \t pos1 = %s' %\
+                (morpheme.surface, morpheme.base, morpheme.pos, morpheme.pos1))
+
 
