@@ -39,8 +39,8 @@ if __name__ == '__main__':
             text_parsed.write(cabocha.parse(line).toString(CaboCha.FORMAT_LATTICE))
     
     sentences = morpheme_analysis(file_parsed)
-    for morpheme in sentences[3]:
-        print ('surface = %- 4s \t base = %s \t pos = %s \t pos1 = %s' %\
-                (morpheme.surface, morpheme.base, morpheme.pos, morpheme.pos1))
-
-
+    for morph in sentences[3]:
+        print('surface: ',  morph.surface.ljust(4, chr(12288)),\
+                '\tbase: ', morph.base.ljust(4, chr(12288)),\
+                '\tpos: ' , morph.pos.ljust(4, chr(12288)),\
+                '\tpos1: ', morph.pos1.ljust(4, chr(12288)))
