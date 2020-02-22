@@ -27,7 +27,7 @@ def chunk_analysis(file_parsed):
             surface = line.split('\t')[0]
             others = line.split('\t')[1].split(",")
             base, pos, pos1 = others[6], others[0], others[1]
-            morph = morphology_analysis.Morph(surface, base, pos, pos1)
+            morph = morph_analysis.Morph(surface, base, pos, pos1)
             sentence[-1].morphs.append(morph)
     return sentences
 

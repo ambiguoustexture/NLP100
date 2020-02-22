@@ -72,6 +72,64 @@ In addition to 40, implement a class Chunk that represents a clause. This class 
 此类拥有一个词素(**40**中的**Morph**对象)列表（**morphs**），一个目标词组索引号（**dst**）和一个依存关系源词组索引号（**srcs**）作为成员变量。
 之后，读取输入文本的CaboCha的分析结果，将一个句子表示为**Chunk**对象的列表，并显示第八句的**dst**和**srcs**。
 将这里创建的程序用于第5章的其余部分。
+```Python
+import morphology_analysis
+
+class Chunk():
+    def __init__(self):
+        self.morphs = []
+        self.dst    = -1
+        self.srcs   = []
+
+def chunk_analysis(file_parsed):
+    sentences = []
+    sentence = []
+    for line in file_parsed:
+        if line == "EOS\n":
+            for index, chunk in enumerate(sentence[:-1]):
+                if chunk.dst != -1:
+                    sentence[chunk.dst].srcs.append(index)
+            sentences.append(sentence)
+            sentence = []
+        elif line[0] == "*":
+            chunk = Chunk()
+            chunk.dst = int(line.split()[2].strip("D"))
+            sentence.append(chunk)
+        else:
+            surface = line.split('\t')[0]
+            others = line.split('\t')[1].split(",")
+            base, pos, pos1 = others[6], others[0], others[1]
+            morph = morphology_analysis.Morph(surface, base, pos, pos1)
+            sentence[-1].morphs.append(morph)
+    return sentences
+
+
+if __name__ == "__main__":
+    file_parsed = './neko.txt.cabocha'
+    with open("neko.txt.cabocha", "r") as text_parsed:
+        sentences = chunk_analysis(text_parsed)
+        # index of the 8th sentence is 10 in fact
+        for index, chunk_current in enumerate(sentences[10]):
+            chunk_string = ""
+            for morph in chunk_current.morphs:
+                chunk_string += morph.surface
+            print('chunk: ', chunk_string.ljust(8, chr(12288)),\
+                    '\tdst: %2d ' % chunk_current.dst,\
+                    '\tsrcs: ',chunk_current.srcs)
+```
+```Shell
+➜ python chunk_analysis.py
+chunk:  しかし　　　　　 	dst:  9  	srcs:  []
+chunk:  その　　　　　　 	dst:  2  	srcs:  []
+chunk:  当時は　　　　　 	dst:  5  	srcs:  [1]
+chunk:  何という　　　　 	dst:  4  	srcs:  []
+chunk:  考も　　　　　　 	dst:  5  	srcs:  [3]
+chunk:  なかったから　　 	dst:  9  	srcs:  [2, 4]
+chunk:  別段　　　　　　 	dst:  7  	srcs:  []
+chunk:  恐し　　　　　　 	dst:  9  	srcs:  [6]
+chunk:  いとも　　　　　 	dst:  9  	srcs:  []
+chunk:  思わなかった。　 	dst: -1  	srcs:  [0, 5, 7, 8]
+```
 
 ### 42. 係り元と係り先の文節の表示
 係り元の文節と係り先の文節のテキストをタブ区切り形式ですべて抽出せよ．ただし，句読点などの記号は出力しないようにせよ．
