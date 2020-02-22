@@ -1,7 +1,7 @@
 # Author：ambiguoustexture
 # Date: 2020-02-22
 
-import morphology_analysis 
+import morph_analysis 
 
 class Chunk():
     def __init__(self):
