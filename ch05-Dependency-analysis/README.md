@@ -50,16 +50,16 @@ The morpheme sequence of the third sentence.
 ```Shell
 ➜ python morphology_analysis.py
 surface = どこ   	 base = どこ 	 pos = 名詞 	 pos1 = 代名詞
-surface = で    	 base = で 	     pos = 助詞 	 pos1 = 格助詞
+surface = で    	 base = で 	 pos = 助詞 	 pos1 = 格助詞
 surface = 生れ   	 base = 生れる 	 pos = 動詞 	 pos1 = 自立
-surface = た    	 base = た 	     pos = 助動詞 	 pos1 = *
-surface = か    	 base = か 	     pos = 助詞 	 pos1 = 副助詞／並立助詞／終助詞
+surface = た    	 base = た 	 pos = 助動詞 	 pos1 = *
+surface = か    	 base = か 	 pos = 助詞 	 pos1 = 副助詞／並立助詞／終助詞
 surface = とんと  	 base = とんと 	 pos = 副詞 	 pos1 = 一般
 surface = 見当   	 base = 見当 	 pos = 名詞 	 pos1 = サ変接続
-surface = が    	 base = が 	     pos = 助詞 	 pos1 = 格助詞
+surface = が    	 base = が 	 pos = 助詞 	 pos1 = 格助詞
 surface = つか   	 base = つく 	 pos = 動詞 	 pos1 = 自立
-surface = ぬ    	 base = ぬ 	     pos = 助動詞 	 pos1 = *
-surface = 。    	 base = 。 	     pos = 記号 	 pos1 = 句点
+surface = ぬ    	 base = ぬ 	 pos = 助動詞 	 pos1 = *
+surface = 。    	 base = 。 	 pos = 記号 	 pos1 = 句点
 ```
 
 ### 41. 係り受け解析結果の読み込み（文節・係り受け）
