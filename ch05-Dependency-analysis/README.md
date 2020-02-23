@@ -277,7 +277,7 @@ with open(file_parsed) as text_parsed:
 ➜ python dependency_visualization.py
 Please input a sentence --> どこで生れたかとんと見当がつかぬ。
 ```
-![dependency_visualization.png]()
+![dependency_visualization.png](https://github.com/ambiguoustexture/NLP-100-Knocks/blob/master/ch05-Dependency-analysis/dependency_visualization.png)
 
 ### 45. 動詞の格パターンの抽出
 今回用いている文章をコーパスと見なし，日本語の述語が取りうる格を調査したい． 動詞を述語，動詞に係っている文節の助詞を格と考え，述語と格をタブ区切り形式で出力せよ． ただし，出力は以下の仕様を満たすようにせよ．
