@@ -38,7 +38,7 @@ if __name__ == "__main__":
         sentences = chunk_analysis(text_parsed)
         # index of the 8th sentence is 10 in fact
         for index, chunk_current in enumerate(sentences[10]):
-            chunk_string = ""
+            chunk_string = ''
             for morph in chunk_current.morphs:
                 chunk_string += morph.surface
             print('chunk: ', chunk_string.ljust(8, chr(12288)),\
