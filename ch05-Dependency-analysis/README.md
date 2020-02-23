@@ -234,7 +234,50 @@ with open(file_parsed) as text_parsed:
 
 
 ### 44. 係り受け木の可視化
-与えられた文の係り受け木を有向グラフとして可視化せよ．可視化には，係り受け木を[DOT言語](http://ja.wikipedia.org/wiki/DOT言語)に変換し，[Graphviz](http://www.graphviz.org/)を用いるとよい．また，Pythonから有向グラフを直接的に可視化するには，[pydot](https://code.google.com/p/pydot/)を使うとよい．
+Visualization of dependency trees
+
+与えられた文の係り受け木を有向グラフとして可視化せよ．可視化には，係り受け木を[DOT言語](http://ja.wikipedia.org/wiki/DOT言語)に変換し，[Graphviz](http://www.graphviz.org/)を用いるとよい．また，Pythonから有向グラフを直接的に可視化するには，[pydot](https://code.google.com/p/pydot/)を使うとよい．<br/>
+Visualize the dependency tree of a given sentence as a directed graph. For visualization, convert the dependency tree to the DOT language and use Graphviz. You can also use pydot to visualize directed graphs directly from Python.<br/>
+将给定句子的依存关系树可视化为有向图。 为了可视化，将依赖关系树转换为DOT语言并使用Graphviz。还可以使用pydot直接用Python可视化有向图。
+```Python
+from chunk_analysis import chunk_analysis
+import CaboCha
+import pydotplus as pydot
+
+file_parsed = './sentence_input.txt.cabocha'
+with open(file_parsed, mode='w') as sentence_parsed:
+    cabocha = CaboCha.Parser()
+    sentence_parsed.write(cabocha.parse(input('Please input a sentence --> ')).\
+            toString(CaboCha.FORMAT_LATTICE))
+
+with open(file_parsed) as text_parsed:
+    sentences = chunk_analysis(text_parsed)
+    for sentence in sentences:
+        edges = []
+        for index, chunk in enumerate(sentence):
+            if chunk.dst != -1:
+                chunk_src = ''
+                for morph in chunk.morphs:
+                    chunk_src += morph.surface
+                chunk_src = chunk_src.strip()
+                chunk_dst = ''
+                for morph in sentence[chunk.dst].morphs:
+                    chunk_dst += morph.surface
+                chunk_dst = chunk_dst.strip()
+                if '。' in chunk_dst:
+                    chunk_dst = chunk_dst[:-1]
+                if chunk_src != '' and chunk_dst != '':
+                    edges.append(((index, chunk_src), (chunk.dst, chunk_dst)))
+
+        if len(edges) > 0:
+            tree = pydot.graph_from_edges(edges, directed=True)
+            tree.write_png('./dependency_visualization.png')
+```
+```Shell
+➜ python dependency_visualization.py
+Please input a sentence --> どこで生れたかとんと見当がつかぬ。
+```
+![dependency_visualization.png]()
 
 ### 45. 動詞の格パターンの抽出
 今回用いている文章をコーパスと見なし，日本語の述語が取りうる格を調査したい． 動詞を述語，動詞に係っている文節の助詞を格と考え，述語と格をタブ区切り形式で出力せよ． ただし，出力は以下の仕様を満たすようにせよ．
