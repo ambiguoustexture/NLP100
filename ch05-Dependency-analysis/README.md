@@ -3,8 +3,8 @@ Chapter 5: Dependency Analysis<br/>
 第5章：依存句法分析
 
 夏目漱石の小説『吾輩は猫である』の文章（[neko.txt](http://www.cl.ecei.tohoku.ac.jp/nlp100/data/neko.txt)）をCaboChaを使って係り受け解析し，その結果をneko.txt.cabochaというファイルに保存せよ．このファイルを用いて，以下の問に対応するプログラムを実装せよ．<br/>
-Analysis dependency of the text ([neko.txt](http://www.cl.ecei.tohoku.ac.jp/nlp100/data/neko.txt)) of Soseki Natsume's novel "I am a cat" using CaboCha, and save the result in a file called neko.txt.cabocha. Use this file to implement a program that addresses the following questions: <br/>
-使用 CaboCha 对夏目漱石的小说《我是猫》的文本（[neko.txt](http://www.cl.ecei.tohoku.ac.jp/nlp100/data/neko.txt)）进行依存句法分析，并将结果保存在名为 neko.txt.cabocha 的文件中。 使用此文件实现解决以下问题的程序：
+Analysis dependency of the text（neko.txt）of Soseki Natsume's novel "I am a cat" using CaboCha, and save the result in a file called neko.txt.cabocha. Use this file to implement a program that addresses the following questions: <br/>
+使用 CaboCha 对夏目漱石的小说《我是猫》的文本（neko.txt）进行依存句法分析，并将结果保存在名为 neko.txt.cabocha 的文件中。 使用此文件实现解决以下问题的程序：
 
 ### 40. 係り受け解析結果の読み込み（形態素）
 Reading dependency analysis results (morpheme) <br/>
@@ -235,6 +235,7 @@ with open(file_parsed) as text_parsed:
 
 ### 44. 係り受け木の可視化
 Visualization of dependency trees
+依存句法树的可视化
 
 与えられた文の係り受け木を有向グラフとして可視化せよ．可視化には，係り受け木を[DOT言語](http://ja.wikipedia.org/wiki/DOT言語)に変換し，[Graphviz](http://www.graphviz.org/)を用いるとよい．また，Pythonから有向グラフを直接的に可視化するには，[pydot](https://code.google.com/p/pydot/)を使うとよい．<br/>
 Visualize the dependency tree of a given sentence as a directed graph. For visualization, convert the dependency tree to the DOT language and use Graphviz. You can also use pydot to visualize directed graphs directly from Python.<br/>
