@@ -132,10 +132,106 @@ chunk:  思わなかった。　 	dst: -1  	srcs:  [0, 5, 7, 8]
 ```
 
 ### 42. 係り元と係り先の文節の表示
-係り元の文節と係り先の文節のテキストをタブ区切り形式ですべて抽出せよ．ただし，句読点などの記号は出力しないようにせよ．
+Display of source and destination clauses<br/>
+显示源词组和目的词组
+
+係り元の文節と係り先の文節のテキストをタブ区切り形式ですべて抽出せよ．ただし，句読点などの記号は出力しないようにせよ．<br/>
+Extract all the text of the source and destination clauses in tab-delimited format. However, do not output symbols such as punctuation marks.<br/>
+以制表符分隔的格式提取源词组和目标词组的所有文本。 但是，请勿输出标点符号等符号。
+```Python
+from chunk_analysis import chunk_analysis
+
+file_parsed = './neko.txt.cabocha'
+
+with open(file_parsed) as text_parsed:
+    sentences = chunk_analysis(text_parsed)
+    for sentence in sentences:
+        for chunk in sentence:
+            if chunk.dst != -1:
+
+                chunk_src = ''
+                for morph in chunk.morphs:
+                    chunk_src += morph.surface
+                chunk_src = chunk_src.strip()
+                chunk_dst = ''
+                for morph in sentence[chunk.dst].morphs:
+                    chunk_dst += morph.surface
+                chunk_dst = chunk_dst.strip()
+                if '。' in chunk_dst:
+                    chunk_dst = chunk_dst[:-1]
+                if chunk_dst != '' and chunk_src != '':
+                    print('%s\t' % chunk_src, '%s' % chunk_dst)
+```
+```Shell
+➜ python chunk_display.py > chunk_display.txt; head chunk_display.txt
+吾輩は	 猫である
+名前は	 無い
+まだ	 無い
+どこで	 生れたか
+生れたか	 つかぬ
+とんと	 つかぬ
+見当が	 つかぬ
+何でも	 薄暗い
+薄暗い	 所で
+じめじめした	 所で
+```
 
 ### 43. 名詞を含む文節が動詞を含む文節に係るものを抽出
-名詞を含む文節が，動詞を含む文節に係るとき，これらをタブ区切り形式で抽出せよ．ただし，句読点などの記号は出力しないようにせよ．
+Extract clauses containing nouns related to clauses containing verbs<br/>
+抽取出包含名词且目的词组包含动词的词组
+
+名詞を含む文節が，動詞を含む文節に係るとき，これらをタブ区切り形式で抽出せよ．ただし，句読点などの記号は出力しないようにせよ．<br/>
+When a phrase containing a noun pertains to a phrase containing a verb, extract them in tab-delimited format. However, do not output symbols such as punctuation marks.<br/>
+当包含名词的短语与包含动词的短语相关时，请以制表符分隔的格式提取它们。 但是，请勿输出标点符号等符号。
+```Python
+from chunk_analysis import chunk_analysis
+
+file_parsed = './neko.txt.cabocha'
+
+with open(file_parsed) as text_parsed:
+    sentences = chunk_analysis(text_parsed)
+    for sentence in sentences:
+        for chunk in sentence:
+            if chunk.dst != -1:
+
+                flag_nouns = False
+                for morph in chunk.morphs:
+                    if morph.pos == '名詞':
+                        flag_nouns = True
+                chunk_nouns = ''
+                if flag_nouns:
+                    for morph in chunk.morphs:
+                        chunk_nouns += morph.surface
+                    chunk_nouns = chunk_nouns.strip()
+                    if chunk_nouns[-1] == '、':
+                        chunk_nouns = chunk_nouns[:-1]
+
+                    flag_verbs = False
+                    for morph in sentence[chunk.dst].morphs:
+                        if morph.pos == '動詞':
+                            flag_verbs = True
+                    chunk_verbs = ''
+                    if flag_verbs:
+                        for morph in sentence[chunk.dst].morphs:
+                            chunk_verbs += morph.surface
+                        if chunk_verbs[-1] == '。' or chunk_verbs[-1] == '、':
+                            chunk_verbs = chunk_verbs[:-1]
+                        print('%s\t' % chunk_nouns, '%s' % chunk_verbs)
+```
+```Shell
+➜ python chunk_nouns_related2verbs.py >chunk_nouns_related2verbs.txt; head chunk_nouns_related2verbs.txt
+どこで	 生れたか
+見当が	 つかぬ
+所で	 泣いて
+ニャーニャー	 泣いて
+いた事だけは	 記憶している
+吾輩は	 見た
+ここで	 始めて
+ものを	 見た
+あとで	 聞くと
+我々を	 捕えて
+```
+
 
 ### 44. 係り受け木の可視化
 与えられた文の係り受け木を有向グラフとして可視化せよ．可視化には，係り受け木を[DOT言語](http://ja.wikipedia.org/wiki/DOT言語)に変換し，[Graphviz](http://www.graphviz.org/)を用いるとよい．また，Pythonから有向グラフを直接的に可視化するには，[pydot](https://code.google.com/p/pydot/)を使うとよい．
