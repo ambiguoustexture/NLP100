@@ -16,6 +16,23 @@ class Chunk():
         else:
             return [res for res in self.morphs if res.pos == pos]
 
+    def get_case_particle(self):
+        particles = self.get_morphs_by_pos('助詞')
+        if len(particles) > 1:
+            case_particles = self.get_morphs_by_pos('助詞', '格助詞')
+            if len(case_particles) > 0:
+                particles = case_particles
+        if len(particles) > 0:
+            return particles[-1].surface
+        else :
+            return ''
+
+    def get_chunk_string(self):
+        str = ''
+        for morph in self.morphs:
+            if morph.pos != '記号':
+                str += morph.surface
+        return str
 
 def chunk_analysis(file_parsed):
     sentences = []
