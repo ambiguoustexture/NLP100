@@ -278,24 +278,49 @@ with open(file_parsed) as text_parsed:
 ➜ python dependency_visualization.py
 Please input a sentence --> どこで生れたかとんと見当がつかぬ。
 ```
-![dependency_visualization.png](https://github.com/ambiguoustexture/NLP-100-Knocks/blob/master/ch05-Dependency-analysis/dependency_visualization.png)
+![dependencyVisualization.png](https://github.com/ambiguoustexture/NLP-100-Knocks/blob/master/ch05-Dependency-analysis/dependency_visualization.png)
 
 ### 45. 動詞の格パターンの抽出
-今回用いている文章をコーパスと見なし，日本語の述語が取りうる格を調査したい． 動詞を述語，動詞に係っている文節の助詞を格と考え，述語と格をタブ区切り形式で出力せよ． ただし，出力は以下の仕様を満たすようにせよ．
+今回用いている文章をコーパスと見なし，日本語の述語が取りうる格を調査したい．
+動詞を述語，動詞に係っている文節の助詞を格と考え，述語と格をタブ区切り形式で出力せよ．
+ただし，出力は以下の仕様を満たすようにせよ．<br/>
+Consider the sentences used this time as a corpus and want to investigate the possible cases of Japanese predicates. 
+Think of a verb as a predicate and a particle in a clause related to the verb as a case, 
+and output the predicate and the case in tab-separated format. 
+However, the output should satisfy the following specifications.<br/>
+将这次使用的句子视为语料库，并希望调查日语谓语的可能情况。 将动词视为谓词，并将与该动词相关的从句中的质点作为格，并以制表符分隔的格式输出谓词和格。 但是，输出应满足以下规格。
 
-- 動詞を含む文節において，最左の動詞の基本形を述語とする
-- 述語に係る助詞を格とする
-- 述語に係る助詞（文節）が複数あるときは，すべての助詞をスペース区切りで辞書順に並べる
+- 動詞を含む文節において，最左の動詞の基本形を述語とする<br/>
+In a clause containing a verb, use the basic form of the leftmost verb as a predicate<br/>
+在包含动词的子句中，使用最左边动词的基本形式作为谓词
 
-「吾輩はここで始めて人間というものを見た」という例文（neko.txt.cabochaの8文目）を考える． この文は「始める」と「見る」の２つの動詞を含み，「始める」に係る文節は「ここで」，「見る」に係る文節は「吾輩は」と「ものを」と解析された場合は，次のような出力になるはずである．
+- 述語に係る助詞を格とする<br/>
+The case of a particle associated with a predicate<br/>
+谓词的情况
+
+- 述語に係る助詞（文節）が複数あるときは，すべての助詞をスペース区切りで辞書順に並べる<br/>
+When there are multiple particles (clauses) related to a predicate, all particles are arranged in dictionary order with space delimiters<br/>
+当有多个与谓词相关的部分（子句）时，所有部分均按字典顺序排列，并带有空格分隔符
+
+「吾輩はここで始めて人間というものを見た」という例文（neko.txt.cabochaの8文目）を考える． この文は「始める」と「見る」の２つの動詞を含み，「始める」に係る文節は「ここで」，「見る」に係る文節は「吾輩は」と「ものを」と解析された場合は，次のような出力になるはずである．<br/>
+Consider the example sentence (the eighth sentence of neko.txt.cabocha), "吾輩はここで始めて人間というものを見た". This sentence contains two verbs, "始める" and "見る", and the phrase for "始める" is analyzed as "ここで", and the phrase for "見る" is analyzed as "吾輩は" and "ものを". Should produce the following output:<br/>
+考虑例句（neko.txt.cabocha的第八句），“吾輩はここで始めて人間というものを見た”。 该句子包含两个动词“始める”和“見る”，“始める”的词组部分被分析为“ここで”，而“見る”的短语被分析为“吾輩は”和“ものを”。 应按以下输出：
 
     始める  で
     見る    は を
 
-このプログラムの出力をファイルに保存し，以下の事項をUNIXコマンドを用いて確認せよ．
+このプログラムの出力をファイルに保存し，以下の事項をUNIXコマンドを用いて確認せよ．<br/>
+Save the output of this program to a file and check the following using UNIX commands.<br>
+将该程序的输出保存到文件中，然后使用UNIX命令检查以下内容。
 
-- コーパス中で頻出する述語と格パターンの組み合わせ
-- 「する」「見る」「与える」という動詞の格パターン（コーパス中で出現頻度の高い順に並べよ）
+- コーパス中で頻出する述語と格パターンの組み合わせ<br/>
+Combinations of predicates and case patterns that occur frequently in the corpus<br/>
+语料库中频繁出现的谓词和案例模式的组合
+
+- 「する」「見る」「与える」という動詞の格パターン（コーパス中で出現頻度の高い順に並べよ）<br/>
+Case patterns of verbs "する", "見る" and "与える" 
+(arrange in descending order of appearance frequency in the corpus)<br/>
+动词“する”，“見る”和“与える”的格模式（在语料库中以频率降序排列）
 
 ### 46. 動詞の格フレーム情報の抽出
 45のプログラムを改変し，述語と格パターンに続けて項（述語に係っている文節そのもの）をタブ区切り形式で出力せよ．45の仕様に加えて，以下の仕様を満たすようにせよ．
