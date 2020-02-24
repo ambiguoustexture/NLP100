@@ -15,7 +15,7 @@ Implement the class Morph that represents a morpheme. This class has surface, ba
 实现代表词素的类Morph。 此类具有**surface**，**base**，**pos**（词性）和**pos1**作为成员变量。
 另外，读取 CaboCha（neko.txt.cabocha）的分析结果，将每个句子存储为Morph对象列表，并显示第三个句子的词素列表。
 
-```cgi • fcgi • gyp • lmi • py • pyde • pyp • pyt • python • pyw • rusthon • tac • wsgi • xpy •
+```python
 import CaboCha
 
 class Morph:
@@ -72,7 +72,7 @@ In addition to 40, implement a class Chunk that represents a clause. This class 
 此类拥有一个词素(**40**中的**Morph**对象)列表（**morphs**），一个目标词组索引号（**dst**）和一个依存关系源词组索引号（**srcs**）作为成员变量。
 之后，读取输入文本的CaboCha的分析结果，将一个句子表示为**Chunk**对象的列表，并显示第八句的**dst**和**srcs**。
 将这里创建的程序用于第5章的其余部分。
-```cgi • fcgi • gyp • lmi • py • pyde • pyp • pyt • python • pyw • rusthon • tac • wsgi • xpy •
+```python
 import morphology_analysis
 
 class Chunk():
@@ -145,7 +145,7 @@ Display of source and destination clauses<br/>
 係り元の文節と係り先の文節のテキストをタブ区切り形式ですべて抽出せよ．ただし，句読点などの記号は出力しないようにせよ．<br/>
 Extract all the text of the source and destination clauses in tab-delimited format. However, do not output symbols such as punctuation marks.<br/>
 以制表符分隔的格式提取源词组和目标词组的所有文本。 但是，请勿输出标点符号等符号。
-```cgi • fcgi • gyp • lmi • py • pyde • pyp • pyt • python • pyw • rusthon • tac • wsgi • xpy •
+```python
 from chunk_analysis import chunk_analysis
 
 file_parsed = './neko.txt.cabocha'
@@ -190,7 +190,7 @@ Extract clauses containing nouns related to clauses containing verbs<br/>
 名詞を含む文節が，動詞を含む文節に係るとき，これらをタブ区切り形式で抽出せよ．ただし，句読点などの記号は出力しないようにせよ．<br/>
 When a phrase containing a noun pertains to a phrase containing a verb, extract them in tab-delimited format. However, do not output symbols such as punctuation marks.<br/>
 当包含名词的短语与包含动词的短语相关时，请以制表符分隔的格式提取它们。 但是，请勿输出标点符号等符号。
-```cgi • fcgi • gyp • lmi • py • pyde • pyp • pyt • python • pyw • rusthon • tac • wsgi • xpy •
+```python
 from chunk_analysis import chunk_analysis
 
 file_parsed = './neko.txt.cabocha'
@@ -247,7 +247,7 @@ Visualization of dependency trees
 与えられた文の係り受け木を有向グラフとして可視化せよ．可視化には，係り受け木を[DOT言語](http://ja.wikipedia.org/wiki/DOT言語)に変換し，[Graphviz](http://www.graphviz.org/)を用いるとよい．また，Pythonから有向グラフを直接的に可視化するには，[pydot](https://code.google.com/p/pydot/)を使うとよい．<br/>
 Visualize the dependency tree of a given sentence as a directed graph. For visualization, convert the dependency tree to the DOT language and use Graphviz. You can also use pydot to visualize directed graphs directly from Python.<br/>
 将给定句子的依存关系树可视化为有向图。 为了可视化，将依赖关系树转换为DOT语言并使用Graphviz。还可以使用pydot直接用Python可视化有向图。
-```cgi • fcgi • gyp • lmi • py • pyde • pyp • pyt • python • pyw • rusthon • tac • wsgi • xpy •
+```python
 from chunk_analysis import chunk_analysis
 import CaboCha
 import pydotplus as pydot
@@ -328,7 +328,7 @@ Combinations of predicates and case patterns that occur frequently in the corpus
 Case patterns of verbs "する", "見る" and "与える" 
 (arrange in descending order of appearance frequency in the corpus)<br/>
 动词“する”，“見る”和“与える”的格模式（在语料库中以频率降序排列）
-```cgi • fcgi • gyp • lmi • py • pyde • pyp • pyt • python • pyw • rusthon • tac • wsgi • xpy •
+```python
 from chunk_analysis import chunk_analysis
 
 file_parsed = './neko.txt.cabocha'
@@ -444,7 +444,7 @@ This sentence contains two verbs, "始める" and "見る", and the phrase for "
     始める  で      ここで
     見る    は を   吾輩は ものを
 
-```cgi • fcgi • gyp • lmi • py • pyde • pyp • pyt • python • pyw • rusthon • tac • wsgi • xpy •
+```python
 from chunk_analysis import chunk_analysis
 
 file_parsed = './neko.txt.cabocha'
@@ -536,7 +536,7 @@ Frequent predicates in the corpus (サ変接続名詞+を+動詞)<br/>
 - コーパス中で頻出する述語と助詞パターン<br/>
 Frequent predicates and particle patterns in the corpus<br/>
 语料库中的惯用谓词和助词模式
-```cgi • fcgi • gyp • lmi • py • pyde • pyp • pyt • python • pyw • rusthon • tac • wsgi • xpy •
+```python
 file_parsed = './neko.txt.cabocha'
 file_result = './verbs_functional_constructions.txt'
 
@@ -646,7 +646,7 @@ you should get the following output:<br/>
     人間という -> ものを -> 見た
     ものを -> 見た
 
-```cgi • fcgi • gyp • lmi • py • pyde • pyp • pyt • python • pyw • rusthon • tac • wsgi • xpy •
+```python
 from chunk_analysis import chunk_analysis
 
 file_parsed = './neko.txt.cabocha'
@@ -725,7 +725,7 @@ the following output should be obtained.<br/>
     Xで -> 始めて -> 人間という -> Y
     Xという -> Y
 
-```cgi • fcgi • gyp • lmi • py • pyde • pyp • pyt • python • pyw • rusthon • tac • wsgi • xpy •
+```python
 from chunk_analysis import chunk_analysis
 
 file_parsed = './neko.txt.cabocha'
