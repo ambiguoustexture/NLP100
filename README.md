@@ -1,4 +1,4 @@
-# 100 Language Processing Knocks
+# NLP 100 Knocks
 言語処理100本ノックは，
 実践的な課題に取り組みながら，プログラミング，データ分析，研究のスキルを楽しく習得することを目指した問題集です。<br/>
 100 Language Processing Knocks is a collection of problems aimed at learning programming, data analysis, and research skills in a fun way while working on practical tasks. 
