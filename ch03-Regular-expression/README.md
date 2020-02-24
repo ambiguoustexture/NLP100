@@ -139,8 +139,7 @@ Battle of Waterloo 1815.PNG
 ...
 ```
 ### 25. テンプレートの抽出
-記事中に含まれる「基礎情報」テンプレートのフィールド名と値を抽出し，辞書オブジェクトとして格納せよ．
-
+記事中に含まれる「基礎情報」テンプレートのフィールド名と値を抽出し，辞書オブジェクトとして格納せよ．<br/>
 Extract the field names and values of the "基礎情報" template included in the article 
 and store them as dictionary objects.
 ```Python
@@ -168,8 +167,7 @@ with open(file) as text:
 ```
 
 ### 26. 強調マークアップの除去
-25の処理時に，テンプレートの値からMediaWikiの強調マークアップ（弱い強調，強調，強い強調のすべて）を除去してテキストに変換せよ（参考: マークアップ早見表）．
-
+25の処理時に，テンプレートの値からMediaWikiの強調マークアップ（弱い強調，強調，強い強調のすべて）を除去してテキストに変換せよ（参考: マークアップ早見表）．<br/>
 In Step 25, remove MediaWiki's emphasis markup (weak emphasis, emphasis, and strong emphasis) from the template value and convert it to text.
 
     weak emphasis       ''italics''
@@ -189,8 +187,7 @@ pattern_emphasis = re.compile(r' \'{2,5}', re.MULTILINE + re.VERBOSE)
 ```
 
 ### 27. 内部リンクの除去
-26の処理に加えて，テンプレートの値からMediaWikiの内部リンクマークアップを除去し，テキストに変換せよ（参考: マークアップ早見表）．
-
+26の処理に加えて，テンプレートの値からMediaWikiの内部リンクマークアップを除去し，テキストに変換せよ（参考: マークアップ早見表）．<br/>
 In addition to the processing of 26, remove MediaWiki's internal link markup from the template value and convert it to text.
 
     MediaWiki's internal link markup        [[]]
@@ -217,7 +214,7 @@ pattern_interlink = re.compile(r' \[\[ (?:[^|]*?\|) ?? ([^|]*?) \]\] ', re.MULTI
 
 ### 28. MediaWikiマークアップの除去
 27の処理に加えて，テンプレートの値からMediaWikiマークアップを可能な限り除去し，国の基本情報を整形せよ．
-
+<br/>
 In addition to the processing of 27, remove MediaWiki markup from template values as much as possible, and format basic country information.
 
 ```Python
@@ -241,8 +238,7 @@ def clean(text):
 ```
 
 ### 29. 国旗画像のURLを取得する
-テンプレートの内容を利用し，国旗画像のURLを取得せよ．（ヒント: MediaWiki APIのimageinfoを呼び出して，ファイル参照をURLに変換すればよい）
-
+テンプレートの内容を利用し，国旗画像のURLを取得せよ．（ヒント: MediaWiki APIのimageinfoを呼び出して，ファイル参照をURLに変換すればよい）<br/>
 Get the URL of the flag image using the contents of the template. (Hint: Call imageinfo of MediaWiki API to convert file references to URLs)
 ```Python
 file_name = res['国旗画像']
