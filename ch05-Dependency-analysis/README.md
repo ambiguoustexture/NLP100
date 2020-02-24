@@ -47,7 +47,7 @@ def morpheme_analysis(file_parsed):
     return sentences
 ```
 The morpheme sequence of the third sentence.
-```Shell
+```zsh
 ➜ python morphology_analysis.py
 surface:  どこ　　 	base:  どこ　　 	pos:  名詞　　 	pos1:  代名詞
 surface:  で　　　 	base:  で　　　 	pos:  助詞　　 	pos1:  格助詞
@@ -124,7 +124,7 @@ if __name__ == "__main__":
                     '\tdst: %2d ' % chunk_current.dst,\
                     '\tsrcs: ',chunk_current.srcs)
 ```
-```Shell
+```zsh
 ➜ python chunk_analysis.py
 chunk:  しかし　　　　　 	dst:  9  	srcs:  []
 chunk:  その　　　　　　 	dst:  2  	srcs:  []
@@ -169,7 +169,7 @@ with open(file_parsed) as text_parsed:
                 if chunk_dst != '' and chunk_src != '':
                     print('%s\t' % chunk_src, '%s' % chunk_dst)
 ```
-```Shell
+```zsh
 ➜ python chunk_display.py > chunk_display.txt; head chunk_display.txt
 吾輩は	 猫である
 名前は	 無い
@@ -225,7 +225,7 @@ with open(file_parsed) as text_parsed:
                             chunk_verbs = chunk_verbs[:-1]
                         print('%s\t' % chunk_nouns, '%s' % chunk_verbs)
 ```
-```Shell
+```zsh
 ➜ python chunk_nouns_related2verbs.py >chunk_nouns_related2verbs.txt; head chunk_nouns_related2verbs.txt
 どこで	 生れたか
 見当が	 つかぬ
@@ -281,7 +281,7 @@ with open(file_parsed) as text_parsed:
             tree = pydot.graph_from_edges(edges, directed=True)
             tree.write_png('./dependency_visualization.png')
 ```
-```Shell
+```zsh
 ➜ python dependency_visualization.py
 Please input a sentence --> どこで生れたかとんと見当がつかぬ。
 ```
@@ -356,7 +356,7 @@ with open(file_parsed, 'r') as text_parsed, open(file_result, 'w') as text_resul
             text_result.write('{}\t{}\n'\
                     .format(verbs[0].base, ' '.join(sorted(particle.surface for particle in particles))))
 ```
-```Shell
+```zsh
 ➜ python verbs_case.py; head verbs_case_result.txt
 生れる	で
 つく	か が
@@ -372,7 +372,7 @@ with open(file_parsed, 'r') as text_parsed, open(file_result, 'w') as text_resul
 UNIXコマンドを用いて確認<br/>
 Check using UNIX commands<br/>
 使用UNIX命令检查
-```Shell
+```zsh
 ➜ sort verbs_case_result.txt | uniq -c | sort -n -r > verbs_case_result_uniqed.txt; head verbs_case_result_uniqed.txt
  723 云う	と
  453 する	を
@@ -478,7 +478,7 @@ with open(file_parsed, 'r') as text_parsed, open(file_result, 'w') as text_resul
                     ' '.join(chunk.get_chunk_string()  for chunk in chunks_with_particle)
                         ))
 ```
-```Shell
+```zsh
 ➜ python verbs_case_frame.py > verbs_case_frame.txt;head verbs_case_frame.txt
 生れる	で	どこで
 つく	か が	生れたか 見当が
@@ -576,7 +576,7 @@ with open(file_parsed, 'r') as text_parsed, open(file_result, 'w') as text_resul
                     ' '.join([chunk.get_chunk_string()  for chunk in chunks_with_particle])
                         ))
 ```
-```Shell
+```zsh
 ➜ python verbs_functional_constructions.py > verbs_functional_constructions.txt; head verbs_functional_constructions.txt
 決心をする	と	こうと
 返報をする	んで	偸んで
@@ -592,7 +592,7 @@ with open(file_parsed, 'r') as text_parsed, open(file_result, 'w') as text_resul
 UNIXコマンドを用いて確認<br/>
 Check using UNIX commands<br/>
 使用UNIX命令检查
-```Shell
+```zsh
 ➜ cut -f1 verbs_functional_constructions.txt | sort | uniq -c | sort -n -r > verbs_functional_constructions_predicate.txt; head verbs_functional_constructions_predicate.txt
   30 返事をする
   21 挨拶をする
@@ -667,7 +667,7 @@ with open(file_parsed, 'r') as text_parsed, open(file_result, 'w') as text_resul
                     dst = sentence[dst].dst
                 text_result.write('\n')
 ```
-```Shell
+```zsh
 ➜ python nouns2root.py > nouns2root.txt; head nouns2root.txt
 一
 吾輩は -> 猫である
@@ -790,7 +790,7 @@ with open(file_parsed, 'r') as text_parsed, open(file_result, 'w') as text_resul
                     text_result.write(sentence[index_intersect].get_chunk_string())
                     text_result.write('\n')
 ```
-```Shell
+```zsh
 ➜ python nouns_dependency.py; head nouns_dependency.txt
 Xは -> Y
 Xで -> 生れたか | Yが | つかぬ
