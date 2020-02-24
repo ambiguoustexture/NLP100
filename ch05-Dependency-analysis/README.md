@@ -420,16 +420,77 @@ Check using UNIX commands<br/>
 ```
 
 ### 46. 動詞の格フレーム情報の抽出
-45のプログラムを改変し，述語と格パターンに続けて項（述語に係っている文節そのもの）をタブ区切り形式で出力せよ．45の仕様に加えて，以下の仕様を満たすようにせよ．
+Extraction of verb case frame information<br/>
+抽取动词格框架信息
 
-- 項は述語に係っている文節の単語列とする（末尾の助詞を取り除く必要はない）
-- 述語に係る文節が複数あるときは，助詞と同一の基準・順序でスペース区切りで並べる
+45のプログラムを改変し，述語と格パターンに続けて項（述語に係っている文節そのもの）をタブ区切り形式で出力せよ．45の仕様に加えて，以下の仕様を満たすようにせよ．<br/>
+Modify the 45 program and output the term (the clause itself related to the predicate) in tab-delimited format following the predicate and case pattern. Satisfy the following specifications in addition to the 45 specifications.
+修改45的程序，并在谓词和格模式之后以制表符分隔的格式输出述语（与谓词相关的子句本身）。 
+除了45的格式外，还满足以下规格。
 
-「吾輩はここで始めて人間というものを見た」という例文（neko.txt.cabochaの8文目）を考える． この文は「始める」と「見る」の２つの動詞を含み，「始める」に係る文節は「ここで」，「見る」に係る文節は「吾輩は」と「ものを」と解析された場合は，次のような出力になるはずである．
+- 項は述語に係っている文節の単語列とする（末尾の助詞を取り除く必要はない）<br/>
+The term is the word sequence of the phrase related to the predicate (the trailing particle need not be removed)<br/>
+该项是与谓词相关的短语的词序（不需要删除其后的部分）
+- 述語に係る文節が複数あるときは，助詞と同一の基準・順序でスペース区切りで並べる<br/>
+If there are multiple clauses related to the predicate, arrange them in the same criteria and order as the particles, separated by spaces.<br/>
+如果存在与谓词相关的多个部分，请按照与该部分相同的条件和顺序排列它们，并用空格分隔。
+
+「吾輩はここで始めて人間というものを見た」という例文（neko.txt.cabochaの8文目）を考える． この文は「始める」と「見る」の２つの動詞を含み，「始める」に係る文節は「ここで」，「見る」に係る文節は「吾輩は」と「ものを」と解析された場合は，次のような出力になるはずである．<br/>
+Consider the example sentence (the eighth sentence of neko.txt.cabocha), "吾輩はここで始めて人間というものを見た".
+This sentence contains two verbs, "始める" and "見る", and the phrase for "始める" is analyzed as "here", and the phrase for "見る" is analyzed as "吾輩は" and "ものを". Should produce the following output:<br/>
+考虑例句（neko.txt.cabocha的第八句），“吾輩はここで始めて人間というものを見た”。 该句子包含两个动词“始める”和“見る”，“始める”的短语被分析为“ここで”，而“見る”的短语被分析为“吾輩は”和“ものを”。 应产生以下输出：
+
     
     始める  で      ここで
     見る    は を   吾輩は ものを
 
+```Python
+from chunk_analysis import chunk_analysis
+
+file_parsed = './neko.txt.cabocha'
+file_result = './verbs_case_frame.txt'
+
+with open(file_parsed, 'r') as text_parsed, open(file_result, 'w') as text_result:
+    sentences = chunk_analysis(text_parsed)
+
+    for sentence in sentences:
+        for chunk in sentence:
+            verbs = chunk.get_morphs_by_pos('動詞')
+
+            if len(verbs) < 1:
+                continue
+
+            chunks_with_particle = []
+
+            for src in chunk.srcs:
+                if len(sentence[src].get_case_particle()) > 0:
+                    chunks_with_particle.append(sentence[src])
+
+            if len(chunks_with_particle) < 1:
+                continue
+
+            chunks_with_particle.sort(key = lambda chunk: chunk.get_case_particle())
+
+            text_result.write('{}\t{}\t{}\n'.\
+                    format(\
+                    verbs[0].base,\
+                    ' '.join(chunk.get_case_particle() for chunk in chunks_with_particle),\
+                    ' '.join(chunk.get_chunk_string()  for chunk in chunks_with_particle)
+                        ))
+```
+```Shell
+➜ python verbs_case_frame.py > verbs_case_frame.txt;head verbs_case_frame.txt
+生れる	で	どこで
+つく	か が	生れたか 見当が
+泣く	で	所で
+する	て は	泣いて いた事だけは
+始める	で	ここで
+見る	は を	吾輩は ものを
+聞く	で	あとで
+捕える	を	我々を
+煮る	て	捕えて
+食う	て	煮て
+```
 ### 47. 機能動詞構文のマイニング
 動詞のヲ格にサ変接続名詞が入っている場合のみに着目したい．46のプログラムを以下の仕様を満たすように改変せよ．
 
