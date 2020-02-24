@@ -618,29 +618,105 @@ Check using UNIX commands<br/>
 ```
 
 ### 48. 名詞から根へのパスの抽出
-文中のすべての名詞を含む文節に対し，その文節から構文木の根に至るパスを抽出せよ． ただし，構文木上のパスは以下の仕様を満たすものとする．
+Extraction of path from noun to root<br/>
+从名词到依存树根的路径提取
 
-- 各文節は（表層形の）形態素列で表現する
-- パスの開始文節から終了文節に至るまで，各文節の表現を"**->**"で連結する
+文中のすべての名詞を含む文節に対し，その文節から構文木の根に至るパスを抽出せよ.
+ただし，構文木上のパスは以下の仕様を満たすものとする．<br/>
+For a phrase containing all nouns in the sentence, 
+extract the path from that phrase to the root of the parse tree. 
+However, the path on the syntax tree shall satisfy the following specifications.<br/>
+对于包含句子中所有名词的短语，提取从该短语到依存树的根的路径。 但是，依存句法树上的路径应满足以下规范。
 
-「吾輩はここで始めて人間というものを見た」という文（neko.txt.cabochaの8文目）から，次のような出力が得られるはずである．
+- 各文節は（表層形の）形態素列で表現する<br/>
+Each clause is represented by a morpheme sequence (surface type)<br/>
+每个短语由一个语素序列（surface类型）表示
 
+- パスの開始文節から終了文節に至るまで，各文節の表現を"**->**"で連結する<br/>
+From the start clause of the path to the end clause, connect the expressions of each clause with "**->**"<br/>
+从路径的开始短语到结束短语，将每个短语的表达式用“**->**”连接
+
+「吾輩はここで始めて人間というものを見た」という文（neko.txt.cabochaの8文目）から，
+次のような出力が得られるはずである．<br/>
+From the sentence "吾輩はここで始めて人間というものを見た" (the eighth sentence in neko.txt.cabocha), 
+you should get the following output:<br/>
+对于句子“吾輩はここで始めて人間というものを見た”（neko.txt.cabocha中的第八句话），应该获得以下输出：
     吾輩は -> 見た
     ここで -> 始めて -> 人間という -> ものを -> 見た
     人間という -> ものを -> 見た
     ものを -> 見た
 
+```Python
+from chunk_analysis import chunk_analysis
+
+file_parsed = './neko.txt.cabocha'
+file_result = './nouns2root.txt'
+
+with open(file_parsed, 'r') as text_parsed, open(file_result, 'w') as text_result:
+    sentences = chunk_analysis(text_parsed)
+
+    for sentence in sentences:
+        for chunk in sentence:
+            if len(chunk.get_morphs_by_pos('名詞')) > 0:
+                if chunk.get_chunk_string() != '':
+                    text_result.write(chunk.get_chunk_string())
+
+                dst = chunk.dst
+                while dst != -1:
+                    text_result.write(' -> ' + sentence[dst].get_chunk_string())
+                    dst = sentence[dst].dst
+                text_result.write('\n')
+```
+```Shell
+➜ python nouns2root.py > nouns2root.txt; head nouns2root.txt
+一
+吾輩は -> 猫である
+猫である
+名前は -> 無い
+どこで -> 生れたか -> つかぬ
+見当が -> つかぬ
+何でも -> 薄暗い -> 所で -> 泣いて -> 記憶している
+所で -> 泣いて -> 記憶している
+ニャーニャー -> 泣いて -> 記憶している
+いた事だけは -> 記憶している
+```
+
 ### 49. 名詞間の係り受けパスの抽出
-文中のすべての名詞句のペアを結ぶ最短係り受けパスを抽出せよ．ただし，名詞句ペアの文節番号がiとj（i<j）のとき，係り受けパスは以下の仕様を満たすものとする．
-- 問題48と同様に，パスは開始文節から終了文節に至るまでの各文節の表現（表層形の形態素列）を"->"で連結して表現する
-- 文節iとjに含まれる名詞句はそれぞれ，XとYに置換する
+Extraction of dependency paths between nouns<br/>
+提取名词之间的依赖路径
 
-また，係り受けパスの形状は，以下の2通りが考えられる．
+文中のすべての名詞句のペアを結ぶ最短係り受けパスを抽出せよ．
+ただし，名詞句ペアの文節番号がiとj*（i<j）*のとき，係り受けパスは以下の仕様を満たすものとする．<br/>
+Extract the shortest dependency path that connects all pairs of noun phrases in the sentence. However, when the phrase numbers of the noun phrase pair are i and j *(i<j)*, the dependency path shall satisfy the following specifications.<br/>
+提取连接句子中所有成对名词短语的最短依赖路径。 
+但是，当名词短语对的短语编号为i和j*（i<j）*时，从属路径应满足以下规范。
 
-- 文節iから構文木の根に至る経路上に文節jが存在する場合: 文節iから文節jのパスを表示
-- 上記以外で，文節iと文節jから構文木の根に至る経路上で共通の文節kで交わる場合: 文節iから文節kに至る直前のパスと文節jから文節kに至る直前までのパス，文節kの内容を"|"で連結して表示
+- 問題48と同様に，パスは開始文節から終了文節に至るまでの各文節の表現（表層形の形態素列）を"->"で連結して表現する<br/>
+As in Question 48, the path is expressed by connecting the expressions of each clause from the start clause to the end clause (surface layer morpheme sequence) with "->"<br/>
+如问题48所示，通过用“->”连接从开始子句到结束子句的每个子句的表达式（surface的morph序列）来表示路径。
 
-例えば，「吾輩はここで始めて人間というものを見た。」という文（neko.txt.cabochaの8文目）から，次のような出力が得られるはずである．
+- 文節iとjに含まれる名詞句はそれぞれ，XとYに置換する<br/>
+Replace noun phrases in clauses i and j with X and Y, respectively<br/>
+分别用X和Y替换短语i和j中的名词短语
+
+また，係り受けパスの形状は，以下の2通りが考えられる．<br/>
+The shape of the dependency path can be the following two types.<br/>
+依存路径的形状可以是以下两种类型。
+
+- 文節iから構文木の根に至る経路上に文節jが存在する場合: 文節iから文節jのパスを表示<br/>
+If clause j exists on the path from clause i to the root of the syntax tree: 
+display the path from clause i to clause j<br/>
+如果短语i到依存语法树根的路径上存在短语j：显示从短语i到短语j的路径
+
+- 上記以外で，文節iと文節jから構文木の根に至る経路上で共通の文節kで交わる場合: 文節iから文節kに至る直前のパスと文節jから文節kに至る直前までのパス，文節kの内容を"|"で連結して表示<br/>
+Other than the above, when a common clause k intersects on the path from clause i to clause j to the root of the syntax tree: the path from clause i to clause k and the path from clause j to clause k, clause k Display the contents of "" concatenated with "|"<br/>
+除上述之外，当公共短语k在从短语i到短语j到语法树的根的路径上相交时：
+短语i到短语k之前的路径，短语j到短语k之前的路径以及短语k的内容用“ |”连接
+
+例えば，「吾輩はここで始めて人間というものを見た。」という文（neko.txt.cabochaの8文目）から，次のような出力が得られるはずである．<br/>
+For example, from the sentence "吾輩はここで始めて人間というものを見た。" (the eighth sentence in neko.txt.cabocha), 
+the following output should be obtained.<br/>
+例如，句子“吾輩はここで始めて人間というものを見た。”（neko.txt.cabocha中的第八个句子）应产生以下输出。
 
     Xは | Yで -> 始めて -> 人間という -> ものを | 見た
     Xは | Yという -> ものを | 見た
@@ -648,3 +724,82 @@ Check using UNIX commands<br/>
     Xで -> 始めて -> Y
     Xで -> 始めて -> 人間という -> Y
     Xという -> Y
+
+```Python
+from chunk_analysis import chunk_analysis
+
+file_parsed = './neko.txt.cabocha'
+file_result = './nouns_dependency.txt'
+
+with open(file_parsed, 'r') as text_parsed, open(file_result, 'w') as text_result:
+    sentences = chunk_analysis(text_parsed)
+    for sentence in sentences:
+        index_nouns = [index for index in range(len(sentence))
+                if len(sentence[index].get_morphs_by_pos('名詞')) > 0]
+        if len(index_nouns) < 2:
+            continue
+        for index, index_x in enumerate(index_nouns[:-1]):
+            for index_y in index_nouns[index + 1:]:
+                flag_intersect  = False
+                index_intersect = -1
+                path = set()
+
+                dst = sentence[index_x].dst
+                while dst != -1:
+                    if dst == index_y:
+                        flag_intersect = True
+                        break
+                    path.add(dst)
+                    dst = sentence[dst].dst
+
+                if not flag_intersect:
+                    dst = sentence[index_y].dst
+                    while dst != -1:
+                        if dst in path:
+                            index_intersect = dst
+                            break
+                        else :
+                            dst = sentence[dst].dst
+                if index_intersect == -1:
+                    text_result.write(sentence[index_x].get_original_surface('X'))
+                    dst = sentence[index_x].dst
+                    while dst != -1:
+                        if dst == index_y:
+                            text_result.write(' -> ' + sentence[dst].get_original_surface('Y', True))
+                            break
+                        else :
+                            text_result.write(' -> ' + sentence[dst].get_chunk_string())
+                        dst = sentence[dst].dst
+                    text_result.write('\n')
+                else :
+                    text_result.write(sentence[index].get_original_surface('X'))
+                    dst = sentence[index_x].dst
+                    while dst != index_intersect:
+                        text_result.write(' -> ' + sentence[dst].get_chunk_string())
+                        dst = sentence[dst].dst
+
+                    text_result.write(' | ')
+
+                    text_result.write(sentence[index_y].get_original_surface('Y'))
+                    dst = sentence[index_y].dst
+                    while dst != index_intersect:
+                        text_result.write(' -> ' + sentence[dst].get_chunk_string())
+                        dst = sentence[dst].dst
+                    text_result.write(' | ')
+
+                    text_result.write(sentence[index_intersect].get_chunk_string())
+                    text_result.write('\n')
+```
+```Shell
+➜ python nouns_dependency.py; head nouns_dependency.txt
+Xは -> Y
+Xで -> 生れたか | Yが | つかぬ
+Xでも -> 薄暗い -> Y
+Xでも -> 薄暗い -> 所で | Y | 泣いて
+Xでも -> 薄暗い -> 所で -> 泣いて | Yだけは | 記憶している
+Xでも -> 薄暗い -> 所で -> 泣いて -> Y
+薄暗い | Y | 泣いて
+薄暗い -> 泣いて | Yだけは | 記憶している
+Xで -> 泣いて -> Y
+じめじめした -> 泣いて | Yだけは | 記憶している
+```
