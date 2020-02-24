@@ -321,6 +321,96 @@ Combinations of predicates and case patterns that occur frequently in the corpus
 Case patterns of verbs "する", "見る" and "与える" 
 (arrange in descending order of appearance frequency in the corpus)<br/>
 动词“する”，“見る”和“与える”的格模式（在语料库中以频率降序排列）
+```Python
+from chunk_analysis import chunk_analysis
+
+file_parsed = './neko.txt.cabocha'
+file_result = './verbs_case_result.txt'
+
+with open(file_parsed, 'r') as text_parsed, open(file_result, 'w') as text_result:
+    sentences = chunk_analysis(text_parsed)
+
+    for sentence in sentences:
+        for chunk in sentence:
+            verbs = chunk.get_morphs_by_pos('動詞')
+            if len(verbs) < 1:
+                continue
+            particles = []
+            for src in chunk.srcs:
+                particles_in_chunk = sentence[src].get_morphs_by_pos('助詞')
+                if len(particles_in_chunk) > 1:
+                    case_particles = sentence[src].get_morphs_by_pos('助詞', '格助詞')
+                    if len(case_particles) > 0:
+                        particles_in_chunk = case_particles
+                if len(particles_in_chunk) > 0:
+                    particles.append(particles_in_chunk[-1])
+            if len(particles) < 1:
+                continue
+            text_result.write('{}\t{}\n'\
+                    .format(verbs[0].base, ' '.join(sorted(particle.surface for particle in particles))))
+```
+```Shell
+➜ python verbs_case.py; head verbs_case_result.txt
+生れる	で
+つく	か が
+泣く	で
+する	て は
+始める	で
+見る	は を
+聞く	で
+捕える	を
+煮る	て
+食う	て
+```
+UNIXコマンドを用いて確認<br/>
+Check using UNIX commands<br/>
+使用UNIX命令检查
+```Shell
+➜ sort verbs_case_result.txt | uniq -c | sort -n -r > verbs_case_result_uniqed.txt; head verbs_case_result_uniqed.txt
+ 723 云う	と
+ 453 する	を
+ 342 思う	と
+ 217 なる	に
+ 203 する	に
+ 202 ある	が
+ 175 見る	て
+ 164 する	と
+ 118 する	に を
+ 117 する	が
+➜ grep "^する\s" verbs_case_result.txt | sort | uniq -c | sort -n -r > verbs_case_result_uniqed_suru.txt; head verbs_case_result_uniqed_suru.txt
+ 453 する	を
+ 203 する	に
+ 164 する	と
+ 118 する	に を
+ 117 する	が
+  90 する	て を
+  73 する	は
+  61 する	て
+  60 する	が を
+  54 する	と を
+➜ grep "^見る\s" verbs_case_result.txt | sort | uniq -c | sort -n -r > verbs_case_result_uniqed_miru.txt; head verbs_case_result_uniqed_miru.txt
+ 175 見る	て
+  98 見る	を
+  23 見る	て て
+  20 見る	から
+  18 見る	と
+  15 見る	て を
+  13 見る	で
+  12 見る	から て
+  11 見る	て は
+   9 見る	に
+➜ grep "^与える\s" verbs_case_result.txt | sort | uniq -c | sort -n -r > verbs_case_result_uniqed_ataeru.txt; head verbs_case_result_uniqed_ataeru.txt
+   4 与える	に を
+   2 与える	て に は を
+   2 与える	て に を
+   1 与える	けれども に を
+   1 与える	として を
+   1 与える	に に対して も
+   1 与える	が て と に は は を
+   1 与える	て に に は を
+   1 与える	て と は を
+   1 与える	で に を
+```
 
 ### 46. 動詞の格フレーム情報の抽出
 45のプログラムを改変し，述語と格パターンに続けて項（述語に係っている文節そのもの）をタブ区切り形式で出力せよ．45の仕様に加えて，以下の仕様を満たすようにせよ．
