@@ -17,6 +17,7 @@ class Chunk():
             return [res for res in self.morphs if res.pos == pos]
 
     def get_case_particle(self):
+        # used in 45
         particles = self.get_morphs_by_pos('助詞')
         if len(particles) > 1:
             case_particles = self.get_morphs_by_pos('助詞', '格助詞')
@@ -28,11 +29,21 @@ class Chunk():
             return ''
 
     def get_chunk_string(self):
+        # used in 46
         str = ''
         for morph in self.morphs:
             if morph.pos != '記号':
                 str += morph.surface
         return str
+    
+    def get_sahen_wo_particle(self):
+        # used in 47
+        for index, morph in enumerate(self.morphs[0:-1]):
+            if morph.pos == '名詞' and (morph.pos1 == 'サ変接続')\
+                    and (self.morphs[index + 1].pos == '助詞')\
+                    and (self.morphs[index + 1].surface == 'を'):
+                return morph.surface + self.morphs[index + 1].surface 
+        return ''
 
 def chunk_analysis(file_parsed):
     sentences = []
