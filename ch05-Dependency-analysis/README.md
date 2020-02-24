@@ -307,11 +307,11 @@ The case of a particle associated with a predicate<br/>
 
 - 述語に係る助詞（文節）が複数あるときは，すべての助詞をスペース区切りで辞書順に並べる<br/>
 When there are multiple particles (clauses) related to a predicate, all particles are arranged in dictionary order with space delimiters<br/>
-当有多个与谓词相关的部分（子句）时，所有部分均按字典顺序排列，并带有空格分隔符
+当有多个与谓词相关的助词（子句）时，所有助词均按字典顺序排列，并带有空格分隔符
 
 「吾輩はここで始めて人間というものを見た」という例文（neko.txt.cabochaの8文目）を考える． この文は「始める」と「見る」の２つの動詞を含み，「始める」に係る文節は「ここで」，「見る」に係る文節は「吾輩は」と「ものを」と解析された場合は，次のような出力になるはずである．<br/>
 Consider the example sentence (the eighth sentence of neko.txt.cabocha), "吾輩はここで始めて人間というものを見た". This sentence contains two verbs, "始める" and "見る", and the phrase for "始める" is analyzed as "ここで", and the phrase for "見る" is analyzed as "吾輩は" and "ものを". Should produce the following output:<br/>
-考虑例句（neko.txt.cabocha的第八句），“吾輩はここで始めて人間というものを見た”。 该句子包含两个动词“始める”和“見る”，“始める”的词组部分被分析为“ここで”，而“見る”的短语被分析为“吾輩は”和“ものを”。 应按以下输出：
+考虑例句（neko.txt.cabocha的第八句），“吾輩はここで始めて人間というものを見た”。 该句子包含两个动词“始める”和“見る”，“始める”的词组中助词被分析为“ここで”，而“見る”的短语中被分析为“吾輩は”和“ものを”。 应按以下输出：
 
     始める  で
     見る    は を
@@ -430,10 +430,10 @@ Modify the 45 program and output the term (the clause itself related to the pred
 
 - 項は述語に係っている文節の単語列とする（末尾の助詞を取り除く必要はない）<br/>
 The term is the word sequence of the phrase related to the predicate (the trailing particle need not be removed)<br/>
-该项是与谓词相关的短语的词序（不需要删除其后的部分）
+该项是与谓词相关的短语的词序（不需要删除其后的助词）
 - 述語に係る文節が複数あるときは，助詞と同一の基準・順序でスペース区切りで並べる<br/>
 If there are multiple clauses related to the predicate, arrange them in the same criteria and order as the particles, separated by spaces.<br/>
-如果存在与谓词相关的多个部分，请按照与该部分相同的条件和顺序排列它们，并用空格分隔。
+如果存在与谓词相关的多个助词，请按照与该助词相同的条件和顺序排列它们，并用空格分隔。
 
 「吾輩はここで始めて人間というものを見た」という例文（neko.txt.cabochaの8文目）を考える． この文は「始める」と「見る」の２つの動詞を含み，「始める」に係る文節は「ここで」，「見る」に係る文節は「吾輩は」と「ものを」と解析された場合は，次のような出力になるはずである．<br/>
 Consider the example sentence (the eighth sentence of neko.txt.cabocha), "吾輩はここで始めて人間というものを見た".
@@ -491,22 +491,131 @@ with open(file_parsed, 'r') as text_parsed, open(file_result, 'w') as text_resul
 煮る	て	捕えて
 食う	て	煮て
 ```
+
 ### 47. 機能動詞構文のマイニング
+Mining functional verb constructions<br/>
+挖掘功能动词结构
+
 動詞のヲ格にサ変接続名詞が入っている場合のみに着目したい．46のプログラムを以下の仕様を満たすように改変せよ．
+Focus only on the case where the verb contains the "サ変接続名詞".
+Modify the 46 programs to satisfy the following specifications.
+仅关注动词包含"サ変接続名詞"的情况。 修改46的程序以满足以下规格。
 
-- 「サ変接続名詞+を（助詞）」で構成される文節が動詞に係る場合のみを対象とする
-- 述語は「サ変接続名詞+を+動詞の基本形」とし，文節中に複数の動詞があるときは，最左の動詞を用いる
+- 「サ変接続名詞+を（助詞）」で構成される文節が動詞に係る場合のみを対象とする<br/>
+Only when the phrase composed of "サ変接続名詞+を（助詞）" relates to a verb<br/>
+仅当由“サ変接続名詞+を（助詞）”组成的短语与动词相关时
+
+- 述語は「サ変接続名詞+を+動詞の基本形」とし，文節中に複数の動詞があるときは，最左の動詞を用いる<br/>
+The predicate shall be "sa-modifying noun + + the basic form of the verb", and if there are multiple verbs in the phrase, use the leftmost verb<vr/>
+谓词应为“サ変接続名詞+を+動詞の基本形”，当短语中有多个动词时，使用最左边的动词。
+
 - 述語に係る助詞（文節）が複数あるときは，すべての助詞をスペース区切りで辞書順に並べる
-- 述語に係る文節が複数ある場合は，すべての項をスペース区切りで並べる（助詞の並び順と揃えよ）
+When there are multiple particles (clauses) related to a predicate, 
+all particles are arranged in dictionary order with space delimiters<br/>
+当有多个与谓词相关的助词（子句）时，所有助词均按字典顺序排列，并带有空格分隔
 
-例えば「別段くるにも及ばんさと、主人は手紙に返事をする。」という文から，以下の出力が得られるはずである．
+- 述語に係る文節が複数ある場合は，すべての項をスペース区切りで並べる（助詞の並び順と揃えよ）
+If there are multiple clauses related to the predicate, list all terms separated by spaces (align with the order of particles)<br/>
+如果存在与该谓词相关的多个子句，列出所有用空格分隔的谓词（与该助词的顺序对齐）
+
+
+例えば「別段くるにも及ばんさと、主人は手紙に返事をする。」という文から，以下の出力が得られるはずである．<br/>
+For example, the sentence "別段くるにも及ばんさと、主人は手紙に返事をする。" should produce the following output:<br/>
+例如，句子“別段くるにも及ばんさと、主人は手紙に返事をする。”应该产生以下输出：
 
     返事をする      と に は        及ばんさと 手紙に 主人は
 
-このプログラムの出力をファイルに保存し，以下の事項をUNIXコマンドを用いて確認せよ．
+このプログラムの出力をファイルに保存し，以下の事項をUNIXコマンドを用いて確認せよ．<br/>
+Save the output of the program to a file and check the following using UNIX commands.<br/>
+将该程序的输出保存到文件中，然后使用UNIX命令检查以下内容。
 
-- コーパス中で頻出する述語（サ変接続名詞+を+動詞）
-- コーパス中で頻出する述語と助詞パターン
+- コーパス中で頻出する述語（サ変接続名詞+を+動詞）<br/>
+Frequent predicates in the corpus (サ変接続名詞+を+動詞)<br/>
+语料库中的惯用谓词（サ変接続名詞+を+動詞）
+
+- コーパス中で頻出する述語と助詞パターン<br/>
+Frequent predicates and particle patterns in the corpus<br/>
+语料库中的惯用谓词和助词模式
+```Python
+file_parsed = './neko.txt.cabocha'
+file_result = './verbs_functional_constructions.txt'
+
+with open(file_parsed, 'r') as text_parsed, open(file_result, 'w') as text_result:
+    sentences = chunk_analysis(text_parsed)
+
+    for sentence in sentences:
+        for chunk in sentence:
+            verbs = chunk.get_morphs_by_pos('動詞')
+
+            if len(verbs) < 1:
+                continue
+
+            chunks_with_particle = []
+            for src in chunk.srcs:
+                if len(sentence[src].get_case_particle()) > 0:
+                    chunks_with_particle.append(sentence[src])
+            if len(chunks_with_particle) < 1:
+                continue
+
+            sahen_wo_particle = ''
+            for chunk_src in chunks_with_particle:
+                sahen_wo_particle = chunk_src.get_sahen_wo_particle()
+                if len(sahen_wo_particle) > 0:
+                    chunk_need_remove = chunk_src
+                    break
+            if len(sahen_wo_particle) < 1:
+                continue
+
+            chunks_with_particle.remove(chunk_need_remove)
+            chunks_with_particle.sort(key = lambda chunk: chunk.get_case_particle())
+
+            text_result.write('{}\t{}\t{}\n'.\
+                    format(\
+                    sahen_wo_particle + verbs[0].base,\
+                    ' '.join([chunk.get_case_particle() for chunk in chunks_with_particle]),\
+                    ' '.join([chunk.get_chunk_string()  for chunk in chunks_with_particle])
+                        ))
+```
+```Shell
+➜ python verbs_functional_constructions.py > verbs_functional_constructions.txt; head verbs_functional_constructions.txt
+決心をする	と	こうと
+返報をする	んで	偸んで
+昼寝をする
+昼寝をする	が	彼が
+迫害を加える	て	追い廻して
+生活をする	が を	我等猫族が 愛を
+話をする
+投書をする	て へ	やって ほととぎすへ
+話をする	に	時に
+写生をする
+```
+UNIXコマンドを用いて確認<br/>
+Check using UNIX commands<br/>
+使用UNIX命令检查
+```Shell
+➜ cut -f1 verbs_functional_constructions.txt | sort | uniq -c | sort -n -r > verbs_functional_constructions_predicate.txt; head verbs_functional_constructions_predicate.txt
+  30 返事をする
+  21 挨拶をする
+  16 話をする
+  14 真似をする
+  13 喧嘩をする
+   8 質問をする
+   7 運動をする
+   6 注意をする
+   6 昼寝をする
+   6 話を聞く
+➜ cut -f1,2 verbs_functional_constructions.txt | sort | uniq -c | sort -n -r > verbs_functional_constructions_predicate_particle.txt; head verbs_functional_constructions_predicate_particle.txt
+   8 真似をする
+   6 返事をする	と
+   6 運動をする
+   6 喧嘩をする
+   4 挨拶をする	から
+   4 返事をする	と は
+   4 挨拶をする	と
+   4 返事をする
+   4 話を聞く
+   4 話をする
+```
 
 ### 48. 名詞から根へのパスの抽出
 文中のすべての名詞を含む文節に対し，その文節から構文木の根に至るパスを抽出せよ． ただし，構文木上のパスは以下の仕様を満たすものとする．
@@ -539,4 +648,3 @@ with open(file_parsed, 'r') as text_parsed, open(file_result, 'w') as text_resul
     Xで -> 始めて -> Y
     Xで -> 始めて -> 人間という -> Y
     Xという -> Y
-
