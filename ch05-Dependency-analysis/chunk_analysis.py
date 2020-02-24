@@ -45,6 +45,20 @@ class Chunk():
                 return morph.surface + self.morphs[index + 1].surface 
         return ''
 
+    def get_original_surface(self, mask, dst=False):
+        res = ''
+        for morph in self.morphs:
+            if morph.pos != '記号':
+                if morph.pos == '名詞':
+                    res += mask
+                    if dst:
+                        return res
+                    mask = ''
+                else :
+                    res += morph.surface
+        return res
+
+
 def chunk_analysis(file_parsed):
     sentences = []
     sentence = []
