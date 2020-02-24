@@ -9,6 +9,14 @@ class Chunk():
         self.dst    = -1
         self.srcs   = []
 
+    def get_morphs_by_pos(self, pos, pos1=''):
+        if len(pos1) > 0:
+            return [res for res in self.morphs
+                    if (res.pos == pos) and (res.pos1 == pos1)]
+        else:
+            return [res for res in self.morphs if res.pos == pos]
+
+
 def chunk_analysis(file_parsed):
     sentences = []
     sentence = []
