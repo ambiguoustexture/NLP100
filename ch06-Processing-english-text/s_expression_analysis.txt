@@ -1,0 +1,2036 @@
+(NP (JJ Natural) (NN language) (NN processing))
+(NP (NNP Wikipedia))
+(NP
+  (DT the)
+  (JJ free)
+  (NN encyclopedia)
+  (JJ Natural)
+  (NN language)
+  (NN processing))
+(NP (NN NLP))
+(NP (DT a) (NN field))
+(NP (NN computer) (NN science))
+(NP (JJ artificial) (NN intelligence))
+(NP (NNS linguistics))
+(NP (DT the) (NNS interactions))
+(NP (NNS computers))
+(NP
+  (JJ human)
+  (-LRB- -LRB-)
+  (JJ natural)
+  (-RRB- -RRB-)
+  (NNS languages))
+(NP
+  (NP (NNS computers))
+  (CC and)
+  (NP
+    (JJ human)
+    (-LRB- -LRB-)
+    (JJ natural)
+    (-RRB- -RRB-)
+    (NNS languages)))
+(NP
+  (NP
+    (DT the)
+    (JJ free)
+    (NN encyclopedia)
+    (JJ Natural)
+    (NN language)
+    (NN processing))
+  (PRN (-LRB- -LRB-) (NP (NN NLP)) (-RRB- -RRB-)))
+(NP
+  (NP (DT a) (NN field))
+  (PP (IN of) (NP (NN computer) (NN science))))
+(NP
+  (NP (DT the) (NNS interactions))
+  (PP
+    (IN between)
+    (NP
+      (NP (NNS computers))
+      (CC and)
+      (NP
+        (JJ human)
+        (-LRB- -LRB-)
+        (JJ natural)
+        (-RRB- -RRB-)
+        (NNS languages)))))
+(NP
+  (NP (NNS linguistics))
+  (VP
+    (VBN concerned)
+    (PP
+      (IN with)
+      (NP
+        (NP (DT the) (NNS interactions))
+        (PP
+          (IN between)
+          (NP
+            (NP (NNS computers))
+            (CC and)
+            (NP
+              (JJ human)
+              (-LRB- -LRB-)
+              (JJ natural)
+              (-RRB- -RRB-)
+              (NNS languages))))))))
+(NP
+  (NP
+    (NP (DT a) (NN field))
+    (PP (IN of) (NP (NN computer) (NN science))))
+  (, ,)
+  (NP (JJ artificial) (NN intelligence))
+  (, ,)
+  (CC and)
+  (NP
+    (NP (NNS linguistics))
+    (VP
+      (VBN concerned)
+      (PP
+        (IN with)
+        (NP
+          (NP (DT the) (NNS interactions))
+          (PP
+            (IN between)
+            (NP
+              (NP (NNS computers))
+              (CC and)
+              (NP
+                (JJ human)
+                (-LRB- -LRB-)
+                (JJ natural)
+                (-RRB- -RRB-)
+                (NNS languages)))))))))
+(NP (JJ such))
+(NP (NN NLP))
+(NP (DT the) (NN area))
+(NP (JJ humani-computer) (NN interaction))
+(NP
+  (NP (DT the) (NN area))
+  (PP (IN of) (NP (JJ humani-computer) (NN interaction))))
+(NP (JJ Many) (NNS challenges))
+(NP (NN NLP))
+(NP (JJ natural) (NN language) (NN understanding))
+(NP (NNS computers))
+(NP (NN meaning))
+(NP (NNS others))
+(NP (JJ natural) (NN language) (NN generation))
+(NP (ADJP (JJ human) (CC or) (JJ natural)) (NN language) (NN input))
+(NP (NP (JJ Many) (NNS challenges)) (PP (IN in) (NP (NN NLP))))
+(NP
+  (NP (JJ natural) (NN language) (NN understanding))
+  (, ,)
+  (SBAR (WHNP (WDT that)) (S (VP (VBZ is))))
+  (, ,))
+(NP (NN History) (DT The) (NN history))
+(NP (NNP NLP))
+(NP (DT the) (CD 1950s))
+(NP (NN work))
+(NP (JJR earlier) (NNS periods))
+(NP
+  (NP (NN History) (DT The) (NN history))
+  (PP (IN of) (NP (NNP NLP))))
+(NP (CD 1950))
+(NP (NNP Alan) (NNP Turing))
+(NP (DT an) (NN article))
+(NP (NNP Computing) (NNP Machinery) (CC and) (NNP Intelligence))
+(NP (DT the) (JJ Turing) (NN test))
+(NP (DT a) (NN criterion))
+(NP (NN intelligence))
+(NP (NP (DT a) (NN criterion)) (PP (IN of) (NP (NN intelligence))))
+(NP
+  (NP (DT an) (NN article))
+  (VP
+    (VBN titled)
+    (S
+      (`` ``)
+      (NP
+        (NNP Computing)
+        (NNP Machinery)
+        (CC and)
+        (NNP Intelligence))
+      ('' '')))
+  (SBAR
+    (WHNP (WDT which))
+    (S
+      (VP
+        (VBD proposed)
+        (SBAR
+          (WHNP (WP what))
+          (S
+            (VP
+              (VBZ is)
+              (ADVP (RB now))
+              (VP
+                (VBN called)
+                (NP (DT the) (JJ Turing) (NN test))
+                (PP
+                  (IN as)
+                  (NP
+                    (NP (DT a) (NN criterion))
+                    (PP (IN of) (NP (NN intelligence)))))))))))))
+(NP (DT The) (NNP Georgetown) (NN experiment))
+(NP (CD 1954))
+(NP (NNP English))
+(NP (ADJP (RB fully) (JJ automatic)) (NN translation))
+(NP
+  (QP (JJR more) (IN than) (CD sixty))
+  (JJ Russian)
+  (NNS sentences))
+(NP
+  (NP (DT The) (NNP Georgetown) (NN experiment))
+  (PP (IN in) (NP (CD 1954))))
+(NP
+  (NP (ADJP (RB fully) (JJ automatic)) (NN translation))
+  (PP
+    (IN of)
+    (NP
+      (QP (JJR more) (IN than) (CD sixty))
+      (JJ Russian)
+      (NNS sentences))))
+(NP (DT The) (NNS authors))
+(NP (CD three) (CC or) (CD five) (NNS years))
+(NP (NN machine) (NN translation))
+(NP (DT a) (VBN solved) (NN problem))
+(NP (JJ real) (NN progress))
+(NP (DT the) (NNP ALPAC) (NN report))
+(NP (CD 1966))
+(NP (RB long) (NN research))
+(NP (DT the) (NNS expectations))
+(NP (NN machine))
+(NP (NN translation))
+(NP
+  (NP (DT the) (NNP ALPAC) (NN report))
+  (PP (IN in) (NP (CD 1966)))
+  (, ,)
+  (SBAR
+    (WHNP (WDT which))
+    (S
+      (VP
+        (VBD found)
+        (SBAR
+          (IN that)
+          (S
+            (NP-TMP (CD ten) (NN year))
+            (NP (RB long) (NN research))
+            (VP
+              (VBD had)
+              (VP
+                (VBN failed)
+                (S
+                  (VP
+                    (TO to)
+                    (VP
+                      (VB fulfill)
+                      (NP (DT the) (NNS expectations)))))))))))))
+(NP (JJ Little) (JJ further) (NN research))
+(NP (NN machine) (NN translation))
+(NP (DT the) (JJ late) (NNS 1980s))
+(NP (DT the) (JJ first) (JJ statistical) (NN machine))
+(NP (NN translation) (NNS systems))
+(NP
+  (NP (DT the) (JJ first) (JJ statistical) (NN machine))
+  (NP (NN translation) (NNS systems)))
+(NP
+  (NP (JJ Little) (JJ further) (NN research))
+  (PP (IN in) (NP (NN machine) (NN translation))))
+(NP
+  (NP (DT the) (JJ late) (NNS 1980s))
+  (, ,)
+  (SBAR
+    (WHADVP (WRB when))
+    (S
+      (NP
+        (NP (DT the) (JJ first) (JJ statistical) (NN machine))
+        (NP (NN translation) (NNS systems)))
+      (VP (VBD were) (VP (VBN developed))))))
+(NP (DT Some) (RB notably) (JJ successful) (NN NLP) (NNS systems))
+(NP (DT the) (NNS 1960s))
+(NP (NNP SHRDLU))
+(NP (DT a) (JJ natural) (NN language) (NN system))
+(NP (JJ restricted))
+(NP (NNS blocks) (NNS worlds))
+(NP (JJ restricted) (NNS vocabularies))
+(NP (NNP ELIZA))
+(NP (DT a) (NN simulation))
+(NP (DT a) (JJ Rogerian) (NN psychotherapist))
+(NP (NNP Joseph) (NNP Weizenbaum))
+(NP (CD 1964) (TO to) (CD 1966))
+(NP
+  (NP (JJ restricted))
+  (`` ``)
+  (NP (NNS blocks) (NNS worlds))
+  ('' ''))
+(NP
+  (NP (DT a) (NN simulation))
+  (PP (IN of) (NP (DT a) (JJ Rogerian) (NN psychotherapist))))
+(NP
+  (NP (NNP Joseph) (NNP Weizenbaum))
+  (PP (IN between) (NP (CD 1964) (TO to) (CD 1966))))
+(NP
+  (NP (DT Some) (RB notably) (JJ successful) (NN NLP) (NNS systems))
+  (VP (VBN developed) (PP (IN in) (NP (DT the) (NNS 1960s)))))
+(NP
+  (NP (NNP ELIZA))
+  (, ,)
+  (NP
+    (NP (DT a) (NN simulation))
+    (PP (IN of) (NP (DT a) (JJ Rogerian) (NN psychotherapist))))
+  (, ,))
+(NP
+  (NP (DT a) (JJ natural) (NN language) (NN system))
+  (VP
+    (VBG working)
+    (PP
+      (IN in)
+      (NP
+        (NP (JJ restricted))
+        (`` ``)
+        (NP (NNS blocks) (NNS worlds))
+        ('' '')))
+    (PP (IN with) (NP (JJ restricted) (NNS vocabularies)))))
+(NP
+  (NP (NNP SHRDLU))
+  (, ,)
+  (NP
+    (NP (DT a) (JJ natural) (NN language) (NN system))
+    (VP
+      (VBG working)
+      (PP
+        (IN in)
+        (NP
+          (NP (JJ restricted))
+          (`` ``)
+          (NP (NNS blocks) (NNS worlds))
+          ('' '')))
+      (PP (IN with) (NP (JJ restricted) (NNS vocabularies))))))
+(NP (RB almost) (DT no) (NN information))
+(NP (JJ human) (NN thought) (CC or) (NN emotion))
+(NP (NN ELIZA))
+(NP (DT a) (ADJP (RB startlingly) (JJ human-like)) (NN interaction))
+(NP (DT the) (`` ``) (NN patient) ('' ''))
+(NP (NNP ELIZA))
+(NP (DT a) (JJ generic) (NN response))
+(NP (NN example))
+(NP (PRP$ My) (NN head))
+(NP (PRP you))
+(NP (PRP$ your) (NN head))
+(NP (DT the) (ADJP (RB very) (JJ small)) (NN knowledge) (NN base))
+(NP
+  (NP (DT a) (JJ generic) (NN response))
+  (SBAR
+    (S
+      (, ,)
+      (PP (IN for) (NP (NN example)))
+      (, ,)
+      (S
+        (VP
+          (VBG responding)
+          (PP (TO to) (`` ``) (NP (PRP$ My) (NN head)))))
+      (VP (VBZ hurts)))))
+(NP (. .))
+(NP (DT the) (CD 1970s))
+(NP (JJ many) (NNS programmers))
+(NP (JJ conceptual))
+(NP (NNS ontologies) (POS '))
+(NP (JJ real-world) (NN information))
+(NP (JJ computer-understandable) (NNS data))
+(NP (NP (JJ conceptual)) (NP (NNS ontologies) (POS ')))
+(NP
+  (NP (NP (JJ conceptual)) (NP (NNS ontologies) (POS ')))
+  (, ,)
+  (SBAR
+    (WHNP (WDT which))
+    (S
+      (VP
+        (VBD structured)
+        (NP (JJ real-world) (NN information))
+        (PP (IN into) (NP (JJ computer-understandable) (NNS data)))))))
+(NP (NNS Examples))
+(NP (NNP MARGIE))
+(NP (NNP Schank))
+(NP (CD 1975))
+(NP (NNP SAM))
+(NP (NNP Cullingford))
+(NP (CD 1978))
+(NP (NNS PAM))
+(NP (NNP Wilensky))
+(NP (CD 1978))
+(NP (NNP TaleSpin))
+(NP (NNP Meehan))
+(NP (CD 1976))
+(NP (NN QUALM))
+(NP (NN Lehnert))
+(NP (CD 1977))
+(NP (NN Politics))
+(NP (NNP Carbonell))
+(NP (CD 1979))
+(NP (NN Plot) (NNS Units))
+(NP (NNP Lehnert) (CD 1981))
+(NP (NP (NN Lehnert)) (, ,) (NP (CD 1977)))
+(NP
+  (NP (NNP MARGIE))
+  (PRN
+    (-LRB- -LRB-)
+    (NP (NNP Schank))
+    (, ,)
+    (NP (CD 1975))
+    (-RRB- -RRB-)))
+(NP
+  (NP (NNP SAM))
+  (PRN
+    (-LRB- -LRB-)
+    (NP (NNP Cullingford))
+    (, ,)
+    (NP (CD 1978))
+    (-RRB- -RRB-)))
+(NP
+  (NP (NNS PAM))
+  (PRN
+    (-LRB- -LRB-)
+    (NP (NNP Wilensky))
+    (, ,)
+    (NP (CD 1978))
+    (-RRB- -RRB-)))
+(NP
+  (NP (NNP TaleSpin))
+  (PRN
+    (-LRB- -LRB-)
+    (NP (NNP Meehan))
+    (, ,)
+    (NP (CD 1976))
+    (-RRB- -RRB-)))
+(NP
+  (NP (NN Politics))
+  (PRN
+    (-LRB- -LRB-)
+    (NP (NNP Carbonell))
+    (, ,)
+    (NP (CD 1979))
+    (-RRB- -RRB-)))
+(NP
+  (NP (NN Plot) (NNS Units))
+  (PRN (-LRB- -LRB-) (NP (NNP Lehnert) (CD 1981)) (-RRB- -RRB-)))
+(NP
+  (NP (NN QUALM))
+  (PRN
+    (-LRB- -LRB-)
+    (NP (NP (NN Lehnert)) (, ,) (NP (CD 1977)))
+    (-RRB- -RRB-)))
+(NP
+  (NP
+    (NP (NNP SAM))
+    (PRN
+      (-LRB- -LRB-)
+      (NP (NNP Cullingford))
+      (, ,)
+      (NP (CD 1978))
+      (-RRB- -RRB-)))
+  (, ,)
+  (NP
+    (NP (NNS PAM))
+    (PRN
+      (-LRB- -LRB-)
+      (NP (NNP Wilensky))
+      (, ,)
+      (NP (CD 1978))
+      (-RRB- -RRB-)))
+  (, ,)
+  (NP
+    (NP (NNP TaleSpin))
+    (PRN
+      (-LRB- -LRB-)
+      (NP (NNP Meehan))
+      (, ,)
+      (NP (CD 1976))
+      (-RRB- -RRB-)))
+  (, ,)
+  (NP
+    (NP (NN QUALM))
+    (PRN
+      (-LRB- -LRB-)
+      (NP (NP (NN Lehnert)) (, ,) (NP (CD 1977)))
+      (-RRB- -RRB-)))
+  (, ,)
+  (NP
+    (NP (NN Politics))
+    (PRN
+      (-LRB- -LRB-)
+      (NP (NNP Carbonell))
+      (, ,)
+      (NP (CD 1979))
+      (-RRB- -RRB-)))
+  (, ,)
+  (CC and)
+  (NP
+    (NP (NN Plot) (NNS Units))
+    (PRN (-LRB- -LRB-) (NP (NNP Lehnert) (CD 1981)) (-RRB- -RRB-))))
+(NP
+  (NP
+    (NP (NNP MARGIE))
+    (PRN
+      (-LRB- -LRB-)
+      (NP (NNP Schank))
+      (, ,)
+      (NP (CD 1975))
+      (-RRB- -RRB-)))
+  (, ,)
+  (NP
+    (NP
+      (NP (NNP SAM))
+      (PRN
+        (-LRB- -LRB-)
+        (NP (NNP Cullingford))
+        (, ,)
+        (NP (CD 1978))
+        (-RRB- -RRB-)))
+    (, ,)
+    (NP
+      (NP (NNS PAM))
+      (PRN
+        (-LRB- -LRB-)
+        (NP (NNP Wilensky))
+        (, ,)
+        (NP (CD 1978))
+        (-RRB- -RRB-)))
+    (, ,)
+    (NP
+      (NP (NNP TaleSpin))
+      (PRN
+        (-LRB- -LRB-)
+        (NP (NNP Meehan))
+        (, ,)
+        (NP (CD 1976))
+        (-RRB- -RRB-)))
+    (, ,)
+    (NP
+      (NP (NN QUALM))
+      (PRN
+        (-LRB- -LRB-)
+        (NP (NP (NN Lehnert)) (, ,) (NP (CD 1977)))
+        (-RRB- -RRB-)))
+    (, ,)
+    (NP
+      (NP (NN Politics))
+      (PRN
+        (-LRB- -LRB-)
+        (NP (NNP Carbonell))
+        (, ,)
+        (NP (CD 1979))
+        (-RRB- -RRB-)))
+    (, ,)
+    (CC and)
+    (NP
+      (NP (NN Plot) (NNS Units))
+      (PRN (-LRB- -LRB-) (NP (NNP Lehnert) (CD 1981)) (-RRB- -RRB-)))))
+(NP (DT this) (NN time))
+(NP (JJ many) (NNS chatterbots))
+(NP (NNP PARRY) (, ,) (NNP Racter) (, ,) (CC and) (NNP Jabberwacky))
+(NP (DT the) (NNS 1980s))
+(NP (JJS most) (NNS NLP) (NNS systems))
+(NP (JJ complex) (NNS sets))
+(NP (JJ hand-written) (NNS rules))
+(NP
+  (NP (JJ complex) (NNS sets))
+  (PP (IN of) (NP (JJ hand-written) (NNS rules))))
+(NP (DT the) (JJ late) (NNS 1980s))
+(NP (EX there))
+(NP (DT a) (NN revolution))
+(NP (NN NLP))
+(NP (DT the) (NN introduction))
+(NP (NN machine) (NN learning) (NNS algorithms))
+(NP (NN language) (NN processing))
+(NP (NP (DT a) (NN revolution)) (PP (IN in) (NP (NN NLP))))
+(NP
+  (NP (NN machine) (NN learning) (NNS algorithms))
+  (PP (IN for) (NP (NN language) (NN processing))))
+(NP
+  (NP (DT the) (NN introduction))
+  (PP
+    (IN of)
+    (NP
+      (NP (NN machine) (NN learning) (NNS algorithms))
+      (PP (IN for) (NP (NN language) (NN processing))))))
+(NP (DT This))
+(NP (CC both) (DT the) (JJ steady) (NN increase))
+(NP (JJ computational) (NN power))
+(NP (NNP Moore) (POS 's))
+(NP (DT the) (JJ gradual) (VBG lessening))
+(NP (DT the) (NN dominance))
+(NP (NNP Chomskyan) (NNS theories))
+(NP (NNS linguistics))
+(NP (FW e.g.))
+(NP (JJ transformational) (NN grammar))
+(NP (JJ theoretical) (NNS underpinnings))
+(NP (DT the) (NN sort))
+(NP (NN corpus) (NNS linguistics))
+(NP (DT the) (JJ machine-learning) (NN approach))
+(NP (NN language) (NN processing))
+(NP (NP (NNP Moore) (POS 's)) (NN Law))
+(NP (NP (FW e.g.)) (NP (JJ transformational) (NN grammar)))
+(NP
+  (NP (DT the) (NN dominance))
+  (PP (IN of) (NP (NNP Chomskyan) (NNS theories))))
+(NP
+  (NP (NNS linguistics))
+  (PRN
+    (-LRB- -LRB-)
+    (NP (NP (FW e.g.)) (NP (JJ transformational) (NN grammar)))
+    (-RRB- -RRB-)))
+(NP
+  (NP (DT the) (NN sort))
+  (PP (IN of) (NP (NN corpus) (NNS linguistics)))
+  (SBAR
+    (WHNP (WDT that))
+    (S
+      (VP
+        (VBZ underlies)
+        (NP (DT the) (JJ machine-learning) (NN approach))
+        (PP (TO to) (NP (NN language) (NN processing)))))))
+(NP
+  (NP (DT the) (JJ gradual) (VBG lessening))
+  (PP
+    (IN of)
+    (NP
+      (NP (DT the) (NN dominance))
+      (PP (IN of) (NP (NNP Chomskyan) (NNS theories)))))
+  (PP
+    (IN of)
+    (NP
+      (NP (NNS linguistics))
+      (PRN
+        (-LRB- -LRB-)
+        (NP (NP (FW e.g.)) (NP (JJ transformational) (NN grammar)))
+        (-RRB- -RRB-))))
+  (, ,)
+  (SBAR
+    (WP$ whose)
+    (S
+      (NP (JJ theoretical) (NNS underpinnings))
+      (VP
+        (VBD discouraged)
+        (NP
+          (NP (DT the) (NN sort))
+          (PP (IN of) (NP (NN corpus) (NNS linguistics)))
+          (SBAR
+            (WHNP (WDT that))
+            (S
+              (VP
+                (VBZ underlies)
+                (NP (DT the) (JJ machine-learning) (NN approach))
+                (PP (TO to) (NP (NN language) (NN processing)))))))))))
+(NP
+  (NP (NP (NNP Moore) (POS 's)) (NN Law))
+  (CC and)
+  (NP
+    (NP (DT the) (JJ gradual) (VBG lessening))
+    (PP
+      (IN of)
+      (NP
+        (NP (DT the) (NN dominance))
+        (PP (IN of) (NP (NNP Chomskyan) (NNS theories)))))
+    (PP
+      (IN of)
+      (NP
+        (NP (NNS linguistics))
+        (PRN
+          (-LRB- -LRB-)
+          (NP (NP (FW e.g.)) (NP (JJ transformational) (NN grammar)))
+          (-RRB- -RRB-))))
+    (, ,)
+    (SBAR
+      (WP$ whose)
+      (S
+        (NP (JJ theoretical) (NNS underpinnings))
+        (VP
+          (VBD discouraged)
+          (NP
+            (NP (DT the) (NN sort))
+            (PP (IN of) (NP (NN corpus) (NNS linguistics)))
+            (SBAR
+              (WHNP (WDT that))
+              (S
+                (VP
+                  (VBZ underlies)
+                  (NP (DT the) (JJ machine-learning) (NN approach))
+                  (PP (TO to) (NP (NN language) (NN processing))))))))))))
+(NP
+  (NP (JJ computational) (NN power))
+  (VP
+    (VBG resulting)
+    (PP
+      (IN from)
+      (NP
+        (NP (NP (NNP Moore) (POS 's)) (NN Law))
+        (CC and)
+        (NP
+          (NP (DT the) (JJ gradual) (VBG lessening))
+          (PP
+            (IN of)
+            (NP
+              (NP (DT the) (NN dominance))
+              (PP (IN of) (NP (NNP Chomskyan) (NNS theories)))))
+          (PP
+            (IN of)
+            (NP
+              (NP (NNS linguistics))
+              (PRN
+                (-LRB- -LRB-)
+                (NP
+                  (NP (FW e.g.))
+                  (NP (JJ transformational) (NN grammar)))
+                (-RRB- -RRB-))))
+          (, ,)
+          (SBAR
+            (WP$ whose)
+            (S
+              (NP (JJ theoretical) (NNS underpinnings))
+              (VP
+                (VBD discouraged)
+                (NP
+                  (NP (DT the) (NN sort))
+                  (PP (IN of) (NP (NN corpus) (NNS linguistics)))
+                  (SBAR
+                    (WHNP (WDT that))
+                    (S
+                      (VP
+                        (VBZ underlies)
+                        (NP
+                          (DT the)
+                          (JJ machine-learning)
+                          (NN approach))
+                        (PP
+                          (TO to)
+                          (NP (NN language) (NN processing)))))))))))))))
+(NP (DT Some))
+(NP (DT the) (JJ earliest-used) (NN machine))
+(NP (NNS algorithms))
+(NP (NN decision) (NNS trees))
+(NP (NNS systems))
+(NP (JJ hard) (JJ if-then) (NNS rules))
+(NP (VBG existing) (JJ hand-written) (NNS rules))
+(NP
+  (NP (NNS algorithms))
+  (, ,)
+  (PP (JJ such) (IN as) (NP (NN decision) (NNS trees)))
+  (, ,))
+(NP
+  (NP (JJ hard) (JJ if-then) (NNS rules))
+  (ADJP
+    (JJ similar)
+    (PP (TO to) (NP (VBG existing) (JJ hand-written) (NNS rules)))))
+(NP
+  (NP (DT the) (JJ earliest-used) (NN machine))
+  (VP
+    (VBG learning)
+    (NP
+      (NP (NNS algorithms))
+      (, ,)
+      (PP (JJ such) (IN as) (NP (NN decision) (NNS trees)))
+      (, ,))))
+(NP
+  (NP (NNS systems))
+  (PP
+    (IN of)
+    (NP
+      (NP (JJ hard) (JJ if-then) (NNS rules))
+      (ADJP
+        (JJ similar)
+        (PP
+          (TO to)
+          (NP (VBG existing) (JJ hand-written) (NNS rules)))))))
+(NP
+  (NP (DT Some))
+  (PP
+    (IN of)
+    (NP
+      (NP (DT the) (JJ earliest-used) (NN machine))
+      (VP
+        (VBG learning)
+        (NP
+          (NP (NNS algorithms))
+          (, ,)
+          (PP (JJ such) (IN as) (NP (NN decision) (NNS trees)))
+          (, ,))))))
+(NP (NN Part))
+(NP (NN speech))
+(NP (DT the) (NN use))
+(NP (NNP Hidden) (NNP Markov) (NNS Models))
+(NP (NNP NLP))
+(NP (NN research))
+(NP (JJ statistical) (NNS models))
+(NP (JJ soft) (, ,) (JJ probabilistic) (NNS decisions))
+(NP (JJ real-valued) (NNS weights))
+(NP (DT the) (NNS features))
+(NP (DT the) (NN input) (NNS data))
+(NP (NP (NN Part)) (PP (IN of) (NP (NN speech))))
+(NP
+  (NP (DT the) (NN use))
+  (PP (IN of) (NP (NNP Hidden) (NNP Markov) (NNS Models))))
+(NP
+  (NP (DT the) (NNS features))
+  (VP (VBG making) (PRT (RP up)) (NP (DT the) (NN input) (NNS data))))
+(NP
+  (NP (JJ statistical) (NNS models))
+  (, ,)
+  (SBAR
+    (WHNP (WDT which))
+    (S
+      (VP
+        (VBP make)
+        (NP (JJ soft) (, ,) (JJ probabilistic) (NNS decisions))
+        (PP
+          (VBN based)
+          (PP
+            (IN on)
+            (S
+              (VP
+                (VBG attaching)
+                (NP (JJ real-valued) (NNS weights))
+                (PP
+                  (TO to)
+                  (NP
+                    (NP (DT the) (NNS features))
+                    (VP
+                      (VBG making)
+                      (PRT (RP up))
+                      (NP (DT the) (NN input) (NNS data)))))))))))))
+(NP (DT The) (NN cache) (NN language) (NNS models))
+(NP (JJ many) (NN speech) (NN recognition) (NNS systems))
+(NP (NNS examples))
+(NP (JJ such) (JJ statistical) (NNS models))
+(NP
+  (NP (NNS examples))
+  (PP (IN of) (NP (JJ such) (JJ statistical) (NNS models))))
+(NP
+  (NP (DT The) (NN cache) (NN language) (NNS models))
+  (PP
+    (IN upon)
+    (SBAR
+      (WHNP (WDT which))
+      (S
+        (NP (JJ many) (NN speech) (NN recognition) (NNS systems))
+        (ADVP (RB now))
+        (VP (VBP rely))))))
+(NP (JJ Such) (NNS models))
+(NP (JJ unfamiliar) (NN input))
+(NP (NN input))
+(NP (NNS errors))
+(NP (JJ real-world) (NNS data))
+(NP (JJR more) (JJ reliable) (NNS results))
+(NP (DT a) (JJR larger) (NN system))
+(NP (JJ multiple) (NNS subtasks))
+(NP
+  (NP (DT a) (JJR larger) (NN system))
+  (VP (VBG comprising) (NP (JJ multiple) (NNS subtasks))))
+(NP
+  (NP (NNS errors))
+  (PRN
+    (-LRB- -LRB-)
+    (SBAR
+      (RB as)
+      (S
+        (VP
+          (VBZ is)
+          (ADJP
+            (RB very)
+            (JJ common)
+            (PP (IN for) (NP (JJ real-world) (NNS data)))))))
+    (-RRB- -RRB-)))
+(NP
+  (NP (NN input))
+  (SBAR
+    (WHNP (WDT that))
+    (S
+      (VP
+        (VBZ contains)
+        (NP
+          (NP (NNS errors))
+          (PRN
+            (-LRB- -LRB-)
+            (SBAR
+              (RB as)
+              (S
+                (VP
+                  (VBZ is)
+                  (ADJP
+                    (RB very)
+                    (JJ common)
+                    (PP (IN for) (NP (JJ real-world) (NNS data)))))))
+            (-RRB- -RRB-)))))))
+(NP
+  (NP (JJ unfamiliar) (NN input))
+  (, ,)
+  (ADVP (RB especially))
+  (NP
+    (NP (NN input))
+    (SBAR
+      (WHNP (WDT that))
+      (S
+        (VP
+          (VBZ contains)
+          (NP
+            (NP (NNS errors))
+            (PRN
+              (-LRB- -LRB-)
+              (SBAR
+                (RB as)
+                (S
+                  (VP
+                    (VBZ is)
+                    (ADJP
+                      (RB very)
+                      (JJ common)
+                      (PP (IN for) (NP (JJ real-world) (NNS data)))))))
+              (-RRB- -RRB-)))))))
+  (, ,))
+(NP (JJ Many))
+(NP (DT the) (JJ notable) (JJ early) (NNS successes))
+(NP (DT the) (NN field))
+(NP (NN machine) (NN translation))
+(NP (NNP IBM) (NNP Research))
+(NP (ADJP (RBR more) (JJ complicated)) (JJ statistical) (NNS models))
+(NP
+  (NP (JJ Many))
+  (PP (IN of) (NP (DT the) (JJ notable) (JJ early) (NNS successes))))
+(NP
+  (NP (NN machine) (NN translation))
+  (, ,)
+  (ADJP
+    (JJ due)
+    (RB especially)
+    (S
+      (VP
+        (TO to)
+        (VP (VB work) (PP (IN at) (NP (NNP IBM) (NNP Research)))))))
+  (, ,)
+  (SBAR
+    (WHADVP (WRB where))
+    (S
+      (ADVP (RB successively))
+      (NP
+        (ADJP (RBR more) (JJ complicated))
+        (JJ statistical)
+        (NNS models))
+      (VP (VBD were) (VP (VBN developed))))))
+(NP
+  (NP (DT the) (NN field))
+  (PP
+    (IN of)
+    (NP
+      (NP (NN machine) (NN translation))
+      (, ,)
+      (ADJP
+        (JJ due)
+        (RB especially)
+        (S
+          (VP
+            (TO to)
+            (VP (VB work) (PP (IN at) (NP (NNP IBM) (NNP Research)))))))
+      (, ,)
+      (SBAR
+        (WHADVP (WRB where))
+        (S
+          (ADVP (RB successively))
+          (NP
+            (ADJP (RBR more) (JJ complicated))
+            (JJ statistical)
+            (NNS models))
+          (VP (VBD were) (VP (VBN developed))))))))
+(NP (DT These) (NNS systems))
+(NP (NN advantage))
+(NP (VBG existing) (JJ multilingual) (JJ textual) (NN corpora))
+(NP (DT the) (NNP Parliament))
+(NP (NNP Canada))
+(NP (DT the) (NNP European) (NNP Union))
+(NP (DT a) (NN result))
+(NP (NNS laws))
+(NP (DT the) (NN translation))
+(NP (DT all) (JJ governmental) (NNS proceedings))
+(NP (DT all) (JJ official) (NNS languages))
+(NP (DT the) (JJ corresponding) (NNS systems))
+(NP (NN government))
+(NP
+  (NP (NNP Canada))
+  (CC and)
+  (NP (DT the) (NNP European) (NNP Union)))
+(NP
+  (NP (DT the) (NN translation))
+  (PP (IN of) (NP (DT all) (JJ governmental) (NNS proceedings))))
+(NP
+  (NP (DT the) (JJ corresponding) (NNS systems))
+  (PP (IN of) (NP (NN government))))
+(NP
+  (NP (DT the) (NNP Parliament))
+  (PP
+    (IN of)
+    (NP
+      (NP (NNP Canada))
+      (CC and)
+      (NP (DT the) (NNP European) (NNP Union)))))
+(NP
+  (NP (DT all) (JJ official) (NNS languages))
+  (PP
+    (IN of)
+    (NP
+      (NP (DT the) (JJ corresponding) (NNS systems))
+      (PP (IN of) (NP (NN government))))))
+(NP
+  (NP (NNS laws))
+  (VP
+    (VBG calling)
+    (PP
+      (IN for)
+      (NP
+        (NP (DT the) (NN translation))
+        (PP
+          (IN of)
+          (NP (DT all) (JJ governmental) (NNS proceedings)))))
+    (PP
+      (IN into)
+      (NP
+        (NP (DT all) (JJ official) (NNS languages))
+        (PP
+          (IN of)
+          (NP
+            (NP (DT the) (JJ corresponding) (NNS systems))
+            (PP (IN of) (NP (NN government)))))))))
+(NP
+  (NP (DT a) (NN result))
+  (PP
+    (IN of)
+    (NP
+      (NP (NNS laws))
+      (VP
+        (VBG calling)
+        (PP
+          (IN for)
+          (NP
+            (NP (DT the) (NN translation))
+            (PP
+              (IN of)
+              (NP (DT all) (JJ governmental) (NNS proceedings)))))
+        (PP
+          (IN into)
+          (NP
+            (NP (DT all) (JJ official) (NNS languages))
+            (PP
+              (IN of)
+              (NP
+                (NP (DT the) (JJ corresponding) (NNS systems))
+                (PP (IN of) (NP (NN government)))))))))))
+(NP
+  (NP (VBG existing) (JJ multilingual) (JJ textual) (NN corpora))
+  (SBAR
+    (WHNP (WDT that))
+    (S
+      (VP
+        (VBD had)
+        (VP
+          (VBN been)
+          (VP
+            (VBN produced)
+            (PP
+              (IN by)
+              (NP
+                (NP (DT the) (NNP Parliament))
+                (PP
+                  (IN of)
+                  (NP
+                    (NP (NNP Canada))
+                    (CC and)
+                    (NP (DT the) (NNP European) (NNP Union))))))
+            (PP
+              (IN as)
+              (NP
+                (NP (DT a) (NN result))
+                (PP
+                  (IN of)
+                  (NP
+                    (NP (NNS laws))
+                    (VP
+                      (VBG calling)
+                      (PP
+                        (IN for)
+                        (NP
+                          (NP (DT the) (NN translation))
+                          (PP
+                            (IN of)
+                            (NP
+                              (DT all)
+                              (JJ governmental)
+                              (NNS proceedings)))))
+                      (PP
+                        (IN into)
+                        (NP
+                          (NP (DT all) (JJ official) (NNS languages))
+                          (PP
+                            (IN of)
+                            (NP
+                              (NP
+                                (DT the)
+                                (JJ corresponding)
+                                (NNS systems))
+                              (PP (IN of) (NP (NN government))))))))))))))))))
+(NP
+  (NP (NN advantage))
+  (PP
+    (IN of)
+    (NP
+      (NP (VBG existing) (JJ multilingual) (JJ textual) (NN corpora))
+      (SBAR
+        (WHNP (WDT that))
+        (S
+          (VP
+            (VBD had)
+            (VP
+              (VBN been)
+              (VP
+                (VBN produced)
+                (PP
+                  (IN by)
+                  (NP
+                    (NP (DT the) (NNP Parliament))
+                    (PP
+                      (IN of)
+                      (NP
+                        (NP (NNP Canada))
+                        (CC and)
+                        (NP (DT the) (NNP European) (NNP Union))))))
+                (PP
+                  (IN as)
+                  (NP
+                    (NP (DT a) (NN result))
+                    (PP
+                      (IN of)
+                      (NP
+                        (NP (NNS laws))
+                        (VP
+                          (VBG calling)
+                          (PP
+                            (IN for)
+                            (NP
+                              (NP (DT the) (NN translation))
+                              (PP
+                                (IN of)
+                                (NP
+                                  (DT all)
+                                  (JJ governmental)
+                                  (NNS proceedings)))))
+                          (PP
+                            (IN into)
+                            (NP
+                              (NP
+                                (DT all)
+                                (JJ official)
+                                (NNS languages))
+                              (PP
+                                (IN of)
+                                (NP
+                                  (NP
+                                    (DT the)
+                                    (JJ corresponding)
+                                    (NNS systems))
+                                  (PP (IN of) (NP (NN government))))))))))))))))))))
+(NP (RBS most) (JJ other) (NNS systems))
+(NP (NN corpora))
+(NP (DT the) (NNS tasks))
+(NP (DT these) (NNS systems))
+(NP (DT a) (JJ major) (NN limitation))
+(NP (DT the) (NN success))
+(NP (DT these) (NNS systems))
+(NP
+  (NP (DT the) (NN success))
+  (PP (IN of) (NP (DT these) (NNS systems))))
+(NP
+  (NP (DT a) (JJ major) (NN limitation))
+  (PP
+    (IN in)
+    (NP
+      (NP (DT the) (NN success))
+      (PP (IN of) (NP (DT these) (NNS systems))))))
+(NP
+  (NP (DT these) (NNS systems))
+  (, ,)
+  (SBAR
+    (WHNP (WDT which))
+    (S
+      (VP
+        (VP (VBD was))
+        (PRN
+          (-LRB- -LRB-)
+          (CC and)
+          (VP
+            (ADVP (RB often))
+            (VP (VBZ continues) (S (VP (TO to) (VP (VB be))))))
+          (-RRB- -RRB-))))))
+(NP
+  (NP (DT the) (NNS tasks))
+  (VP
+    (VBN implemented)
+    (PP
+      (IN by)
+      (NP
+        (NP (DT these) (NNS systems))
+        (, ,)
+        (SBAR
+          (WHNP (WDT which))
+          (S
+            (VP
+              (VP (VBD was))
+              (PRN
+                (-LRB- -LRB-)
+                (CC and)
+                (VP
+                  (ADVP (RB often))
+                  (VP (VBZ continues) (S (VP (TO to) (VP (VB be))))))
+                (-RRB- -RRB-)))))))))
+(NP (DT a) (NN result))
+(NP (DT a) (JJ great) (NN deal))
+(NP (NN research))
+(NP (NNS methods))
+(NP (JJR more))
+(NP (JJ limited) (NNS amounts))
+(NP (NNS data))
+(NP (NP (DT a) (JJ great) (NN deal)) (PP (IN of) (NP (NN research))))
+(NP (NP (JJ limited) (NNS amounts)) (PP (IN of) (NP (NNS data))))
+(NP
+  (NP (JJR more))
+  (VP
+    (ADVP (RB effectively))
+    (VBG learning)
+    (PP
+      (IN from)
+      (NP
+        (NP (JJ limited) (NNS amounts))
+        (PP (IN of) (NP (NNS data)))))))
+(NP
+  (NP (NNS methods))
+  (PP
+    (IN of)
+    (NP
+      (NP (JJR more))
+      (VP
+        (ADVP (RB effectively))
+        (VBG learning)
+        (PP
+          (IN from)
+          (NP
+            (NP (JJ limited) (NNS amounts))
+            (PP (IN of) (NP (NNS data)))))))))
+(NP (JJ Recent) (NN research))
+(NP
+  (ADJP (JJ unsupervised) (CC and) (JJ semi-supervised))
+  (NN learning)
+  (NNS algorithms))
+(NP (JJ Such) (NNS algorithms))
+(NP (NNS data))
+(NP (DT the) (VBN desired) (NNS answers))
+(NP (DT a) (NN combination))
+(NP (JJ annotated) (CC and) (JJ non-annotated) (NNS data))
+(NP
+  (NP (DT a) (NN combination))
+  (PP
+    (IN of)
+    (NP (JJ annotated) (CC and) (JJ non-annotated) (NNS data))))
+(NP
+  (NP (NNS data))
+  (SBAR
+    (WHNP (WDT that))
+    (S
+      (VP
+        (VBZ has)
+        (RB not)
+        (VP
+          (VBN been)
+          (VP
+            (VBN hand-annotated)
+            (PP (IN with) (NP (DT the) (VBN desired) (NNS answers)))))))))
+(NP (DT this) (NN task))
+(NP (JJ supervised) (NN learning))
+(NP (DT a) (VBN given) (NN amount))
+(NP (NN input) (NNS data))
+(NP (ADJP (JJR less) (JJ accurate)) (NNS results))
+(NP
+  (NP (DT a) (VBN given) (NN amount))
+  (PP (IN of) (NP (NN input) (NNS data))))
+(NP
+  (NP (ADJP (JJR less) (JJ accurate)) (NNS results))
+  (PP
+    (IN for)
+    (NP
+      (NP (DT a) (VBN given) (NN amount))
+      (PP (IN of) (NP (NN input) (NNS data))))))
+(NP (EX there))
+(NP (DT an) (JJ enormous) (NN amount))
+(NP (JJ non-annotated) (NNS data))
+(NP (JJ other) (NNS things))
+(NP (DT the) (JJ entire) (NN content))
+(NP (DT the) (NNP World) (NN Wide) (NN Web))
+(NP (DT the) (JJ inferior) (NNS results))
+(NP (NP (JJ non-annotated) (NNS data)) (ADJP (JJ available)))
+(NP
+  (NP (DT the) (JJ entire) (NN content))
+  (PP (IN of) (NP (DT the) (NNP World) (NN Wide) (NN Web))))
+(NP
+  (NP (DT an) (JJ enormous) (NN amount))
+  (PP
+    (IN of)
+    (NP (NP (JJ non-annotated) (NNS data)) (ADJP (JJ available)))))
+(NP
+  (NP
+    (NP (DT an) (JJ enormous) (NN amount))
+    (PP
+      (IN of)
+      (NP (NP (JJ non-annotated) (NNS data)) (ADJP (JJ available)))))
+  (PRN
+    (-LRB- -LRB-)
+    (VP
+      (VBG including)
+      (, ,)
+      (PP (IN among) (NP (JJ other) (NNS things)))
+      (, ,)
+      (NP
+        (NP (DT the) (JJ entire) (NN content))
+        (PP (IN of) (NP (DT the) (NNP World) (NN Wide) (NN Web)))))
+    (-RRB- -RRB-))
+  (, ,)
+  (SBAR
+    (WHNP (WDT which))
+    (S
+      (VP
+        (MD can)
+        (ADVP (RB often))
+        (VP
+          (VB make)
+          (PRT (RP up))
+          (PP (IN for) (NP (DT the) (JJ inferior) (NNS results))))))))
+(NP (NN NLP))
+(NP
+  (NN machine)
+  (NN learning)
+  (NNP Modern)
+  (NNP NLP)
+  (NNS algorithms))
+(NP (NN machine) (NN learning))
+(NP (JJ statistical) (NN machine) (NN learning))
+(NP
+  (NP (NN machine) (NN learning))
+  (, ,)
+  (RB especially)
+  (NP (JJ statistical) (NN machine) (NN learning)))
+(NP
+  (NP (NN NLP))
+  (VP
+    (VBG using)
+    (NP
+      (NN machine)
+      (NN learning)
+      (NNP Modern)
+      (NNP NLP)
+      (NNS algorithms))))
+(NP (DT The) (NN paradigm))
+(NP (NN machine) (NN learning))
+(NP (DT that))
+(NP (JJS most) (JJ prior) (NNS attempts))
+(NP (NN language) (NN processing))
+(NP
+  (NP (DT The) (NN paradigm))
+  (PP (IN of) (NP (NN machine) (NN learning))))
+(NP
+  (NP (DT that))
+  (PP (IN of) (NP (JJS most) (JJ prior) (NNS attempts))))
+(NP (NNS implementations))
+(NP (JJ language-processing) (NNS tasks))
+(NP (DT the) (JJ direct) (NN hand) (NN coding))
+(NP (JJ large) (NNS sets))
+(NP (NNS rules))
+(NP
+  (NP (NNS implementations))
+  (PP (IN of) (NP (JJ language-processing) (NNS tasks))))
+(NP (NP (JJ large) (NNS sets)) (PP (IN of) (NP (NNS rules))))
+(NP
+  (NP (DT the) (JJ direct) (NN hand) (NN coding))
+  (PP
+    (IN of)
+    (NP (NP (JJ large) (NNS sets)) (PP (IN of) (NP (NNS rules))))))
+(NP (DT The) (JJ machine-learning) (NN paradigm))
+(NP (JJ general) (NN learning) (NNS algorithms))
+(NP (JJ statistical) (NN inference))
+(NP (JJ such) (NNS rules))
+(NP (DT the) (NN analysis))
+(NP (JJ large) (NN corpora))
+(NP (JJ typical) (JJ real-world) (NNS examples))
+(NP
+  (NP (JJ general) (NN learning) (NNS algorithms))
+  (: -)
+  (ADVP (RB often)))
+(NP
+  (NP (JJ large) (NN corpora))
+  (PP (IN of) (NP (JJ typical) (JJ real-world) (NNS examples))))
+(NP
+  (NP (DT the) (NN analysis))
+  (PP
+    (IN of)
+    (NP
+      (NP (JJ large) (NN corpora))
+      (PP (IN of) (NP (JJ typical) (JJ real-world) (NNS examples))))))
+(NP (DT A) (NN corpus))
+(NP (NN plural))
+(NP (`` ``) (NN corpora) ('' ''))
+(NP (DT a) (NN set))
+(NP (NNS documents))
+(NP (JJ individual) (NNS sentences))
+(NP (DT the) (JJ correct) (NNS values))
+(NP (NP (NN plural)) (, ,) (NP (`` ``) (NN corpora) ('' '')))
+(NP
+  (NP (DT A) (NN corpus))
+  (PRN
+    (-LRB- -LRB-)
+    (NP (NP (NN plural)) (, ,) (NP (`` ``) (NN corpora) ('' '')))
+    (-RRB- -RRB-)))
+(NP
+  (NP (NNS documents))
+  (PRN
+    (-LRB- -LRB-)
+    (CC or)
+    (ADVP (RB sometimes))
+    (, ,)
+    (NP (JJ individual) (NNS sentences))
+    (-RRB- -RRB-))
+  (SBAR
+    (WHNP (WDT that))
+    (S
+      (VP
+        (VBP have)
+        (VP
+          (VBN been)
+          (ADJP
+            (JJ hand-annotated)
+            (PP (IN with) (NP (DT the) (JJ correct) (NNS values))))
+          (S (VP (TO to) (VP (VB be) (VP (VBN learned))))))))))
+(NP
+  (NP (DT a) (NN set))
+  (PP
+    (IN of)
+    (NP
+      (NP (NNS documents))
+      (PRN
+        (-LRB- -LRB-)
+        (CC or)
+        (ADVP (RB sometimes))
+        (, ,)
+        (NP (JJ individual) (NNS sentences))
+        (-RRB- -RRB-))
+      (SBAR
+        (WHNP (WDT that))
+        (S
+          (VP
+            (VBP have)
+            (VP
+              (VBN been)
+              (ADJP
+                (JJ hand-annotated)
+                (PP
+                  (IN with)
+                  (NP (DT the) (JJ correct) (NNS values))))
+              (S (VP (TO to) (VP (VB be) (VP (VBN learned))))))))))))
+(NP (JJ Many) (JJ different) (NNS classes))
+(NP (NN machine) (NN learning) (NNS algorithms))
+(NP (NN NLP) (NNS tasks))
+(NP
+  (NP (JJ Many) (JJ different) (NNS classes))
+  (PP (IN of) (NP (NN machine) (NN learning) (NNS algorithms))))
+(NP (DT These) (NNS algorithms))
+(NP (RB as) (NN input))
+(NP (DT a) (JJ large) (NN set))
+(NP (`` ``) (NNS features) ('' ''))
+(NP (DT the) (NN input) (NNS data))
+(NP
+  (NP (`` ``) (NNS features) ('' ''))
+  (SBAR
+    (WHNP (WDT that))
+    (S
+      (VP
+        (VBP are)
+        (VP
+          (VBN generated)
+          (PP (IN from) (NP (DT the) (NN input) (NNS data))))))))
+(NP
+  (NP (DT a) (JJ large) (NN set))
+  (PP
+    (IN of)
+    (NP
+      (NP (`` ``) (NNS features) ('' ''))
+      (SBAR
+        (WHNP (WDT that))
+        (S
+          (VP
+            (VBP are)
+            (VP
+              (VBN generated)
+              (PP (IN from) (NP (DT the) (NN input) (NNS data))))))))))
+(NP (DT Some))
+(NP (DT the) (JJ earliest-used) (NNS algorithms))
+(NP (NN decision) (NNS trees))
+(NP (NNS systems))
+(NP (JJ hard) (JJ if-then) (NNS rules))
+(NP (DT the) (NNS systems))
+(NP (JJ hand-written) (NNS rules))
+(NP
+  (NP (DT Some))
+  (PP (IN of) (NP (DT the) (JJ earliest-used) (NNS algorithms)))
+  (, ,)
+  (PP (JJ such) (IN as) (NP (NN decision) (NNS trees)))
+  (, ,))
+(NP
+  (NP (DT the) (NNS systems))
+  (PP (IN of) (NP (JJ hand-written) (NNS rules)))
+  (SBAR
+    (WHNP (WDT that))
+    (S (VP (VBD were) (RB then) (ADJP (JJ common))))))
+(NP
+  (NP (JJ hard) (JJ if-then) (NNS rules))
+  (ADJP
+    (JJ similar)
+    (PP
+      (TO to)
+      (NP
+        (NP (DT the) (NNS systems))
+        (PP (IN of) (NP (JJ hand-written) (NNS rules)))
+        (SBAR
+          (WHNP (WDT that))
+          (S (VP (VBD were) (RB then) (ADJP (JJ common)))))))))
+(NP
+  (NP (NNS systems))
+  (PP
+    (IN of)
+    (NP
+      (NP (JJ hard) (JJ if-then) (NNS rules))
+      (ADJP
+        (JJ similar)
+        (PP
+          (TO to)
+          (NP
+            (NP (DT the) (NNS systems))
+            (PP (IN of) (NP (JJ hand-written) (NNS rules)))
+            (SBAR
+              (WHNP (WDT that))
+              (S (VP (VBD were) (RB then) (ADJP (JJ common)))))))))))
+(NP (NN research))
+(NP (JJ statistical) (NNS models))
+(NP (JJ soft) (, ,) (JJ probabilistic) (NNS decisions))
+(NP (JJ real-valued) (NNS weights))
+(NP (DT each) (NN input) (NN feature))
+(NP
+  (NP (JJ statistical) (NNS models))
+  (, ,)
+  (SBAR
+    (WHNP (WDT which))
+    (S
+      (VP
+        (VBP make)
+        (NP (JJ soft) (, ,) (JJ probabilistic) (NNS decisions))
+        (PP
+          (VBN based)
+          (PP
+            (IN on)
+            (S
+              (VP
+                (VBG attaching)
+                (NP (JJ real-valued) (NNS weights))
+                (PP (TO to) (NP (DT each) (NN input) (NN feature)))))))))))
+(NP (JJ Such) (NNS models))
+(NP (DT the) (NN advantage))
+(NP (PRP they))
+(NP (DT the) (JJ relative) (NN certainty))
+(NP (JJ many) (JJ different) (JJ possible) (NNS answers))
+(NP (RB only) (CD one))
+(NP (JJR more) (JJ reliable) (NNS results))
+(NP (PDT such) (DT a) (NN model))
+(NP (DT a) (NN component))
+(NP (DT a) (JJR larger) (NN system))
+(NP
+  (NP (JJ many) (JJ different) (JJ possible) (NNS answers))
+  (CONJP (RB rather) (IN than))
+  (NP (RB only) (CD one)))
+(NP
+  (NP (DT a) (NN component))
+  (PP (IN of) (NP (DT a) (JJR larger) (NN system))))
+(NP
+  (NP (DT the) (JJ relative) (NN certainty))
+  (PP
+    (IN of)
+    (NP
+      (NP (JJ many) (JJ different) (JJ possible) (NNS answers))
+      (CONJP (RB rather) (IN than))
+      (NP (RB only) (CD one)))))
+(NP (NNPS Systems))
+(NP (JJ machine-learning) (NNS algorithms))
+(NP (JJ many) (NNS advantages))
+(NP (JJ hand-produced) (NNS rules))
+(NP (DT The) (VBG learning) (NNS procedures))
+(NP (NN machine) (NN learning))
+(NP (DT the) (RBS most) (JJ common) (NNS cases))
+(NP (NNS rules))
+(NP (NN hand))
+(NP (PRP it))
+(NP (DT all))
+(NP (DT the) (NN effort))
+(NP
+  (NP (JJ many) (NNS advantages))
+  (PP (IN over) (NP (JJ hand-produced) (NNS rules))))
+(NP
+  (NP (NNPS Systems))
+  (PP
+    (VBN based)
+    (PP (IN on) (NP (JJ machine-learning) (NNS algorithms)))))
+(NP
+  (NP (DT The) (VBG learning) (NNS procedures))
+  (VP (VBN used) (PP (IN during) (NP (NN machine) (NN learning)))))
+(NP
+  (NP (DT the) (RBS most) (JJ common) (NNS cases))
+  (, ,)
+  (SBAR
+    (IN whereas)
+    (S
+      (SBAR
+        (WHADVP (WRB when))
+        (S
+          (VP
+            (VBG writing)
+            (NP (NNS rules))
+            (PP (IN by) (NP (NN hand))))))
+      (NP (PRP it))
+      (VP
+        (VBZ is)
+        (ADVP (RB often))
+        (RB not)
+        (ADJP (JJ obvious) (PP (IN at) (NP (DT all))))
+        (SBAR
+          (WHADVP (WRB where))
+          (S
+            (NP (DT the) (NN effort))
+            (VP (MD should) (VP (VB be) (VP (VBN directed))))))))))
+(NP (NNP Automatic))
+(NP (NNS procedures))
+(NP (NN use))
+(NP (JJ statistical) (NN inference) (NNS algorithms))
+(NP (NNS models))
+(NP (JJ unfamiliar) (NN input))
+(NP (NNS words) (CC or) (NNS structures))
+(NP (FW e.g.))
+(NP (NNS words) (CC or) (NNS words))
+(NP (NP (NNP Automatic)) (VP (VBG learning) (NP (NNS procedures))))
+(NP
+  (NP (NN use))
+  (PP (IN of) (NP (JJ statistical) (NN inference) (NNS algorithms))))
+(NP
+  (NP (NNS words) (CC or) (NNS words))
+  (VP (ADVP (RB accidentally)) (VBN omitted)))
+(NP
+  (NP (FW e.g.))
+  (PP (IN with))
+  (VP
+    (VBN misspelled)
+    (NP
+      (NP (NNS words) (CC or) (NNS words))
+      (VP (ADVP (RB accidentally)) (VBN omitted)))))
+(NP
+  (NP (NNS words) (CC or) (NNS structures))
+  (SBAR
+    (WHNP (WDT that))
+    (S
+      (VP
+        (VBP have)
+        (RB not)
+        (VP (VBN been) (VP (VBN seen) (PP (IN before))))))))
+(NP
+  (JJ erroneous)
+  (NN input)
+  (PRN
+    (-LRB- -LRB-)
+    (NP
+      (NP (FW e.g.))
+      (PP (IN with))
+      (VP
+        (VBN misspelled)
+        (NP
+          (NP (NNS words) (CC or) (NNS words))
+          (VP (ADVP (RB accidentally)) (VBN omitted)))))
+    (-RRB- -RRB-)))
+(NP
+  (NP (NNS models))
+  (SBAR
+    (WHNP (WDT that))
+    (S
+      (VP
+        (VBP are)
+        (ADJP (JJ robust))
+        (PP
+          (PP (TO to) (NP (JJ unfamiliar) (NN input)))
+          (PRN
+            (-LRB- -LRB-)
+            (FRAG
+              (ADJP (FW e.g.))
+              (S
+                (VP
+                  (VBG containing)
+                  (NP
+                    (NP (NNS words) (CC or) (NNS structures))
+                    (SBAR
+                      (WHNP (WDT that))
+                      (S
+                        (VP
+                          (VBP have)
+                          (RB not)
+                          (VP
+                            (VBN been)
+                            (VP (VBN seen) (PP (IN before)))))))))))
+            (-RRB- -RRB-))
+          (CC and)
+          (PP
+            (TO to)
+            (NP
+              (JJ erroneous)
+              (NN input)
+              (PRN
+                (-LRB- -LRB-)
+                (NP
+                  (NP (FW e.g.))
+                  (PP (IN with))
+                  (VP
+                    (VBN misspelled)
+                    (NP
+                      (NP (NNS words) (CC or) (NNS words))
+                      (VP (ADVP (RB accidentally)) (VBN omitted)))))
+                (-RRB- -RRB-)))))))))
+(NP (JJ such) (NN input))
+(NP (JJ hand-written) (NNS rules))
+(NP (NNS systems))
+(NP (JJ hand-written) (NNS rules))
+(NP (JJ soft) (NNS decisions))
+(NP
+  (NP (JJ soft) (NNS decisions))
+  (: --)
+  (ADJP
+    (RB extremely)
+    (JJ difficult)
+    (, ,)
+    (JJ error-prone)
+    (CC and)
+    (JJ time-consuming)))
+(NP
+  (NP (JJ such) (NN input))
+  (ADVP
+    (ADVP
+      (RB gracefully)
+      (PP (IN with) (NP (JJ hand-written) (NNS rules))))
+    (: --)
+    (CC or)
+    (ADVP (JJR more))))
+(NP
+  (NP (NNS systems))
+  (PP (IN of) (NP (JJ hand-written) (NNS rules)))
+  (SBAR
+    (WHNP (WDT that))
+    (S
+      (VP
+        (VBP make)
+        (NP
+          (NP (JJ soft) (NNS decisions))
+          (: --)
+          (ADJP
+            (RB extremely)
+            (JJ difficult)
+            (, ,)
+            (JJ error-prone)
+            (CC and)
+            (JJ time-consuming)))))))
+(NP (NNPS Systems))
+(NP (DT the) (NNS rules))
+(NP (JJR more) (NN input) (NNS data))
+(NP
+  (NP (NNPS Systems))
+  (VP
+    (VBN based)
+    (PP
+      (IN on)
+      (S
+        (ADVP (RB automatically))
+        (VP (VBG learning) (NP (DT the) (NNS rules)))))))
+(NP (NNS systems))
+(NP (JJ hand-written) (NNS rules))
+(NP (DT the) (NN complexity))
+(NP (DT the) (NNS rules))
+(NP (DT a) (ADJP (RB much) (RBR more) (JJ difficult)) (NN task))
+(NP
+  (NP (NNS systems))
+  (PP (VBN based) (PP (IN on) (NP (JJ hand-written) (NNS rules)))))
+(NP
+  (NP (DT the) (NNS rules))
+  (, ,)
+  (SBAR
+    (WHNP (WDT which))
+    (S
+      (VP
+        (VBZ is)
+        (NP
+          (DT a)
+          (ADJP (RB much) (RBR more) (JJ difficult))
+          (NN task))))))
+(NP
+  (NP (DT the) (NN complexity))
+  (PP
+    (IN of)
+    (NP
+      (NP (DT the) (NNS rules))
+      (, ,)
+      (SBAR
+        (WHNP (WDT which))
+        (S
+          (VP
+            (VBZ is)
+            (NP
+              (DT a)
+              (ADJP (RB much) (RBR more) (JJ difficult))
+              (NN task))))))))
+(NP (EX there))
+(NP (DT a) (NN limit))
+(NP (DT the) (NN complexity))
+(NP (NNS systems))
+(NP (JJ hand-crafted) (NNS rules))
+(NP (DT the) (NNS systems))
+(NP
+  (NP (JJ hand-crafted) (NNS rules))
+  (, ,)
+  (SBAR
+    (WHPP (IN beyond) (WHNP (WDT which)))
+    (S
+      (NP (DT the) (NNS systems))
+      (VP
+        (VBP become)
+        (ADJP
+          (ADVP (RBR more) (CC and) (RBR more))
+          (JJ unmanageable))))))
+(NP
+  (NP (NNS systems))
+  (VP
+    (VBN based)
+    (PP
+      (IN on)
+      (NP
+        (NP (JJ hand-crafted) (NNS rules))
+        (, ,)
+        (SBAR
+          (WHPP (IN beyond) (WHNP (WDT which)))
+          (S
+            (NP (DT the) (NNS systems))
+            (VP
+              (VBP become)
+              (ADJP
+                (ADVP (RBR more) (CC and) (RBR more))
+                (JJ unmanageable)))))))))
+(NP
+  (NP (DT the) (NN complexity))
+  (PP
+    (IN of)
+    (NP
+      (NP (NNS systems))
+      (VP
+        (VBN based)
+        (PP
+          (IN on)
+          (NP
+            (NP (JJ hand-crafted) (NNS rules))
+            (, ,)
+            (SBAR
+              (WHPP (IN beyond) (WHNP (WDT which)))
+              (S
+                (NP (DT the) (NNS systems))
+                (VP
+                  (VBP become)
+                  (ADJP
+                    (ADVP (RBR more) (CC and) (RBR more))
+                    (JJ unmanageable)))))))))))
+(NP
+  (NP (DT a) (NN limit))
+  (PP
+    (TO to)
+    (NP
+      (NP (DT the) (NN complexity))
+      (PP
+        (IN of)
+        (NP
+          (NP (NNS systems))
+          (VP
+            (VBN based)
+            (PP
+              (IN on)
+              (NP
+                (NP (JJ hand-crafted) (NNS rules))
+                (, ,)
+                (SBAR
+                  (WHPP (IN beyond) (WHNP (WDT which)))
+                  (S
+                    (NP (DT the) (NNS systems))
+                    (VP
+                      (VBP become)
+                      (ADJP
+                        (ADVP (RBR more) (CC and) (RBR more))
+                        (JJ unmanageable)))))))))))))
+(NP (JJR more) (NNS data))
+(NP (NN input))
+(NP (JJ machine-learning) (NNS systems))
+(NP (DT a) (JJ corresponding) (NN increase))
+(NP (DT the) (NN number))
+(NP (NN man-hours))
+(NP (JJ significant) (NNS increases))
+(NP (DT the) (NN complexity))
+(NP (DT the) (NN annotation) (NN process))
+(NP (NP (DT the) (NN number)) (PP (IN of) (NP (NN man-hours))))
+(NP
+  (NP (DT the) (NN complexity))
+  (PP (IN of) (NP (DT the) (NN annotation) (NN process))))
+(NP
+  (NP (DT a) (JJ corresponding) (NN increase))
+  (PP
+    (IN in)
+    (NP (NP (DT the) (NN number)) (PP (IN of) (NP (NN man-hours))))))
+(NP
+  (NP (JJ significant) (NNS increases))
+  (PP
+    (IN in)
+    (NP
+      (NP (DT the) (NN complexity))
+      (PP (IN of) (NP (DT the) (NN annotation) (NN process))))))
+(NP (DT The) (NN subfield))
+(NP (NNP NLP))
+(NP (NNS approaches))
+(NP (JJ Natural) (NN Language) (NNP Learning))
+(NP (NNP NLL))
+(NP
+  (PRP$ its)
+  (NN conference)
+  (NN CoNLL)
+  (CC and)
+  (NN peak)
+  (NN body))
+(NP (NNP SIGNLL))
+(NP (NN ACL))
+(NP (PRP$ their) (NNS links))
+(NP (JJ Computational) (NNS Linguistics))
+(NP (NNP Language) (NNP Acquisition))
+(NP
+  (NP (JJ Computational) (NNS Linguistics))
+  (CC and)
+  (NP (NNP Language) (NNP Acquisition)))
+(NP
+  (NP (JJ Natural) (NN Language) (NNP Learning))
+  (PRN (-LRB- -LRB-) (NP (NNP NLL)) (-RRB- -RRB-)))
+(NP
+  (NP (NNP NLP))
+  (VP
+    (VBN devoted)
+    (PP
+      (IN to)
+      (S
+        (VP
+          (VBG learning)
+          (SBAR
+            (S
+              (S
+                (NP (NNS approaches))
+                (VP
+                  (VBZ is)
+                  (VP
+                    (VBN known)
+                    (PP
+                      (IN as)
+                      (NP
+                        (NP
+                          (JJ Natural)
+                          (NN Language)
+                          (NNP Learning))
+                        (PRN
+                          (-LRB- -LRB-)
+                          (NP (NNP NLL))
+                          (-RRB- -RRB-)))))))
+              (CC and)
+              (S
+                (NP
+                  (PRP$ its)
+                  (NN conference)
+                  (NN CoNLL)
+                  (CC and)
+                  (NN peak)
+                  (NN body))
+                (NP (NNP SIGNLL))))))))))
+(NP
+  (NP (DT The) (NN subfield))
+  (PP
+    (IN of)
+    (NP
+      (NP (NNP NLP))
+      (VP
+        (VBN devoted)
+        (PP
+          (IN to)
+          (S
+            (VP
+              (VBG learning)
+              (SBAR
+                (S
+                  (S
+                    (NP (NNS approaches))
+                    (VP
+                      (VBZ is)
+                      (VP
+                        (VBN known)
+                        (PP
+                          (IN as)
+                          (NP
+                            (NP
+                              (JJ Natural)
+                              (NN Language)
+                              (NNP Learning))
+                            (PRN
+                              (-LRB- -LRB-)
+                              (NP (NNP NLL))
+                              (-RRB- -RRB-)))))))
+                  (CC and)
+                  (S
+                    (NP
+                      (PRP$ its)
+                      (NN conference)
+                      (NN CoNLL)
+                      (CC and)
+                      (NN peak)
+                      (NN body))
+                    (NP (NNP SIGNLL))))))))))))
+(NP (DT the) (NNS aims))
+(NP (JJ computational) (NN language))
+(NP (NN research))
+(NP (JJR more))
+(NP (JJ human) (NN language) (NN acquisition))
+(NP (NNS psycholinguistics))
+(NP (NN NLL))
+(NP (DT the) (JJ related) (NN field))
+(NP (NNP Computational) (NNPS Psycholinguistics))
+(NP
+  (NP (JJ human) (NN language) (NN acquisition))
+  (, ,)
+  (CC or)
+  (NP (NNS psycholinguistics)))
+(NP
+  (NP (JJ computational) (NN language))
+  (VP (VBG learning) (NP (NN research))))
+(NP
+  (NP (DT the) (JJ related) (NN field))
+  (PP (IN of) (NP (NNP Computational) (NNPS Psycholinguistics))))
+(NP
+  (NP (DT the) (NNS aims))
+  (PP
+    (IN of)
+    (NP
+      (NP (JJ computational) (NN language))
+      (VP (VBG learning) (NP (NN research))))))
