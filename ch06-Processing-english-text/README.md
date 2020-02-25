@@ -349,7 +349,7 @@ for sentence in root.iterfind('./document/sentences/sentence'):
         tree =pydot.graph_from_edges(edges, directed=True)
         tree.write_png('./trees/{}.png'.format(sentence_index))
 ```
-![tree3]()
+![tree3](https://github.com/ambiguoustexture/NLP-100-Knocks/blob/master/ch06-Processing-english-text/trees/3.png)
 
 ### 58. タプルの抽出
 Extract tuples<br/>
