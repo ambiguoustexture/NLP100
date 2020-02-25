@@ -194,8 +194,6 @@ lemmas and parts of speech in tab-delimited format.<br/>
 读取Stanford Core NLP的分析结果XML，
 并以制表符分隔的格式输出单词，词条和词性。
 ```python
-
-```
 import xml.etree.ElementTree as ET
 
 file_parsed   = 'nlp.txt.xml'
@@ -203,6 +201,7 @@ root = ET.parse(file_parsed)
 for token in root.iter('token'):
     print(token.findtext('word'), '\t',\
             token.findtext('lemma'), '\t',\
+```
 ```zsh
 ➜ python word_parsed_with_lemma_pos.py > word_parsed_with_lemma_pos.txt; head word_parsed_with_lemma_pos.txt
 Natural 	 natural 	 JJ
