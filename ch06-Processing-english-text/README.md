@@ -217,32 +217,272 @@ Natural 	 natural 	 JJ
 ```
 
 ### 55. 固有表現抽出
-入力文中の人名をすべて抜き出せ．
+Named entity extraction<br/>
+命名实体提取
 
+入力文中の人名をすべて抜き出せ．<br/>
+Extract all the person names in the input sentence.
+提取输入句子中的所有人员姓名。
+```python
+import xml.etree.ElementTree as ET
+
+file_parsed   = 'nlp.txt.xml'
+root = ET.parse(file_parsed)
+for token in root.iterfind('./document/sentences/sentence/tokens/token[NER="PERSON"]'):
+    print(token.findtext('word'))
+```
+```zsh
+➜ python named_entity_extract.py
+Alan
+Turing
+Joseph
+Weizenbaum
+MARGIE
+Schank
+Wilensky
+Meehan
+Lehnert
+Carbonell
+Lehnert
+Racter
+Jabberwacky
+Moore
+```
 ### 56. 共参照解析
+Coreference analysis<br/>
+共指消解
+
 Stanford Core NLPの共参照解析の結果に基づき，
 文中の参照表現（mention）を代表参照表現（representative mention）に置換せよ．
 ただし，置換するときは，「代表参照表現（参照表現）」のように，
-元の参照表現が分かるように配慮せよ．
+元の参照表現が分かるように配慮せよ．<br/>
+Based on the results of the Stanford Core NLP co-reference analysis, 
+replace the reference in the text with a representative mention.<br/>
+根据Stanford Core NLP共指消解的结果，
+用具有代表性的指代（代表性指代）替换句子中的参考表达（指代）。
+```python
+import xml.etree.ElementTree as ET
+
+file_parsed   = 'nlp.txt.xml'
+root = ET.parse(file_parsed)
+
+references = {}
+for coreference in root.iterfind('./document/coreference/coreference'):
+    reference = coreference.findtext('./mention[@representative="true"]/text')
+    for mention in coreference.iterfind('./mention'):
+         if mention.get('representative', 'false') == 'false':
+             sentence_index = int(mention.findtext('sentence'))
+             start          = int(mention.findtext('start'))
+             end            = int(mention.findtext('end'))
+
+             if not (sentence_index, start) in references:
+                 references[(sentence_index, start)] = (end, sentence_index)
+
+for sentence in root.iterfind('./document/sentences/sentence'):
+    sentence_index = int(sentence.get('id'))
+    remain = 0
+    for token in sentence.iterfind('./tokens/token'):
+        token_index = int(token.get('id'))
+
+        if remain == 0 and (sentence_index, token_index) in references:
+            (end, reference) = references[(sentence_index, token_index)]
+            print('[', reference, '] (', end='')
+            remain = end - token_index
+
+        print(token.findtext('word'), end='')
+
+        if remain > 0:
+            remain -= 1
+            if remain == 0:
+                print(')', end='')
+        print(' ', end='')
+    print()
+```
+```vim
+1 Natural language processing From Wikipedia , the free encyclopedia Natural language processing -LRB- NLP -RRB-     is [ 1 ] (a field of computer science) , artificial intelligence , and linguistics concerned with the interacti    ons between computers and human -LRB- natural -RRB- languages .
+  2 As such , NLP is related to the area of humani-computer interaction .
+  3 Many challenges in NLP involve natural language understanding , that is , enabling [ 3 ] (computers) to derive     meaning from human or natural language input , and others involve natural language generation .
+  4 History The history of NLP generally starts in the 1950s , although work can be found from earlier periods .
+  5 In 1950 , Alan Turing published an article titled `` Computing Machinery and Intelligence '' which proposed wha    t is now called the [ 5 ] (Turing) test as a criterion of intelligence .
+  6 The Georgetown experiment in 1954 involved fully automatic translation of more than sixty Russian sentences int    o English .
+  7 The authors claimed that within three or five years , [ 7 ] (machine translation) would be a solved problem .
+  8 However , real progress was much slower , and after the ALPAC report in 1966 , which found that ten year long r    esearch had failed to fulfill the expectations , funding for machine translation was dramatically reduced .
+  9 Little further research in [ 9 ] (machine translation) was conducted until the late 1980s , when the first stat    istical machine translation systems were developed .
+```
 
 ### 57. 係り受け解析
+Dependency analysis<br/>
+依存分析
+
 Stanford Core NLPの係り受け解析の結果（collapsed-dependencies）
 を有向グラフとして可視化せよ．
 可視化には，係り受け木を[DOT言語](http://ja.wikipedia.org/wiki/DOT言語)に変換し，
 [Graphviz](http://www.graphviz.org/)を用いるとよい．
 また，Pythonから有向グラフを直接的に可視化するには，
 [pydot](https://code.google.com/p/pydot/)を使うとよい．
+Visualize the results of Stanford Core NLP's dependency analysis 
+(collapsed-dependencies) as a directed graph.
+For visualization, convert the dependency tree to the DOT language and use Graphviz. 
+You can also use pydot to visualize directed graphs directly from Python.<br/>
+将Stanford Core NLP的依存分析（折叠依存关系）结果可视化为有向图。
+为了可视化，将依赖关系树转换为DOT语言并使用Graphviz。也可以使用pydot直接从Python可视化有向图。
+```python
+import xml.etree.ElementTree as ET
+import pydot_ng as pydot
+
+file_parsed = './nlp.txt.xml'
+root = ET.parse(file_parsed)
+
+for sentence in root.iterfind('./document/sentences/sentence'):
+    sentence_index = int(sentence.get('id'))
+
+    edges = []
+    for dependency in sentence.iterfind('./dependencies[@type="collapsed-dependencies"]/dep'):
+        if dependency.get('type') != 'punct':
+            governor  = dependency.find('./governor')
+            dependent = dependency.find('./dependent')
+            edges.append((\
+                    (governor.get('idx'), governor.text),\
+                    (dependent.get('idx'), dependent.text)))
+
+    if len(edges) > 0:
+        tree =pydot.graph_from_edges(edges, directed=True)
+        tree.write_png('./trees/{}.png'.format(sentence_index))
+```
+![tree3]()
 
 ### 58. タプルの抽出
+Extract tuples<br/>
+提取元组
+
 Stanford Core NLPの係り受け解析の結果（collapsed-dependencies）に基づき，
 「主語 述語 目的語」の組をタブ区切り形式で出力せよ．
-ただし，主語，述語，目的語の定義は以下を参考にせよ．
+ただし，主語，述語，目的語の定義は以下を参考にせよ．<br/>
+Based on the results of the Stanford Core NLP dependency analysis (collapsed-dependencies),
+output a set of "subject, predicate, object" in tab-delimited format. 
+Please refer to the following for the definition of the subject, predicate, and object.<br/>
+根据Stanford Core NLP依赖性分析（折叠依赖性）的结果，
+以制表符分隔的格式输出一组“主语，谓语，宾语”。 
+请参阅以下有关主语，谓语和宾语的定义。
 
-- 述語: nsubj関係とdobj関係の子（dependant）を持つ単語
-- 主語: 述語からnsubj関係にある子（dependent）
-- 目的語: 述語からdobj関係にある子（dependent）
+- 述語: nsubj関係とdobj関係の子（dependant）を持つ単語<br/>
+Predicate: words with children (dependant) of nsubj relation and dobj relation
+谓语：带有nsubj关系和dobj关系的子项（从属）的单词
+
+- 主語: 述語からnsubj関係にある子（dependent）<br/>
+Subject: child with nsubj relationship from predicate (dependent)<br/>
+主语：与谓语具有nsubj关系的孩子（从属）
+
+- 目的語: 述語からdobj関係にある子（dependent）<br/>
+Object: child in dobj relationship from predicate (dependent)
+宾语：谓语中的dobj关系中的子对象（从属）
+```python
+import xml.etree.ElementTree as ET
+import pydot_ng as pydot
+
+file_parsed = './nlp.txt.xml'
+root = ET.parse(file_parsed)
+
+
+for sentence in root.iterfind('./document/sentences/sentence'):
+    sentence_index = int(sentence.get('id'))
+
+    predicates, nsubjs, dobjs = {}, {}, {}
+    for dependency in sentence.iterfind('./dependencies[@type="collapsed-dependencies"]/dep'):
+        dependency_type = dependency.get('type')
+        if dependency_type == 'nsubj' or dependency_type == 'dobj':
+            governor = dependency.find('./governor')
+            index = governor.text
+            predicates[index] = governor.text
+            if dependency_type == 'nsubj':
+                nsubjs[index] = dependency.find('./dependent').text
+            else:
+                dobjs[index] = dependency.find('./dependent').text
+    for index, predicate in sorted(predicates.items(), key = lambda predicate: predicate[0]):
+        nsubj = nsubjs.get(index)
+        dobj  = dobjs.get(index)
+        if nsubj is not None and dobj is not None:
+            print(nsubj, '\t', predicate, '\t', dobj)
+```
+```zsh
+➜ python tuples_extract.py
+understanding 	 enabling 	 computers
+others 	 involve 	 generation
+Turing 	 published 	 article
+experiment 	 involved 	 translation
+ELIZA 	 provided 	 interaction
+patient 	 exceeded 	 base
+ELIZA 	 provide 	 response
+which 	 structured 	 information
+underpinnings 	 discouraged 	 sort
+that 	 underlies 	 approach
+Some 	 produced 	 systems
+which 	 make 	 decisions
+systems 	 rely 	 which
+that 	 contains 	 errors
+implementations 	 involved 	 coding
+algorithms 	 take 	 set
+Some 	 produced 	 systems
+which 	 make 	 decisions
+they 	 express 	 certainty
+models 	 have 	 advantage
+Systems 	 have 	 advantages
+Automatic 	 make 	 use
+that 	 make 	 decisions
+```
 
 ### 59. S式の解析
+Analysis of S-expression<br/>
+S表达分析
+
 Stanford Core NLPの句構造解析の結果（S式）を読み込み，
 文中のすべての名詞句（NP）を表示せよ．
 i入れ子になっている名詞句もすべて表示すること．
+Read the result (S expression) of the phrase structure analysis of Stanford Core NLP 
+and display all noun phrases (NP) in the sentence. 
+Display all nested noun phrases.<br/>
+读取Stanford Core NLP短语结构分析的结果（S表达式），
+并在句子中显示所有名词短语（NP）。 
+显示所有嵌套的名词短语。
+
+```python
+from nltk.tree import Tree
+import xml.etree.ElementTree as ET
+
+def s_expression_analysis(tree):
+    np_list = []
+    root = tree.getroot()
+    for parse in root.findall('.//parse'):
+        tree_current = Tree.fromstring(parse.text)
+        height = tree_current.height()
+        for height_current in range(height):
+            for subtree in tree_current.subtrees(\
+                    lambda tree_current: tree_current.height() == height_current):
+                if "NP" == subtree.label(): np_list.append(str(subtree))
+    return np_list
+
+if __name__ == '__main__':
+    file_parsed = 'nlp.txt.xml'
+    tree = ET.parse(file_parsed)
+    np_list = s_expression_analysis(tree)
+    print("\n".join(np_list))
+```
+```zsh
+➜  ch06-Processing-English-text git:(master) ✗ python s_expression_analysis.py > s_expression_analysis.txt; head -16 s_expression_analysis.txt
+(NP (JJ Natural) (NN language) (NN processing))
+(NP (NNP Wikipedia))
+(NP
+  (DT the)
+  (JJ free)
+  (NN encyclopedia)
+  (JJ Natural)
+  (NN language)
+  (NN processing))
+(NP (NN NLP))
+(NP (DT a) (NN field))
+(NP (NN computer) (NN science))
+(NP (JJ artificial) (NN intelligence))
+(NP (NNS linguistics))
+(NP (DT the) (NNS interactions))
+(NP (NNS computers))
+```
