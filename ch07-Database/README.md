@@ -26,7 +26,7 @@ Use [LevelDB](http://leveldb.org/),
 [KyotoCabinet](http://fallabs.com/kyotocabinet/), etc. as KVS. 
 [MongoDB](http://www.mongodb.org/) was adopted as the document-oriented database, 
 but [CouchDB](http://couchdb.apache.org/), [RethinkDB](), etc. may be used.<br/>
-考虑在键值存储（KVS）和面向文档的数据库中存储和搜索artist.json.gz数据。 
+尝试在键值存储（KVS）和面向文档的数据库中存储和搜索artist.json.gz数据。 
 将[LevelDB](http://leveldb.org/)，
 [Redis](http://redis.io/)，
 [KyotoCabinet](http://fallabs.com/kyotocabinet/)等用作KVS。 
@@ -52,7 +52,7 @@ Search in KVS<br/>
 60で構築したデータベースを用い，
 特定の（指定された）アーティストの活動場所を取得せよ．<br/>
 Using the database constructed in step 60, 
-obtain the activity location of a specific (designated) artist.
+obtain the activity location of a specific (designated) artist.<br/>
 使用在步骤60中构建的数据库，
 获取特定（指定）艺术家的活动位置。
 
@@ -65,7 +65,7 @@ KVS中的迭代处理
 活動場所が「Japan」となっているアーティスト数を求めよ．<br/>
 Using the database constructed in 60, 
 find the number of artists whose activity place is "Japan".<br/>
-使用60年代建立的数据库，找到活动地点为“日本”的艺术家数量。
+使用在步骤60建立的数据库，找到活动地点为“日本”的艺术家数量。
 
 ### 63. オブジェクトを値に格納したKVS
 KVS with object stored in value<br/>
@@ -79,7 +79,7 @@ Using KVS, build a database to search
 for a list of tags and the number of tags (number of times they were tagged) from the artist name. 
 Using the database constructed here, 
 search for tags and the number of tags by artist name.<br/>
-使用KVS，建立一个数据库，以根据艺术家姓名搜索标签列表和标签数量（被标记的次数）。 
+使用KVS，建立一个数据库，根据艺术家姓名搜索标签列表和标签数量（被标记的次数）。 
 使用此处构建的数据库，按艺术家名称搜索标签和标签数量。
 
 ### 64. MongoDBの構築
@@ -101,7 +101,7 @@ MongoDBのインタラクティブシェルを用いて，
 "Queen"というアーティストに関する情報を取得せよ．
 さらに，これと同様の処理を行うプログラムを実装せよ．<br/>
 Use MongoDB's interactive shell to get information about the artist "Queen". 
-In addition, implement a program that performs the same processing.
+In addition, implement a program that performs the same processing.<br/>
 使用MongoDB的交互式Shell获取有关艺术家“Queen”的信息。 
 另外，实现可以执行相同处理的程序。
 
@@ -143,6 +143,6 @@ Create a Web application that displays the artist information
 that matches the search conditions entered by the user. 
 Specify search conditions by artist name, artist alias, tag, etc., 
 and arrange the artist information list in order of highest rating.<br/>
-创建一个显示与用户输入的搜索条件匹配的艺术家信息的Web应用程序。 
+创建一个显示与用户输入的搜索条件匹配的艺术家信息的Web应用。 
 通过艺术家名称，艺术家别名，标签等指定搜索条件，
 并按等级降序对艺术家信息列表进行排序和显示。
