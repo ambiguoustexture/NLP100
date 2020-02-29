@@ -45,67 +45,10 @@ for searching the activity area (area) from the artist name (name).<br/>
 使用键值存储（KVS）来构建数据库，
 以便从艺术家姓名（名称）中搜索活动区域（区域）。
 ```python
-# Author：ambiguoustexture
-# Date: 2020-02-25
-
-import gzip
-import json
-import redis
-
-file_gz = './artist.json.gz'
-db_redis = redis.Redis(host='localhost', port=6379, decode_responses=True)
-
-with gzip.open(file_gz, 'rt') as artists:
-    for artist in artists:
-        artist_json_file = json.loads(artist)
-        key = artist_json_file['name'] + '\t' + str(artist_json_file['id'])
-        value = artist_json_file.get('area', '')
-        db_redis.set(key, value)
-
-print('%d items have been registered.' % db_redis.dbsize())
 ```
 ```zsh
-➜ redis-server
-57606:C 29 Feb 2020 20:28:28.869 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
-57606:C 29 Feb 2020 20:28:28.869 # Redis version=5.0.7, bits=64, commit=00000000, modified=0, pid=57606, just started
-57606:C 29 Feb 2020 20:28:28.869 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
-57606:M 29 Feb 2020 20:28:28.871 * Increased maximum number of open files to 10032 (it was originally set to 256).
-                _._
-           _.-``__ ''-._
-      _.-``    `.  `_.  ''-._           Redis 5.0.7 (00000000/0) 64 bit
-  .-`` .-```.  ```\/    _.,_ ''-._
- (    '      ,       .-`  | `,    )     Running in standalone mode
- |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
- |    `-._   `._    /     _.-'    |     PID: 57606
-  `-._    `-._  `-./  _.-'    _.-'
- |`-._`-._    `-.__.-'    _.-'_.-'|
- |    `-._`-._        _.-'_.-'    |           http://redis.io
-  `-._    `-._`-.__.-'_.-'    _.-'
- |`-._`-._    `-.__.-'    _.-'_.-'|
- |    `-._`-._        _.-'_.-'    |
-  `-._    `-._`-.__.-'_.-'    _.-'
-      `-._    `-.__.-'    _.-'
-          `-._        _.-'
-              `-.__.-'
-
-57606:M 29 Feb 2020 20:28:28.876 # Server initialized
-57606:M 29 Feb 2020 20:28:28.877 * Ready to accept connections
-57606:M 29 Feb 2020 20:39:24.806 * 100 changes in 300 seconds. Saving...
-57606:M 29 Feb 2020 20:39:24.806 * Background saving started by pid 57830
-57830:C 29 Feb 2020 20:39:24.809 * DB saved on disk
-57606:M 29 Feb 2020 20:39:24.907 * Background saving terminated with success
-57606:M 29 Feb 2020 20:40:25.066 * 10000 changes in 60 seconds. Saving...
-57606:M 29 Feb 2020 20:40:25.066 * Background saving started by pid 57839
-57839:C 29 Feb 2020 20:40:25.755 * DB saved on disk
-57606:M 29 Feb 2020 20:40:25.767 * Background saving terminated with success
-57606:M 29 Feb 2020 20:41:26.094 * 10000 changes in 60 seconds. Saving...
-57606:M 29 Feb 2020 20:41:26.095 * Background saving started by pid 57855
-57855:C 29 Feb 2020 20:41:27.014 * DB saved on disk
-57606:M 29 Feb 2020 20:41:27.025 * Background saving terminated with success
 ```
 ```zsh
-➜ python KVS_build.py
-921337 items have been registered.
 ```
 ### 61. KVSの検索
 Search in KVS<br/>
