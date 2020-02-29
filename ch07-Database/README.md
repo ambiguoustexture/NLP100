@@ -39,7 +39,7 @@ Building KVS<br/>
 建立KVS
 
 Key-Value-Store (KVS) を用い，
-アーティスト名（name）から活動場所（area）を検索するためのデータベースを構築せよ．
+アーティスト名（name）から活動場所（area）を検索するためのデータベースを構築せよ．<br/>
 Use Key-Value-Store (KVS) to construct a database 
 for searching the activity area (area) from the artist name (name).<br/>
 使用键值存储（KVS）来构建数据库，
