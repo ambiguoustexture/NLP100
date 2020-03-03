@@ -74,7 +74,7 @@ print('%d artists have been recored.' % len(list(db.RangeIter(include_value=Fals
 
 ### 61. KVSの検索
 Search in KVS<br/>
-搜索KVS
+KVS搜索
 
 60で構築したデータベースを用い，
 特定の（指定された）アーティストの活動場所を取得せよ．<br/>
@@ -82,7 +82,42 @@ Using the database constructed in step 60,
 obtain the activity location of a specific (designated) artist.<br/>
 使用在步骤60中构建的数据库，
 获取特定（指定）艺术家的活动位置。
+```python
+import re
+import leveldb
 
+file_db = './artist_db'
+db = leveldb.LevelDB(file_db)
+key_pattern = re.compile(r' ^(.*) \t (\d+)$ ', re.VERBOSE + re.DOTALL)
+
+clue = input('Please input the artist\'s name: ')
+
+flag_hit = False
+for key, value in db.RangeIter((clue + '\t').encode()):
+    key_match   = key_pattern.match(key.decode())
+    artist_name = key_match.group(1)
+    aritst_id   = key_match.group(2)
+    if artist_name != clue:
+        break
+    area = value.decode()
+    if area != '':
+        print('%s (id:' % artist_name, '%6' 's) ' % aritst_id, 'had activities in %s' % area)
+    else :
+        print('There is no record of the activity location of %s' % artist_name)
+    flag_hit = True
+
+if not flag_hit:
+    print('There is no record of %s' % artist_name)
+```
+```zsh
+➜ python KVS_search.py
+Please input the artist's name: Muse
+Muse (id: 238985)  had activities in United States
+Muse (id: 238988)  had activities in France
+Muse (id: 241100)  had activities in New Zealand
+Muse (id:   2591)  had activities in United Kingdom
+Muse (id: 266713)  had activities in Australia
+```
 
 ### 62. KVS内の反復処理
 Iterative processing in KVS<br/>
@@ -93,6 +128,20 @@ KVS中的迭代处理
 Using the database constructed in 60, 
 find the number of artists whose activity place is "Japan".<br/>
 使用在步骤60建立的数据库，找到活动地点为“日本”的艺术家数量。
+```python
+import re
+import leveldb
+
+file_db = './artist_db'
+db = leveldb.LevelDB(file_db)
+
+res = [value[0].decode() for value in db.RangeIter() if value[1] == 'Japan'.encode()]
+print('There are %s records in Japan.' % len(res))
+```
+```zsh
+➜ python KVS_iterative_process.py
+There are 22821 records in Japan.
+```
 
 ### 63. オブジェクトを値に格納したKVS
 KVS with object stored in value<br/>
@@ -108,7 +157,81 @@ Using the database constructed here,
 search for tags and the number of tags by artist name.<br/>
 使用KVS，建立一个数据库，根据艺术家姓名搜索标签列表和标签数量（被标记的次数）。 
 使用此处构建的数据库，按艺术家名称搜索标签和标签数量。
+```python
+import re
+import gzip
+import json
+import leveldb
 
+file_gz = './artist.json.gz'
+file_db = './artist_object_db'
+
+try:
+    db = leveldb.LevelDB(file_db, error_if_exists=True)
+    with gzip.open(file_gz, 'rt') as artists:
+        for artist in artists:
+            artist_json_line = json.loads(artist)
+            key = artist_json_line['name'] + '\t' + str(artist_json_line['id'])
+            value = artist_json_line.get('tags')
+            if value is None:
+                value = []
+            db.Put(key.encode(), json.dumps(value).encode())
+    print('%d record have been recored.' % len(list(db.RangeIter(include_value=False))))
+except:
+    db = leveldb.LevelDB(file_db)
+    print('Use existed DB.')
+
+search_clue = input('Please input the artist\'s name: ')
+flag_hit = False
+key_pattern = re.compile(r' ^(.*) \t (\d+)$ ', re.VERBOSE + re.DOTALL)
+
+for key, value in db.RangeIter((search_clue + '\t').encode()):
+    key_match   = key_pattern.match(key.decode())
+    artist_name = key_match.group(1)
+    artist_id   = key_match.group(2)
+
+    if artist_name != search_clue:
+        break
+
+    tags = json.loads(value.decode())
+    print('Tags of %s (id:' % artist_name, '%6' 's) ' % artist_id)
+    if len(tags) > 0:
+        for tag in tags:
+            print('\t', tag['value'], tag['count'])
+    else :
+        print('\t There is no tag.')
+    flag_hit = True
+
+if not flag_hit:
+    print('There is no record of %s' % search_clue)
+```
+```zsh
+Use existed DB.
+Please input the artist's name: Muse
+Tags of Muse (id: 238985)
+	 There is no tag.
+Tags of Muse (id: 238988)
+	 There is no tag.
+Tags of Muse (id: 241100)
+	 There is no tag.
+Tags of Muse (id:   2591)
+	 english 1
+	 uk 4
+	 british 3
+	 new prog 2
+	 alternative rock 2
+	 britannique 1
+	 best 1
+	 rock and indie 1
+	 united kingdom 1
+	 producteur 1
+	 producer 1
+	 progressive rock 1
+	 rock 5
+	 male 1
+Tags of Muse (id: 266713)
+	 There is no tag.
+```
 ### 64. MongoDBの構築
 Build MongoDB<br/>
 构建MongoDB
