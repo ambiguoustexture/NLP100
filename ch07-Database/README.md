@@ -45,11 +45,33 @@ for searching the activity area (area) from the artist name (name).<br/>
 使用键值存储（KVS）来构建数据库，
 以便从艺术家姓名（名称）中搜索活动区域（区域）。
 ```python
+# Author：ambiguoustexture
+# Date: 2020-03-03
+
+import gzip
+import json
+import leveldb
+
+file_gz = './artist.json.gz'
+file_db = './artist_db'
+
+db = leveldb.LevelDB(file_db)
+
+with gzip.open(file_gz, 'rt') as artists:
+    for artist in artists:
+        artist_json_line = json.loads(artist)
+        # some artist has no name but id
+        key = artist_json_line['name'] + '\t' + str(artist_json_line['id'])
+        value = artist_json_line.get('area', '')
+        db.Put(key.encode(), value.encode())
+
+print('%d artists have been recored.' % len(list(db.RangeIter(include_value=False))))
 ```
 ```zsh
+➜ python KVS_build.py
+921337 artists have been recored.
 ```
-```zsh
-```
+
 ### 61. KVSの検索
 Search in KVS<br/>
 搜索KVS
