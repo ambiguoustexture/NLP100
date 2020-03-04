@@ -242,6 +242,64 @@ Register artist information (artist.json.gz) in the database.
 In addition, index on the following fields: name, aliases.name, tags.value, rating.value<br/>
 在数据库中注册艺术家信息（artist.json.gz）。 
 此外，在以下字段上建立索引：name，aliases.name，tags.value，rating.value
+```python
+import gzip
+import json
+import pymongo
+from pymongo import MongoClient
+
+file_gz = './artist.json.gz'
+unit_bulk = 10000
+
+client = MongoClient()
+db = client.db_MusicBrainz
+collection = db.artists
+
+with gzip.open(file_gz, 'rt') as artists:
+    buf = []
+    for i, artist in enumerate(artists, 1):
+        artist_json_line = json.loads(artist)
+        buf.append(artist_json_line)
+
+        if i % unit_bulk == 0:
+            collection.insert_many(buf)
+            buf = []
+            print('%d records have been recored.' % i)
+
+    if len(buf) > 0:
+        collection.insert_many(buf)
+        print('%d records have been recored.' % i)
+
+
+collection.create_index([('name', pymongo.ASCENDING)])
+collection.create_index([('aliases.name', pymongo.ASCENDING)])
+collection.create_index([('tags.value', pymongo.ASCENDING)])
+collection.create_index([('rating.value', pymongo.ASCENDING)])
+```
+Start MongDB before running Python script.
+```zsh
+➜ mongod
+2020-03-04T15:17:24.595+0800 I CONTROL  [main] Automatically disabling TLS 1.0, to force-enable TLS 1.0 specify --sslDisabledProtocols 'none'
+2020-03-04T15:17:24.604+0800 I CONTROL  [initandlisten] MongoDB starting : pid=28427 port=27017 dbpath=/data/db 64-bit host=here.local
+...
+
+```
+```zsh
+➜ python mongodb_build.py
+10000  records have been recored.
+20000  records have been recored.
+30000  records have been recored.
+
+...
+
+870000 records have been recored.
+880000 records have been recored.
+890000 records have been recored.
+900000 records have been recored.
+910000 records have been recored.
+920000 records have been recored.
+921337 records have been recored.
+```
 
 ### 65. MongoDBの検索
 Search MongoDB<br/>
@@ -254,6 +312,73 @@ Use MongoDB's interactive shell to get information about the artist "Queen".
 In addition, implement a program that performs the same processing.<br/>
 使用MongoDB的交互式Shell获取有关艺术家“Queen”的信息。 
 另外，实现可以执行相同处理的程序。
+
+In  Mongo shell:
+```zsh
+```
+With python:
+```python
+import json
+from pymongo import MongoClient
+from bson.objectid import ObjectId
+
+def support_ObjectId(obj):
+    """Since ObjectId cannot be json-encoded, convert it to a string type
+    return: string converted from ObjectId
+    """
+    if isinstance(obj, ObjectId):
+        return str(obj)
+    raise TypeError(repr(obj) + " is not JSON serializable")
+
+
+client = MongoClient()
+db = client.db_MusicBrainz
+collection = db.artists
+
+for i, artist in enumerate(collection.find({'name': 'Queen'}), start = 1):
+    print('Record {}：\n{}'.format(i, json.dumps(\
+            artist,\
+            indent='\t', \
+            ensure_ascii=False, \
+            sort_keys=True,\
+            default=support_ObjectId\
+            )))
+```
+```zsh
+➜ python mongodb_search.py > mongodb_search_Queen.txt; head -32 mongodb_search_Queen.txt
+Record 1：
+{
+	"_id": "5e5f56367334d6ef4751d978",
+	"aliases": [
+		{
+			"name": "Queen",
+			"sort_name": "Queen"
+		}
+	],
+	"area": "Japan",
+	"ended": true,
+	"gender": "Female",
+	"gid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+	"id": 701492,
+	"name": "Queen",
+	"sort_name": "Queen",
+	"tags": [
+		{
+			"count": 1,
+			"value": "kamen rider w"
+		},
+		{
+			"count": 1,
+			"value": "related-akb48"
+		}
+	],
+	"type": "Character"
+}
+Record 2：
+{
+	"_id": "5e5f56387334d6ef4752a024",
+	"aliases": [
+```
 
 ### 66. 検索件数の取得
 Get search count<br/>
