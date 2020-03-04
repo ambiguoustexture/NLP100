@@ -401,6 +401,17 @@ MongoDBのインタラクティブシェルを用いて，
 Using MongoDB's interactive shell, 
 find the number of artists whose activity location is "Japan".<br/>
 使用MongoDB的交互式Shell，查找活动位置为“日本”的艺术家数量。
+```mongodb
+> show dbs
+admin           0.000GB
+config          0.000GB
+db_MusicBrainz  0.135GB
+local           0.000GB
+> use db_MusicBrainz
+switched to db db_MusicBrainz
+> db.artists.find({'area': 'Japan'}).count()
+22821
+```
 
 ### 67. 複数のドキュメントの取得
 Retrieve multiple documents<br/>
