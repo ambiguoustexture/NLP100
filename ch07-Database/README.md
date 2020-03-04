@@ -442,7 +442,7 @@ for i, artist in enumerate(collection.find({'aliases.name': search_alias_clue}),
                 )))
 ```
 ```zsh
-(NLP_Koncks) ➜  ch07-Database git:(master) ✗ python mongodb_search_alias.py
+➜ python mongodb_search_alias.py
 Please input the artist's alias: Muse
 Record 1:
 {
