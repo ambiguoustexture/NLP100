@@ -477,6 +477,40 @@ Sort<br>
 レーティングの投票数が多いアーティスト・トップ10を求めよ．<br/>
 Find the top 10 artists with the highest number of votes among the artists tagged "dance".<br/>
 在标记为“舞蹈”的艺术家中找到投票数最高的前10位艺术家。
+```python
+import json
+import pymongo
+from pymongo import MongoClient
+
+client = MongoClient()
+db = client.db_MusicBrainz
+collection = db.artists
+
+res = collection.find({'tags.value' : 'dance'})
+
+res.sort('rating.count', pymongo.DESCENDING)
+
+for artist in res.limit(10):
+    if 'rating' in artist:
+        rating = artist['rating']['count']
+    else :
+        rating = '(none)'
+
+    print(artist['name'].ljust(16, ' '), '(id: ', str(artist['id']).ljust(6, ' '), ')\t', rating)
+```
+```zsh
+➜ python mongodb_sort.py
+Madonna          (id:  89     )	 26
+Björk            (id:  1022   )	 23
+The Prodigy      (id:  44954  )	 23
+Rihanna          (id:  262731 )	 15
+Britney Spears   (id:  791    )	 13
+Maroon 5         (id:  66179  )	 11
+Adam Lambert     (id:  627661 )	 7
+Fatboy Slim      (id:  255    )	 7
+Basement Jaxx    (id:  1060   )	 6
+Cornershop       (id:  798    )	 5
+```
 
 ### 69. Webアプリケーションの作成
 Creating a web application<br/>
