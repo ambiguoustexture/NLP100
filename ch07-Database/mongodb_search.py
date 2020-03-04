@@ -13,16 +13,17 @@ def support_ObjectId(obj):
         return str(obj)
     raise TypeError(repr(obj) + " is not JSON serializable")
 
+if __name__ == '__main__':
 
-client = MongoClient()
-db = client.db_MusicBrainz
-collection = db.artists
+    client = MongoClient()
+    db = client.db_MusicBrainz
+    collection = db.artists
 
-for i, artist in enumerate(collection.find({'name': 'Queen'}), start = 1):
-    print('Record {}：\n{}'.format(i, json.dumps(\
-            artist,\
-            indent='\t', \
-            ensure_ascii=False, \
-            sort_keys=True,\
-            default=support_ObjectId\
-            )))
+    for i, artist in enumerate(collection.find({'name': 'Queen'}), start = 1):
+        print('Record {}：\n{}'.format(i, json.dumps(\
+                artist,\
+                indent='\t', \
+                ensure_ascii=False, \
+                sort_keys=True,\
+                default=support_ObjectId\
+                )))
