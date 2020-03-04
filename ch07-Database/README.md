@@ -342,19 +342,20 @@ def support_ObjectId(obj):
         return str(obj)
     raise TypeError(repr(obj) + " is not JSON serializable")
 
+if __name__ == '__main__':
 
-client = MongoClient()
-db = client.db_MusicBrainz
-collection = db.artists
+    client = MongoClient()
+    db = client.db_MusicBrainz
+    collection = db.artists
 
-for i, artist in enumerate(collection.find({'name': 'Queen'}), start = 1):
-    print('Record {}：\n{}'.format(i, json.dumps(\
-            artist,\
-            indent='\t', \
-            ensure_ascii=False, \
-            sort_keys=True,\
-            default=support_ObjectId\
-            )))
+    for i, artist in enumerate(collection.find({'name': 'Queen'}), start = 1):
+        print('Record {}：\n{}'.format(i, json.dumps(\
+                artist,\
+                indent='\t', \
+                ensure_ascii=False, \
+                sort_keys=True,\
+                default=support_ObjectId\
+                )))
 ```
 ```zsh
 ➜ python mongodb_search.py > mongodb_search_Queen.txt; head -32 mongodb_search_Queen.txt
@@ -420,6 +421,53 @@ Retrieve multiple documents<br/>
 特定の（指定した）別名を持つアーティストを検索せよ．
 Search for artists with a specific (specified) alias.<br/>
 搜索具有特定（指定）别名的艺术家。
+```python
+import json
+from pymongo import MongoClient
+from bson.objectid import ObjectId
+from mongodb_search import support_ObjectId
+
+client = MongoClient()
+db = client.db_MusicBrainz
+collection = db.artists
+
+search_alias_clue = input('Please input the artist\'s alias: ')
+for i, artist in enumerate(collection.find({'aliases.name': search_alias_clue}), start = 1):
+        print('Record {}: \n{}'.format(i, json.dumps(\
+                artist,\
+                indent='\t',\
+                ensure_ascii=False,\
+                sort_keys=True,\
+                default=support_ObjectId\
+                )))
+```
+```zsh
+(NLP_Koncks) ➜  ch07-Database git:(master) ✗ python mongodb_search_alias.py
+Please input the artist's alias: Muse
+Record 1:
+{
+	"_id": "5e5f563b7334d6ef47543a6b",
+	"aliases": [
+		{
+			"name": "Muse",
+			"sort_name": "Muse"
+		},
+		{
+			"name": "ミューズ",
+			"sort_name": "ミューズ"
+		}
+	],
+	"area": "United Kingdom",
+	"begin": {
+		"year": 1994
+	},
+	"ended": true,
+	"gid": "9c9f1380-2516-4fc9-a3e6-f9f61941d090",
+	"id": 2591,
+	"name": "Muse",
+...
+
+```
 
 ### 68. ソート
 Sort<br>
