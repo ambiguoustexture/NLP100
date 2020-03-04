@@ -65,7 +65,7 @@ However, output a blank line at the end of the sentence.<br/>
 以50个输出作为输入，
 并以每行一个单词的形式输出。
 但是，请在句子末尾输出空白行。
-```pytohn
+```python
 from sentence_segment import sentence_segment
 
 def word_segment(file):
