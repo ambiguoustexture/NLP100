@@ -1,0 +1,145 @@
+Record 1：
+{
+	"_id": "5e5f56367334d6ef4751d978",
+	"aliases": [
+		{
+			"name": "Queen",
+			"sort_name": "Queen"
+		}
+	],
+	"area": "Japan",
+	"ended": true,
+	"gender": "Female",
+	"gid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+	"id": 701492,
+	"name": "Queen",
+	"sort_name": "Queen",
+	"tags": [
+		{
+			"count": 1,
+			"value": "kamen rider w"
+		},
+		{
+			"count": 1,
+			"value": "related-akb48"
+		}
+	],
+	"type": "Character"
+}
+Record 2：
+{
+	"_id": "5e5f56387334d6ef4752a024",
+	"aliases": [
+		{
+			"name": "女王",
+			"sort_name": "女王"
+		}
+	],
+	"area": "United Kingdom",
+	"begin": {
+		"date": 27,
+		"month": 6,
+		"year": 1970
+	},
+	"ended": true,
+	"gid": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3",
+	"id": 192,
+	"name": "Queen",
+	"rating": {
+		"count": 24,
+		"value": 92
+	},
+	"sort_name": "Queen",
+	"tags": [
+		{
+			"count": 2,
+			"value": "hard rock"
+		},
+		{
+			"count": 1,
+			"value": "70s"
+		},
+		{
+			"count": 1,
+			"value": "queen family"
+		},
+		{
+			"count": 1,
+			"value": "90s"
+		},
+		{
+			"count": 1,
+			"value": "80s"
+		},
+		{
+			"count": 1,
+			"value": "glam rock"
+		},
+		{
+			"count": 4,
+			"value": "british"
+		},
+		{
+			"count": 1,
+			"value": "english"
+		},
+		{
+			"count": 2,
+			"value": "uk"
+		},
+		{
+			"count": 1,
+			"value": "pop/rock"
+		},
+		{
+			"count": 1,
+			"value": "pop-rock"
+		},
+		{
+			"count": 1,
+			"value": "britannique"
+		},
+		{
+			"count": 1,
+			"value": "classic pop and rock"
+		},
+		{
+			"count": 1,
+			"value": "queen"
+		},
+		{
+			"count": 1,
+			"value": "united kingdom"
+		},
+		{
+			"count": 1,
+			"value": "langham 1 studio bbc"
+		},
+		{
+			"count": 1,
+			"value": "kind of magic"
+		},
+		{
+			"count": 1,
+			"value": "band"
+		},
+		{
+			"count": 6,
+			"value": "rock"
+		},
+		{
+			"count": 1,
+			"value": "platinum"
+		}
+	],
+	"type": "Group"
+}
+Record 3：
+{
+	"_id": "5e5f563b7334d6ef47545a7c",
+	"ended": true,
+	"gid": "5eecaf18-02ec-47af-a4f2-7831db373419",
+	"id": 992994,
+	"name": "Queen",
+	"sort_name": "Queen"
+}
