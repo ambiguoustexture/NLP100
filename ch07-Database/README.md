@@ -241,7 +241,7 @@ Build MongoDB<br/>
 Register artist information (artist.json.gz) in the database. 
 In addition, index on the following fields: name, aliases.name, tags.value, rating.value<br/>
 在数据库中注册艺术家信息（artist.json.gz）。 
-此外，在以下字段上建立索引：名称，aliases.name，tags.value，rating.value
+此外，在以下字段上建立索引：name，aliases.name，tags.value，rating.value
 
 ### 65. MongoDBの検索
 Search MongoDB<br/>

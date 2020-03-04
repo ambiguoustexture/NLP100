@@ -427,39 +427,6 @@ Sentence segment<br/>
 (. or ; or : or ? or !) → space → uppercase letters should be regarded as a sentence delimiter,
 and output the input document in the form of one sentence per line.<br/>
 (. or ; or : or ? or !) → 空格 → 大写字母应视为句子定界符，并以每行一个句子的形式输出输入文档。
-```python
-import re
-
-def sentence_segmengt(file):
-    with open(file) as text:
-        pattren = re.compile(r'''
-                            (^.*? [\.|;|:|\?|!])        # (. or ; or : or ? or !)
-                            \s                          # space
-                            (A-Z).*                     # uppercase letters
-                            ''', re.MULTILINE + re.VERBOSE + re.DOTALL)
-        for line in text:
-            line = line.strip()
-            while len(line) > 0:
-                match = pattren.match(line)
-                if match:
-                    yield match.group(1)
-                    line = match.group(2)
-                else:
-                    yield line
-                    line = ''
-
-if __name__ == '__main__':
-    file = './nlp.txt'
-    for sentence in sentence_segmengt(file):
-        print(sentence)
-```
-```zsh
-➜ python sentence_segment.py > sentences.txt; head -4 sentences.txt
-Natural language processing
-From Wikipedia, the free encyclopedia
-Natural language processing (NLP) is a field of computer science, artificial intelligence, and linguistics concerned with the interactions between computers and human (natural) languages. As such, NLP is related to the area of humani-computer interaction. Many challenges in NLP involve natural language understanding, that is, enabling computers to derive meaning from human or natural language input, and others involve natural language generation.
-History
-```
 
 ### 51. 単語の切り出し
 Word segmentation<br/>
