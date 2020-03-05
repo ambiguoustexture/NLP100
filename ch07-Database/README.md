@@ -547,9 +547,9 @@ Open
 http://localhost:8080/cgi-bin/main.py
 ```
 in browser:
-![webapp_blank]()
+![webapp_blank](https://github.com/ambiguoustexture/NLP-100-Knocks/blob/master/ch07-Database/webapp_blank.png)
 Try searching with tag:
-![webapp_searching_with_tag]()
+![webapp_searching_with_tag](https://github.com/ambiguoustexture/NLP-100-Knocks/blob/master/ch07-Database/webapp_searching_with_tag.png)
 ```python
 #!/Users/there/miniconda3/envs/NLP_Koncks/bin/python
 # coding: utf-8
