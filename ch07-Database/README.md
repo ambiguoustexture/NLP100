@@ -547,7 +547,7 @@ Open
 http://localhost:8080/cgi-bin/main.py
 ```
 in browser:
-![webapp_blank](https://github.com/ambiguoustexture/NLP-100-Knocks/blob/master/ch07-Database/webapp_blank.png =616x786)
+![webapp_blank](https://github.com/ambiguoustexture/NLP-100-Knocks/blob/master/ch07-Database/webapp_blank.png)
 Try searching with tag:
 ![webapp_searching_with_tag](https://github.com/ambiguoustexture/NLP-100-Knocks/blob/master/ch07-Database/webapp_searching_with_tag.png)
 ```python
