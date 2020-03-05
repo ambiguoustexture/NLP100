@@ -533,7 +533,7 @@ Use CGI and the python file should be named as "main.py" and be put in a folder 
 ➜ pwd
 /Users/there/Repositories/NLP-100-Knocks/ch07-Database
 ➜ which python
-# make sure using which python and declare in python file
+# make sure which python used and declare in python file
 /Users/there/miniconda3/envs/NLP_Koncks/bin/python
 ➜ ls cgi-bin 
 main.py
