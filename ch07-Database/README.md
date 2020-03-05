@@ -65,11 +65,11 @@ with gzip.open(file_gz, 'rt') as artists:
         value = artist_json_line.get('area', '')
         db.Put(key.encode(), value.encode())
 
-print('%d artists have been recored.' % len(list(db.RangeIter(include_value=False))))
+print('%d artists have been recorded.' % len(list(db.RangeIter(include_value=False))))
 ```
 ```zsh
 ➜ python KVS_build.py
-921337 artists have been recored.
+921337 artists have been recorded.
 ```
 
 ### 61. KVSの検索
@@ -176,7 +176,7 @@ try:
             if value is None:
                 value = []
             db.Put(key.encode(), json.dumps(value).encode())
-    print('%d record have been recored.' % len(list(db.RangeIter(include_value=False))))
+    print('%d record have been recorded.' % len(list(db.RangeIter(include_value=False))))
 except:
     db = leveldb.LevelDB(file_db)
     print('Use existed DB.')
@@ -264,11 +264,11 @@ with gzip.open(file_gz, 'rt') as artists:
         if i % unit_bulk == 0:
             collection.insert_many(buf)
             buf = []
-            print('%d records have been recored.' % i)
+            print('%d records have been recorded.' % i)
 
     if len(buf) > 0:
         collection.insert_many(buf)
-        print('%d records have been recored.' % i)
+        print('%d records have been recorded.' % i)
 
 
 collection.create_index([('name', pymongo.ASCENDING)])
@@ -286,19 +286,19 @@ Start MongDB before running Python script.
 ```
 ```zsh
 ➜ python mongodb_build.py
-10000  records have been recored.
-20000  records have been recored.
-30000  records have been recored.
+10000  records have been recorded.
+20000  records have been recorded.
+30000  records have been recorded.
 
 ...
 
-870000 records have been recored.
-880000 records have been recored.
-890000 records have been recored.
-900000 records have been recored.
-910000 records have been recored.
-920000 records have been recored.
-921337 records have been recored.
+870000 records have been recorded.
+880000 records have been recorded.
+890000 records have been recorded.
+900000 records have been recorded.
+910000 records have been recorded.
+920000 records have been recorded.
+921337 records have been recorded.
 ```
 
 ### 65. MongoDBの検索
