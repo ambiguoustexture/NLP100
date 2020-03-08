@@ -55,7 +55,8 @@ Stop word<br/>
 それ以外は偽を返す関数を実装せよ．
 さらに，その関数に対するテストを記述せよ．<br/>
 Create a list of English stop words (stop list). 
-Furthermore, implement a function that returns true if the word (character string) given in the argument is included in the stoplist, 
+Furthermore, implement a function that returns true if the word (character string) 
+given in the argument is included in the stoplist, 
 and returns false otherwise. Write a test for the function.<br/>
 创建英语停用词列表。
 此外，实现一个函数，如果参数中给定的单词（字符串）包含在非索引词表中，则返回true，否则返回false。
@@ -80,7 +81,7 @@ Learning<br/>
 学习
 
 72で抽出した素性を用いて，ロジスティック回帰モデルを学習せよ．<br/>
-Train a logistic regression model using the features extracted in 72.
+Train a logistic regression model using the features extracted in 72.<br/>
 使用72中提取的特征训练逻辑回归模型。
 
 ### 74. 予測
@@ -91,7 +92,8 @@ Predict<br/>
 与えられた文の極性ラベル（正例なら"+1"，負例なら"-1"）と，
 その予測確率を計算するプログラムを実装せよ．<br/>
 Using the logistic regression model learned in step 73, 
-implement a program to calculate the polarity label of the given sentence ("+1" for positive examples, "-1" for negative examples) and its predicted probability.
+implement a program to calculate the polarity label 
+of the given sentence ("+1" for positive examples, "-1" for negative examples) and its predicted probability.<br/>
 使用在步骤73中训练的逻辑回归模型，
 实现一个程序来计算给定句子的极性标签（对于肯定示例，“ + 1”，对于否定示例，“-1”）及其预测概率。
 
@@ -100,9 +102,9 @@ Feature weight<br/>
 特征权重
 
 73で学習したロジスティック回帰モデルの中で，
-重みの高い素性トップ10と，重みの低い素性トップ10を確認せよ．
+重みの高い素性トップ10と，重みの低い素性トップ10を確認せよ．<br/>
 In the logistic regression model learned in 73, 
-check the top 10 features with high weight and the top 10 features with low weight.
+check the top 10 features with high weight and the top 10 features with low weight.<br/>
 在73训练的逻辑回归模型中，
 检查权重较高的前10个特征和权重较低的前10个特征。
 
@@ -124,7 +126,7 @@ Measurement of accuracy rate<br/>
 予測の正解率，正例に関する適合率，再現率，
 F1スコアを求めるプログラムを作成せよ．<br/>
 Write a program that receives the output of 76 and calculates the correct answer rate of the prediction, 
-the precision rate for the correct example, the recall rate, and the F1 score.
+the precision rate for the correct example, the recall rate, and the F1 score.<br/>
 编写一个程序，接收76的输出，并计算预测的正确答案率，正确示例的正确率，召回率和F1分数。
 
 ### 78. 5分割交差検定
@@ -135,6 +137,13 @@ the precision rate for the correct example, the recall rate, and the F1 score.
 すなわち，分類器が訓練事例を丸暗記する際の性能を評価しており，
 モデルの汎化性能を測定していない．
 そこで，5分割交差検定により，極性分類の正解率，適合率，再現率，F1スコアを求めよ．<br/>
+In the experiment of 76-77, 
+the case used for learning was also used for evaluation, 
+so it cannot be said that it is a valid evaluation. 
+In other words, the classifier evaluates the performance of memorizing the training examples 
+and does not measure the generalization performance of the model. 
+Therefore, calculate the correct answer rate, precision rate, recall rate, and F1 score 
+of the polarity classification using 5-fold cross validation.<br/>
 在76-77的实验中，用于学习的案例也用于评估，因此不能说这是有效的评估。
 换句话说，分类器评估记忆训练样本的性能，而不衡量模型的泛化性能。
 因此，使用5-fold交叉验证来计算极性分类的正确答案率，准确率，召回率和F1分数。
