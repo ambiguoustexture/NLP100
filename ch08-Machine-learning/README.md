@@ -156,7 +156,7 @@ features = [word for word, count in word_counter.items() if count >= 6]
 with codecs.open(file_features, 'w', file_encoding) as content_features:
     print(*features, sep='\n', file=content_features)
 ```
-```zsh
+```
 ➜ python feature_extration.py; head features.txt
 onli
 way
@@ -279,6 +279,7 @@ if __name__ == '__main__':
 
 ```
 ```zsh
+➜ python learn.py
 Learn rate: 6.0 	Number of learning iterations: 1000
 Start learning 		cost: 0.6931471805599453
 	Learning: 100 	cost: 0.4814218285712319
