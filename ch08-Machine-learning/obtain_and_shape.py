@@ -31,4 +31,4 @@ with codecs.open(file_sentiment, 'r', file_encoding) as sentiment:
         elif sentence.startswith('-1'):
             coutn_neg += 1
 
-print('pos: ', count_pos, ' neg: ', coutn_neg)
+print('pos:', count_pos, 'neg:', coutn_neg)
