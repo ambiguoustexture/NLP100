@@ -45,6 +45,43 @@ and create a sentiment.txt that randomly rearranges the lines.
 Check the number of positive examples (positive sentences) and the number of negative examples (negative sentences).<br/>
 结合上面1和2的内容，并创建一个sendiment.txt来随机重新排列各行，
 检查肯定示例（肯定句）和否定示例（否定句）的数量。
+```python
+import random
+import codecs
+
+file_polarity_pos = './rt-polaritydata/rt-polarity.pos'
+file_polarity_neg = './rt-polaritydata/rt-polarity.neg'
+file_sentiment    = './sentiment.txt'
+file_encoding     = 'cp1252'
+
+res = []
+
+with codecs.open(file_polarity_pos, 'r', file_encoding) as polarity_pos:
+    res.extend(['+1 {}'.format(sentence.strip()) for sentence in polarity_pos])
+
+with codecs.open(file_polarity_neg, 'r', file_encoding) as polarity_neg:
+    res.extend(['-1 {}'.format(sentence.strip()) for sentence in polarity_neg])
+
+random.shuffle(res)
+
+with codecs.open(file_sentiment, 'w', file_encoding) as sentiment:
+    print(*res, sep='\n', file=sentiment)
+
+count_pos = 0
+coutn_neg = 0
+with codecs.open(file_sentiment, 'r', file_encoding) as sentiment:
+    for sentence in sentiment:
+        if sentence.startswith('+1'):
+            count_pos += 1
+        elif sentence.startswith('-1'):
+            coutn_neg += 1
+
+print('pos: ', count_pos, ' neg: ', coutn_neg)
+```
+```zsh
+➜ python3 obtain_and_shape.py
+pos:  5331  neg:  5331
+```
 
 ### 71. ストップワード
 Stop word<br/>
@@ -59,8 +96,22 @@ Furthermore, implement a function that returns true if the word (character strin
 given in the argument is included in the stoplist, 
 and returns false otherwise. Write a test for the function.<br/>
 创建英语停用词列表。
-此外，实现一个函数，如果参数中给定的单词（字符串）包含在非索引词表中，则返回true，否则返回false。
+此外，实现一个函数，如果参数中给定的单词（字符串）包含在停用词表中，则返回true，否则返回false。
 为该功能编写一个测试。<br/>
+```python
+stop_words = ['a', 'able', 'about', 'across', 'after', 'all', 'almost', 'also', 'am', 'among', 'an', 'and', 'any', 'are', 'as', 'at', 'be', 'because', 'been', 'but', 'by', 'can', 'cannot', 'could', 'dear', 'did', 'do', 'does', 'either', 'else', 'ever', 'every', 'for', 'from', 'get', 'got', 'had', 'has', 'have', 'he', 'her', 'hers', 'him', 'his', 'how', 'however', 'i', 'if', 'in', 'into', 'is', 'it', 'its', 'just', 'least', 'let', 'like', 'likely', 'may', 'me', 'might', 'most', 'must', 'my', 'neither', 'no', 'nor', 'not', 'of', 'off', 'often', 'on', 'only', 'or', 'other', 'our', 'own', 'rather', 'said', 'say', 'says', 'she', 'should', 'since', 'so', 'some', 'than', 'that', 'the', 'their', 'them', 'then', 'there', 'these', 'they', 'this', 'tis', 'to', 'too', 'twas', 'us', 'wants', 'was', 'we', 'were', 'what', 'when', 'where', 'which', 'while', 'who', 'whom', 'why', 'will', 'with', 'would', 'yet', 'you', 'your']
+
+def isStopword(word):
+    return word.lower() in stop_words
+
+if __name__ == '__main__':
+    assert isStopword('your')
+    assert not isStopword('ambiguity')
+```
+```zsh
+➜ python stop_words.py
+➜
+```
 
 ### 72. 素性抽出
 Feature extraction<br/>
@@ -75,6 +126,49 @@ and extract features from training data.
 The minimum baseline for the feature would be to remove the stopwords from the review and to stem each word.<br/>
 设计可能对极性分析有用的特征，并从训练数据中提取特征。
 该功能的最低基准是从评论中删除停用词并阻止每个词。
+```python
+import codecs
+import snowballstemmer
+from collections import Counter
+from stop_words import isStopword
+
+file_sentiment    = './sentiment.txt'
+file_features     = './features.txt'
+file_encoding     = 'cp1252'
+
+stemmer = snowballstemmer.stemmer('english')
+word_counter = Counter()
+
+with codecs.open(file_sentiment, 'r', file_encoding) as sentiment:
+    for sentence in sentiment:
+        for word in sentence[3:].split(' '):
+            word = word.strip()
+            word = stemmer.stemWord(word)
+            if isStopword(word):
+                continue
+            if word != '!' and word != '?' and len(word) <= 1:
+                continue
+            word_counter.update([word])
+
+# Use those with 6 or more appearances for features
+features = [word for word, count in word_counter.items() if count >= 6]
+
+with codecs.open(file_features, 'w', file_encoding) as content_features:
+    print(*features, sep='\n', file=content_features)
+```
+```zsh
+➜ python feature_extration.py; head features.txt
+onli
+way
+supernatur
+give
+anyon
+case
+put
+sleep
+movi
+nightmar
+```
 
 ### 73. 学習
 Learning<br/>
