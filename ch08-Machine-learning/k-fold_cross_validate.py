@@ -41,7 +41,7 @@ def k_fold_cross_validate(k, file_data, file_features, file_result,
                 if h > 0.5:
                     result.write(sentence[0:2] + '\t+1\t' + str(h) + '\n')
                 else:
-                    result.write(sentence[0:2] + '\t-1\t' + str(h) + '\n')
+                    result.write(sentence[0:2] + '\t-1\t' + str(1- h) + '\n')
 
 if __name__ == '__main__':
     file_features  = './features.txt'

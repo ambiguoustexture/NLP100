@@ -11,14 +11,17 @@ def score(file_result):
             cols = line.split('\t')
             if len(cols) < 3:
                 continue
-            if   cols[0] == '+1' and cols[1] == '+1':
-                TP += 1
-            elif cols[0] == '+1' and cols[1] == '-1':
-                FN += 1
-            elif cols[0] == '-1' and cols[1]  == '-1':
-                TN += 1
+            if   cols[0] == '+1':
+                if cols[1] == '+1':
+                    TP += 1
+                else:
+                    FN += 1
             else:
-                FP += 1
+                if cols[1] == '+1':
+                    FP += 1
+                else:
+                    TN += 1
+
     accuracy = (TP + TN) / (TP + FP + FN + TN)
     precision = TP / (TP + FP)
     recall = TP / (TP + FN)
