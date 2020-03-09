@@ -495,21 +495,120 @@ f1:            0.8636235294117648
 5-fold cross validation<br/>
 5-fold交叉验证
 
-76-77の実験では，学習に用いた事例を評価にも用いたため，正当な評価とは言えない．
+76-77の実験では，学習に用いた事例を評価にも用いたため，
+正当な評価とは言えない．
 すなわち，分類器が訓練事例を丸暗記する際の性能を評価しており，
 モデルの汎化性能を測定していない．
-そこで，5分割交差検定により，極性分類の正解率，適合率，再現率，F1スコアを求めよ．<br/>
+そこで，5分割交差検定により，
+極性分類の正解率，適合率，再現率，F1スコアを求めよ．<br/>
 In the experiment of 76-77, 
 the case used for learning was also used for evaluation, 
 so it cannot be said that it is a valid evaluation. 
-In other words, the classifier evaluates the performance of memorizing the training examples 
+In other words, the classifier evaluates the performance 
+of memorizing the training examples 
 and does not measure the generalization performance of the model. 
-Therefore, calculate the correct answer rate, precision rate, recall rate, and F1 score 
+Therefore, calculate the correct answer rate, 
+precision rate, recall rate, and F1 score 
 of the polarity classification using 5-fold cross validation.<br/>
 在76-77的实验中，用于学习的案例也用于评估，因此不能说这是有效的评估。
 换句话说，分类器评估记忆训练样本的性能，而不衡量模型的泛化性能。
 因此，使用5-fold交叉验证来计算极性分类的准确率，精确率，召回率和F1分数。
+```python
+import codecs
+import snowballstemmer
+import numpy as np
 
+from learn import \
+        init, load_features_dict, learn, features_extract, hypothesis
+from accuracy_measure import score
+
+def k_fold_cross_validate(k, file_data, file_features, file_result,
+        learn_rate, count_iteration):
+    """
+    k-fold cross validate.
+    """
+    with codecs.open(file_data, 'r', 'cp1252') as data, \
+            open(file_result, 'w') as result:
+        # get k parts of data
+        data_all = list(data)
+        data_divided = []
+        unit = int(len(data_all) / k)
+        for i in range(5):
+            data_divided.append(data_all[i * unit : (i  + 1) * unit])
+        # learn each part and validate use left parts
+        for i in range(k):
+            print(i + 1, '/', k)
+            data_to_learn = []
+            for j in range(k):
+                if i == j:
+                    data_to_validate = data_divided[j]
+                else:
+                    data_to_learn   += data_divided[j]
+
+            features_dict = load_features_dict(file_features, 'cp1252')
+            X, Y = init(data_to_learn, features_dict)
+            theta = learn(X, Y, learn_rate, count_iteration)
+            for sentence in data_to_validate:
+                data_one_x = features_extract(sentence[3:], features_dict)
+                h = hypothesis(data_one_x, theta)
+                if h > 0.5:
+                    result.write(sentence[0:2] + '\t+1\t' + str(h) + '\n')
+                else:
+                    result.write(sentence[0:2] + '\t-1\t' + str(h) + '\n')
+
+if __name__ == '__main__':
+    file_features  = './features.txt'
+    file_sentiment = './sentiment.txt'
+    file_result    = './k_fold_cross_validate_result.txt'
+    learn_rate, count_iteration = 6.0, 1000
+
+    k_fold_cross_validate(5, file_sentiment, file_features, file_result,
+            learn_rate, count_iteration)
+
+    accuracy, precision, recall, f1 = score(file_result)
+    print('Accuracy:'.ljust(14, ' '), accuracy)
+    print('Precision:'.ljust(14, ' '), precision)
+    print('Recall:'.ljust(14, ' '), recall)
+    print('F1:'.ljust(14, ' '), f1)
+```
+```zsh
+1 / 5
+	...
+2 / 5
+	...
+3 / 5
+	...
+4 / 5
+Start learning 		cost: 0.6931471805599453
+	Learning: 100 	cost: 0.4713999591626268
+	Learning: 200 	cost: 0.41774998938493313
+	Learning: 300 	cost: 0.38712870807490646
+	Learning: 400 	cost: 0.36601409667474344
+	Learning: 500 	cost: 0.3500739538337132
+	Learning: 600 	cost: 0.33737014258952935
+	Learning: 700 	cost: 0.3268707304265648
+	Learning: 800 	cost: 0.31796285207310704
+	Learning: 900 	cost: 0.3102539383650185
+	Learning: 1000 	cost: 0.30347811497557453
+End learning 		cost: 0.30347811497557453
+5 / 5
+Start learning 		cost: 0.6931471805599453
+	Learning: 100 	cost: 0.47228354152891855
+	Learning: 200 	cost: 0.41958173219656064
+	Learning: 300 	cost: 0.3894770927618302
+	Learning: 400 	cost: 0.36867144489471715
+	Learning: 500 	cost: 0.3529239469744658
+	Learning: 600 	cost: 0.34034186660850657
+	Learning: 700 	cost: 0.3299185682182995
+	Learning: 800 	cost: 0.32105638558777055
+	Learning: 900 	cost: 0.3133723562860914
+	Learning: 1000 	cost: 0.3066069053645883
+End learning 		cost: 0.3066069053645883
+Accuracy:      0.7474671669793621
+Precision:     0.7508078312107964
+Recall:        0.7409491652598011
+F1:            0.7458459214501509
+```
 ### 79. 適合率-再現率グラフの描画
 Drawing precision / recall graph<br/>
 绘制准确率/召回率图
