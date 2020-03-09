@@ -307,6 +307,30 @@ implement a program to calculate the polarity label
 of the given sentence ("+1" for positive examples, "-1" for negative examples) and its predicted probability.<br/>
 使用在步骤73中训练的逻辑回归模型，
 实现一个程序来计算给定句子的极性标签（对于肯定示例，“ + 1”，对于否定示例，“-1”）及其预测概率。
+```python
+from learn import *
+
+file_sentiment    = './sentiment.txt'
+file_features     = './features.txt'
+file_theta        = './file_theta.npy'
+file_encoding     = 'cp1252'
+
+sentence          = input('Please input a sentence > ')
+features_dict     = load_features_dict(file_features, file_encoding)
+data_one_x        = features_extract(sentence, features_dict)
+theta             = np.load(file_theta)
+h                 = hypothesis(data_one_x, theta)
+
+if h > 0.5:
+    print('label:+1', h)
+else:
+    print('label:-1', h)
+```
+```zsh
+➜ python predict.py
+Please input a sentence > Colorless green ideas sleep furiously.
+label:-1 0.06805685855446468
+```
 
 ### 75. 素性の重み
 Feature weight<br/>
@@ -318,6 +342,54 @@ In the logistic regression model learned in 73,
 check the top 10 features with high weight and the top 10 features with low weight.<br/>
 在73训练的逻辑回归模型中，
 检查权重较高的前10个特征和权重较低的前10个特征。
+```python
+import codecs
+import numpy as np
+
+file_features     = './features.txt'
+file_theta        = './file_theta.npy'
+file_encoding     = 'cp1252'
+
+with codecs.open(file_features, 'r', file_encoding) as features:
+    features = list(features)
+
+theta = np.load(file_theta)
+index_sorted = theta.argsort()
+print('Top 10 features with high weight:')
+for index in index_sorted[::-1][:10]:
+    print('\t', theta[index], '\t', \
+            features[index - 1].strip())
+
+print('Top 10 features with low weight:')
+for index in index_sorted[:10]:
+    print('\t', theta[index], '\t', \
+            features[index - 1].strip())
+```
+```zsh
+➜  ch08-Machine-learning git:(master) ✗ python feature_weight.py
+Top 10 features with high weight:
+	 2.576616830231628 	 refresh
+	 2.3770156468391486 	 engross
+	 2.1718711987430583 	 unexpect
+	 1.9572609221257458 	 examin
+	 1.929823132595376 	 remark
+	 1.882932983469481 	 glorious
+	 1.6648197454116411 	 quiet
+	 1.627297852807484 	 confid
+	 1.622972428937783 	 resist
+	 1.6218833099998018 	 soul
+Top 10 features with low weight:
+	 -2.6408114462713907 	 bore
+	 -2.3650770280270352 	 dull
+	 -2.237938649494231 	 wast
+	 -2.0909790992681003 	 fail
+	 -2.056024369797769 	 flat
+	 -1.9566161345837156 	 mediocr
+	 -1.9297031166301721 	 worst
+	 -1.9146342104873246 	 routin
+	 -1.8920799319631603 	 suppos
+	 -1.8352223227995097 	 generic
+```
 
 ### 76. ラベル付け
 Labeling<br/>
@@ -328,7 +400,46 @@ Labeling<br/>
 Apply a logistic regression model to the training data and output the correct labels, 
 predicted labels, and predicted probabilities in tab-delimited format.<br/>
 将逻辑回归模型应用于训练数据，并以制表符分隔的格式输出正确的标签，预测的标签和预测正确的概率。
+```python
+import codecs
+import snowballstemmer
+import numpy as np
+from stop_words import isStopword
+from learn import hypothesis, features_extract, load_features_dict
 
+file_sentiment    = './sentiment.txt'
+file_features     = './features.txt'
+file_theta        = './file_theta.npy'
+file_result       = './labeling_result.txt'
+file_encoding     = 'cp1252'
+
+stemmer = snowballstemmer.stemmer('english')
+features_dict = load_features_dict(file_features, file_encoding)
+theta = np.load(file_theta)
+
+with codecs.open(file_sentiment, 'r', file_encoding) as sentiment, \
+        open(file_result, 'w') as result:
+    for sentence in sentiment:
+        data_one_x = features_extract(sentence[3:], features_dict)
+        h = hypothesis(data_one_x, theta)
+        if h > 0.5:
+            result.write(sentence[0:2] + '\t+1\t' + str(h) + '\n')
+        else :
+            result.write(sentence[0:2] + '\t-1\t' + str(h) + '\n')
+```
+```zsh
+➜ python labeling.py; head labeling_result.txt
+-1	-1	0.14561595662560498
++1	+1	0.7717537373952997
+-1	-1	0.3020134892987221
++1	+1	0.7762049518821986
+-1	-1	0.09502085278378529
+-1	-1	0.04984859588172091
++1	-1	0.3166589949979205
+-1	-1	0.1384529344843662
++1	-1	0.3356891892043037
++1	-1	0.4880278258251634
+```
 ### 77. 正解率の計測
 Measurement of accuracy rate<br/>
 准确率的测量
@@ -338,7 +449,47 @@ Measurement of accuracy rate<br/>
 F1スコアを求めるプログラムを作成せよ．<br/>
 Write a program that receives the output of 76 and calculates the correct answer rate of the prediction, 
 the precision rate for the correct example, the recall rate, and the F1 score.<br/>
-编写一个程序，接收76的输出，并计算预测的正确答案率，正确示例的正确率，召回率和F1分数。
+编写一个程序，接收76的输出，并计算预测的准确率，精确率，召回率和F1分数。
+```python
+def score(file_result):
+    """
+    score using confusionmatrix
+    """
+    TP, FP, TN, FN = 0, 0, 0, 0
+    with open(file_result) as result:
+        for line in result:
+            cols = line.split('\t')
+            if len(cols) < 3:
+                continue
+            if   cols[0] == '+1' and cols[1] == '+1':
+                TP += 1
+            elif cols[0] == '+1' and cols[1] == '-1':
+                FN += 1
+            elif cols[0] == '-1' and cols[1]  == '-1':
+                TN += 1
+            else:
+                FP += 1
+    accuracy = (TP + TN) / (TP + FP + FN + TN)
+    precision = TP / (TP + FP)
+    recall = TP / (TP + FN)
+    f1 = (2 * recall * precision) / (recall + precision)
+    return accuracy, precision, recall, f1
+
+if __name__ == '__main__':
+    file_result = './labeling_result.txt'
+    accuracy, precision, recall, f1 = score(file_result)
+    print('accuracy:'.ljust(14, ' '), accuracy)
+    print('precision:'.ljust(14, ' '), precision)
+    print('recall:'.ljust(14, ' '), recall)
+    print('f1:'.ljust(14, ' '), f1)
+```
+```
+➜ python accuracy_measure.py
+accuracy:      0.8640967923466517
+precision:     0.8666414809217983
+recall:        0.8606265241042956
+f1:            0.8636235294117648
+```zsh
 
 ### 78. 5分割交差検定
 5-fold cross validation<br/>
@@ -357,7 +508,7 @@ Therefore, calculate the correct answer rate, precision rate, recall rate, and F
 of the polarity classification using 5-fold cross validation.<br/>
 在76-77的实验中，用于学习的案例也用于评估，因此不能说这是有效的评估。
 换句话说，分类器评估记忆训练样本的性能，而不衡量模型的泛化性能。
-因此，使用5-fold交叉验证来计算极性分类的正确答案率，准确率，召回率和F1分数。
+因此，使用5-fold交叉验证来计算极性分类的准确率，精确率，召回率和F1分数。
 
 ### 79. 適合率-再現率グラフの描画
 Drawing precision / recall graph<br/>
