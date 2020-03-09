@@ -610,13 +610,13 @@ Recall:        0.7409491652598011
 F1:            0.7458459214501509
 ```
 ### 79. 適合率-再現率グラフの描画
-Drawing precision / recall graph<br/>
-绘制准确率/召回率图
+Drawing Precision-Recall graph<br/>
+绘制准确率-召回率图
 
 ロジスティック回帰モデルの分類の閾値を変化させることで，
 適合率-再現率グラフを描画せよ．<br/>
 Draw a precision-recall graph by changing the classification threshold of the logistic regression model.<br/>
-通过更改逻辑回归模型的分类阈值绘制精确召回图。
+绘制精确率-召回率随逻辑回归模型的分类阀值变化图。
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
@@ -671,4 +671,4 @@ plt.legend(loc='lower left')
 plt.show()
 ```
 Precision-Recall with different classification threshold of the logistic regression model:
-![graph_precision_recall]()
+![graph precision recall](https://github.com/ambiguoustexture/NLP-100-Knocks/blob/master/ch08-Machine-learning/graph_precision_recall.png)
