@@ -31,7 +31,7 @@ def gradient(X, Y, theta):
     grad = 1 / m * (h - Y).dot((X))
     return grad 
 
-def load_features_dict(file_features):
+def load_features_dict(file_features, file_encoding):
     """
     load features from file_features 
     """
