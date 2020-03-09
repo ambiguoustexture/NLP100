@@ -483,13 +483,13 @@ if __name__ == '__main__':
     print('recall:'.ljust(14, ' '), recall)
     print('f1:'.ljust(14, ' '), f1)
 ```
-```
+```zsh
 ➜ python accuracy_measure.py
 accuracy:      0.8640967923466517
 precision:     0.8666414809217983
 recall:        0.8606265241042956
 f1:            0.8636235294117648
-```zsh
+```
 
 ### 78. 5分割交差検定
 5-fold cross validation<br/>
