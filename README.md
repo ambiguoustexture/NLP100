@@ -1274,8 +1274,8 @@ k均值聚类
 96の単語ベクトルに対して，
 k-meansクラスタリングをクラスタ数k=5
 として実行せよ．<br/>
-Perform k-means clustering on 96 word vectors with k = 5 clusters.<br/>
-对k = 5个聚类的96个词向量执行k均值聚类。
+Perform k-means clustering on word vectors in steps 96 with k = 5 clusters.<br/>
+对步骤96重的词向量执行k = 5 均值聚类。
 
 ### 98. Ward法によるクラスタリング
 Clustering by Ward method
@@ -1284,15 +1284,15 @@ Ward法聚类
 96の単語ベクトルに対して，
 Ward法による階層型クラスタリングを実行せよ．
 さらに，クラスタリング結果をデンドログラムとして可視化せよ．<br/>
-Perform hierarchical clustering using the Ward method on 96 word vectors. 
+Perform hierarchical clustering using the Ward method on word vectors in steps 96. 
 Visualize the clustering result as a dendrogram.<br/>
-使用Ward方法对96个单词向量执行分层聚类。 
+使用Ward方法对步骤96的词向量执行分层聚类。 
 将聚类结果可视化为树状图。
 
 ### 99. t-SNEによる可視化
 Visualization with t-SNE
 使用t-SNE进行可视化
 96の単語ベクトルに対して，ベクトル空間をt-SNEで可視化せよ．<br/>
-Visualize the vector space with t-SNE for 96 word vectors.<br/>
-使用t-SNE可视化96个单词向量的向量空间。
+Visualize the vector space with t-SNE for word vectors in steps 96.<br/>
+使用t-SNE可视化步骤96的单词向量的向量空间。
 
