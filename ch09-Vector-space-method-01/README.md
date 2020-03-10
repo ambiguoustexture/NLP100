@@ -1,6 +1,6 @@
 ## 第9章: ベクトル空間法 (I)
-Vector space method<br/>
-向量空间法
+Vector space method 01<br/>
+向量空间法 其一
 
 [enwiki-20150112-400-r10-105752.txt.bz2](http://www.cl.ecei.tohoku.ac.jp/nlp100/data/enwiki-20150112-400-r10-105752.txt.bz2)は，
 2015年1月12日時点の英語のWikipedia記事のうち，
@@ -79,6 +79,26 @@ Empty tokens are deleted<br/>
 After applying processing above, 
 connect the tokens with spaces and save them to a file.<br/>
 上述处理后，用空格连接词例并将其保存在文件中。
+```python
+file_original = './enwiki-20150112-400-r100-10576.txt'
+file_shaped   = './enwiki-20150112-400-r100-10576_shaped.txt'
+
+with open(file_original) as text_original, \
+        open(file_shaped, 'wt') as text_shaped:
+    for line in text_original:
+        words = []
+        for word in line.split(' '):
+            word = word.strip().strip('.,!?;:()[]\'"')
+            if word != '':
+                words.append(word)
+        print(*words, sep=' ', end='\n', file=text_shaped)
+```
+```txt
+Anarchism
+
+Anarchism is a political philosophy that advocates stateless societies often defined as self-governed voluntary institutions but that several authors have defined as more specific institutions based on non-hierarchical free associations Anarchism holds the state to be undesirable unnecessary or harmful While anti-statism is central anarchism entails opposing authority or hierarchical organisation in the conduct of human relations including but not limited to the state system
+
+```
 
 ### 81. 複合語からなる国名への対処
 Dealing with compound word as country's name<br/>
@@ -117,12 +137,61 @@ so here we want to recognize country names consisting of compound words.<br/>
 例えば，"United States"は"United_States"，
 "Isle of Man"は"Isle_of_Man"になるはずである．<br/>
 Obtain a list of country names on the Internet 
-and replace spaces with underscores in compound words that appear in the 80 corpus. 
+and replace spaces with underscores in compound words that appear in the corpus of step 80. 
 For example, "United States" should be "United_States" 
 and "Isle of Man" should be "Isle_of_Man".<br/>
 获取互联网上的国家/地区名称列表，
-对出现在这80个语料库中的复合词，用下划线替换空格。
+对出现在步骤80得到的语料库中的复合词，用下划线替换空格。
 例如，"United States"为"United_States"，"Isle of Man"为"Isle_of_Man"。
+```python
+file_shaped    = './enwiki-20150112-400-r100-10576_shaped.txt'
+file_countries = './countries.txt'
+file_compound_words = './compound_words_process_result.txt'
+
+countries_set  = set()
+countries_dict = {}
+with open(file_countries) as countries:
+    for country in countries:
+        words = country.split(' ')
+        if len(words) > 1:
+            countries_set.add(country.strip())
+            if words[0] in countries_dict:
+                compound_len = countries_dict[words[0]]
+                if not len(words) in compound_len:
+                    compound_len.append(len(words))
+                    compound_len.sort(reverse=True)
+            else:
+                countries_dict[words[0]] = [len(words)]
+
+with open(file_shaped) as text_shaped, \
+        open(file_compound_words, 'w') as compound_words:
+    for line in text_shaped:
+        words = line.strip().split(' ')
+        res = []
+        flag_skip = 0
+        for i in range(len(words)):
+            if flag_skip > 0:
+                flag_skip -= 1
+                continue
+            if words[i] in countries_dict:
+                flag_hit = False
+                for length in countries_dict[words[i]]:
+                    if ' '.join(words[i:i + length]) in countries_set:
+                        res.append('_'.join(words[i:i+length]))
+                        flag_skip = length - 1
+                        flag_hit = True
+                        break
+                if flag_hit:
+                    continue
+            res.append(words[i])
+        print(*res, sep=' ', end='\n', file=compound_words)
+```
+```zsh
+➜ wc -l compound_words_process_result.txt
+  284434 compound_words_process_result.txt
+➜ ch09-Vector-space-method-01 git:(master) ✗ grep "United_" -o compound_words_process_result.txt | wc -l
+    6311
+```
 
 ### 82. 文脈の抽出
 Context extraction<br/>
@@ -143,10 +212,40 @@ Extract d words before and after the word t as context word c
 (however, the context word does not include the word t itself)<br/>
 提取单词t之前和之后的d个单词作为上下文单词c（但是，上下文单词不包括单词t本身）
 
-- 単語tを選ぶ度に，文脈幅dは{1,2,3,4,5}の範囲でランダムに決める．
+- 単語tを選ぶ度に，文脈幅dは{1,2,3,4,5}の範囲でランダムに決める．<br/>
 Each time a word t is selected,
-the context width d is randomly determined within the range of {1,2,3,4,5}.
+the context width d is randomly determined within the range of {1,2,3,4,5}.<br/>
 每次选择单词t时，上下文宽度d在{1,2,3,4,5}范围内随机确定。
+```python
+import random
+
+file_compound_words = './compound_words_process_result.txt'
+file_context        = './context.txt'
+
+with open(file_compound_words) as compound_words, \
+        open(file_context, 'w') as context:
+    for index, line in enumerate(compound_words):
+        words = line.strip().split(' ')
+        for j in range(len(words)):
+            t = words[j]
+            d = random.randint(1, 5)
+            for k in range(max(j - d, 0), min(j + d + 1, len(words))):
+                if j != k:
+                    print('{}\t{}'.format(t, words[k]), file=context)
+```
+```
+➜ head context.txt
+Anarchism	is
+Anarchism	a
+Anarchism	political
+is	Anarchism
+is	a
+is	political
+a	Anarchism
+a	is
+a	political
+a	philosophy
+```
 
 ### 83. 単語／文脈の頻度の計測
 Measuring word / context frequency<br/>
