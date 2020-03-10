@@ -35,7 +35,7 @@ Preparation of analogy data<br/>
 ダウンロードした評価データの中で，
 "family"というセクションに含まれる評価事例を
 抜き出してファイルに保存せよ．<br/>
-Download the [word analogy evaluation data]((https://word2vec.googlecode.com/svn/trunk/questions-words.txt)). 
+Download the [word analogy evaluation data](https://word2vec.googlecode.com/svn/trunk/questions-words.txt). 
 Lines starting with ":" in this data represent section names. 
 For example, 
 the line ": capital-common-countries" marks the beginning 
@@ -126,7 +126,7 @@ Extract vector about country name<br/>
 提取有关国名的向量
 
 word2vecの学習結果から，
-国名に関するベクトルのみを抜き出せ．
+国名に関するベクトルのみを抜き出せ．<br/>
 Extract only vectors related to country names 
 from the learning results of word2vec.<br/>
 从word2vec的学习结果中仅提取与国家名称有关的向量。
