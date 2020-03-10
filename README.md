@@ -1275,7 +1275,7 @@ k均值聚类
 k-meansクラスタリングをクラスタ数k=5
 として実行せよ．<br/>
 Perform k-means clustering on word vectors in steps 96 with k = 5 clusters.<br/>
-对步骤96重的词向量执行k = 5 均值聚类。
+对步骤96中的词向量执行k = 5 均值聚类。
 
 ### 98. Ward法によるクラスタリング
 Clustering by Ward method
