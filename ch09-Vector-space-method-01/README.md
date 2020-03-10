@@ -94,6 +94,7 @@ with open(file_original) as text_original, \
         print(*words, sep=' ', end='\n', file=text_shaped)
 ```
 ```txt
+# enwiki-20150112-400-r100-10576_shaped.txt
 Anarchism
 
 Anarchism is a political philosophy that advocates stateless societies often defined as self-governed voluntary institutions but that several authors have defined as more specific institutions based on non-hierarchical free associations Anarchism holds the state to be undesirable unnecessary or harmful While anti-statism is central anarchism entails opposing authority or hierarchical organisation in the conduct of human relations including but not limited to the state system
@@ -189,7 +190,7 @@ with open(file_shaped) as text_shaped, \
 ```zsh
 ➜ wc -l compound_words_process_result.txt
   284434 compound_words_process_result.txt
-➜ ch09-Vector-space-method-01 git:(master) ✗ grep "United_" -o compound_words_process_result.txt | wc -l
+➜ grep "United_" -o compound_words_process_result.txt | wc -l
     6311
 ```
 
@@ -251,10 +252,12 @@ a	philosophy
 Measuring word / context frequency<br/>
 测量 词/上下文 频率
 
-82の出力を利用し，以下の出現分布，および定数を求めよ．
+82の出力を利用し，以下の出現分布，および定数を求めよ．<br/>
+Using the output of 82, find the following distribution and constants.<br/>
+使用82的输出，找到以下分布和常数。
 
 - f(t,c) : 単語tと文脈語cの共起回数<br/>
-Number of co-occurrences of word t and context words c
+Number of co-occurrences of word t and context words c<br/>
 单词t和上下文单词c的共现次数
 
 - f(t,∗) : 単語tの出現回数<br/>
@@ -268,7 +271,50 @@ Number of occurrences of context words c<br/>
 - N : 単語と文脈語のペアの総出現回数<br/>
 Total number of occurrences of word-context word pairs<br/>
 词-上下文词 对的出现总数
+```python
+from collections import Counter
+import pickle
 
+file_context    = './context.txt'
+file_counter_tc = './tc_counter'
+file_counter_t  = './t_counter'
+file_counter_c  = './c_counter'
+
+tc_counter = Counter()
+t_counter  = Counter()
+c_counter  = Counter()
+
+tc_current, t_current, c_current = [], [], []
+
+with open(file_context) as context:
+    for index, line in enumerate(context, start=1):
+        line = line.strip()
+        words = line.split('\t')
+        tc_current.append(line)
+        t_current.append(words[0])
+        c_current.append(words[1])
+        if index % 1000000 == 0:
+           tc_counter.update(tc_current)
+           t_counter.update(t_current)
+           c_counter.update(c_current)
+           tc_current, t_current, c_current = [], [], []
+
+tc_counter.update(tc_current)
+t_counter.update(t_current)
+c_counter.update(c_current)
+
+with open(file_counter_tc,  'wb') as tc:
+    pickle.dump(tc_counter, tc)
+with open(file_counter_t,   'wb') as t:
+    pickle.dump(t_counter,  t)
+with open(file_counter_c,   'wb') as c:
+    pickle.dump(c_counter,  c)```
+```
+N:
+```
+➜ wc -l context.txt
+ 68031796 context.txt
+```
 ### 84. 単語文脈行列の作成
 Create word context matrix<br/>
 创建单词上下文矩阵
