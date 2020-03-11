@@ -608,3 +608,42 @@ calculate vec("Spain") - vec("Madrid") + vec("Athens"),
 Output 10 words with high similarity to the vector and their similarity.<br/>
 读取在85中获得的单词的向量，计算vec("Spain") - vec("Madrid") + vec("Athens")，
 并输出10个与该向量最相似的词及其向量。
+```python
+import pickle
+import numpy as np
+from scipy import io
+from similarity_cosine import sim_cos
+
+file_context_matrix_X_PC = './context_matrix_X_PC'
+file_t_index_dict        = './t_index_dict'
+
+with open(file_t_index_dict, 'rb') as t_index_dict:
+    t_index_dict = pickle.load(t_index_dict)
+
+context_matrix_X_PC = io.loadmat(file_context_matrix_X_PC)['context_matrix_X_PC']
+
+words_additive = context_matrix_X_PC[t_index_dict['Spain']] \
+        - context_matrix_X_PC[t_index_dict['Madrid']] \
+        + context_matrix_X_PC[t_index_dict['Athens']]
+words_similarities = [sim_cos(words_additive, context_matrix_X_PC[i])
+        for i in range(len(t_index_dict))]
+words_similarities_sorted = np.argsort(words_similarities)
+words = list(t_index_dict.keys())
+
+for index in words_similarities_sorted[:-11:-1]:
+    print(words[index].ljust(14, ' '), words_similarities[index])
+```
+```zsh
+➜ python analogy_with_additive_constructivity.py
+Spain          0.8907717290490869
+Sweden         0.8875350479294913
+Austria        0.8547812867707035
+Denmark        0.8000015848337706
+Italy          0.7918456833102121
+Belgium        0.7814917768618459
+Netherlands    0.7790052507477426
+Germany        0.7708831723539175
+Télévisions    0.7597184200052526
+France         0.7436473060240459
+```
+
