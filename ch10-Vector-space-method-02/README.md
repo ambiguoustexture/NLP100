@@ -185,11 +185,39 @@ extract the evaluation examples included in the section "family"
 and save them to a file.<br/>
 下载[单词类比评估数据](https://word2vec.googlecode.com/svn/trunk/questi
 ons-words.txt)。 
-此数据中以":"开头的行表示节名称。 
+此数据中，以": "开头的行表示章节。 
 例如，行": capital-common-countries"标记了
 名为"capital-common-countries"的部分的开头。 
 从下载的评估数据中，提取"family"部分中包含的评估示例，
 并将其保存到文件中。
+```python
+file_analogy_data        = './questions-words.txt'
+file_analogy_data_family = './questions-words_family.txt'
+
+with open(file_analogy_data) as analogy_data, \
+        open(file_analogy_data_family, 'w') as analogy_data_family:
+    flag_target = False
+    for line in analogy_data:
+        if flag_target:
+            if line.startswith(': '):
+                break
+            print(line.strip(), file=analogy_data_family)
+        elif line.startswith(': family'):
+            flag_target = True
+```
+```zsh
+➜ python analogy_data_prepare.py; head questions-words_family.txt
+boy girl brother sister
+boy girl brothers sisters
+boy girl dad mom
+boy girl father mother
+boy girl grandfather grandmother
+boy girl grandpa grandma
+boy girl grandson granddaughter
+boy girl groom bride
+boy girl he she
+boy girl his her
+```
 
 ### 92. アナロジーデータへの適用
 Application to analogy data<br/>
