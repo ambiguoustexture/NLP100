@@ -419,6 +419,92 @@ Display word vector<br/>
 Read the meaning vector of the word obtained in step 85 and display the "United States" vector.
 Note that "United States" is internally represented as "United_States".<br/>
 读取在步骤85中获得的词向量，并显示词"United States"。 注意，"United States"在内部表示为"United_States"。
+```python
+>>> import pickle
+>>> from scipy import io
+>>> file_context_matrix_X_PC = './context_matrix_X_PC'
+>>> file_t_index_dict = './t_index_dict'
+>>> with open(file_t_index_dict, 'rb') as t_index_dict:
+...     t_index_dict = pickle.load(t_index_dict)
+...
+>>> context_matrix_X_PC = io.loadmat(file_context_matrix_X_PC)['context_matrix_X_PC']
+>>> print(context_matrix_X_PC[t_index_dict['United_States']])
+[ 3.33600558e+00 -8.78380574e-01  1.10290167e-01  6.14253073e+00
+  2.63084244e+00 -1.33378743e+00 -2.07975473e+00  9.46230402e-02
+ -2.28001119e-01 -1.93131129e-01  1.18620360e+00  1.88003713e+00
+ -1.64126007e+00 -2.69655059e+00 -1.83005678e+00  2.65592846e+00
+  5.72013336e-02 -3.92560088e+00  8.83360863e-01  1.99726386e-01
+ -5.72899277e-02  1.55160519e+00 -4.12413472e-02 -1.45772532e-01
+  1.60485952e+00  6.82243596e-01  4.09560748e-01  2.42060699e+00
+ -2.30810389e+00 -3.11965922e+00 -2.43281169e+00  6.71712235e-01
+  6.97988457e-01  1.64079730e+00 -1.65291394e+00  1.11201819e+00
+  2.58538099e+00  1.30549359e+00 -1.45254802e-01  8.89946960e-01
+  4.66935546e-01  1.38906463e+00 -1.04314690e+00  1.78675115e+00
+  4.30661459e-01 -1.70828083e-01  6.24509223e-01  3.41536560e-01
+  8.74739416e-01 -1.45767848e+00  1.20334575e+00 -2.24908963e-01
+  1.57778901e+00 -7.70038312e-03  6.24877338e-01  1.56845516e+00
+  4.63921537e-01  3.73894371e-01  6.90685994e-01  2.83677425e-01
+ -8.95085984e-01  2.60854427e+00 -1.41598932e+00  4.24277468e-02
+ -6.48377375e-02 -1.15007947e-01 -8.47965792e-01  5.50527602e-01
+  1.63491174e-01  2.00458177e+00 -4.96736556e-02  6.38732941e-01
+  2.16299316e+00  1.78704310e+00  1.69243217e+00  5.33141849e-01
+ -1.07861532e-01 -7.59279080e-01 -5.69676514e-01 -5.87676204e-01
+ -9.05826840e-01 -2.04454277e+00  2.35209823e-03 -1.14362701e+00
+ -1.32467074e-01 -8.68664844e-01  9.52526147e-01  3.78386195e-01
+  9.85781497e-01 -6.20831177e-01 -1.44038677e+00 -1.53245025e+00
+ -6.40640295e-01 -5.43140413e-01  1.87679752e-01  9.55865321e-01
+ -7.71745467e-01 -6.79483038e-02 -8.70736630e-01 -1.09033480e-01
+  1.82956687e+00 -1.18279139e+00 -4.27062144e-01 -3.38812905e-01
+ -1.65979812e-02 -5.95057446e-01  1.70074803e+00 -8.50162892e-01
+  1.72987053e-01  1.65749801e-01 -4.58461477e-01 -7.28587344e-02
+  2.37763260e-01  1.18082485e+00  4.81952740e-01 -6.80832638e-02
+ -6.78677696e-01 -7.48441236e-01 -2.97577297e-01 -8.88492798e-01
+  3.19888261e-01 -4.79333666e-01 -1.28193894e+00 -2.51611325e+00
+  8.13582618e-01  3.72543065e-01  6.54868251e-02  1.35128294e+00
+ -2.11320402e-01  4.68456915e-01 -4.45195717e-02 -6.14505178e-01
+  1.38046278e+00 -2.90918647e-01 -1.08423212e-01 -4.82039455e-01
+  1.02959324e+00 -2.44287563e-01 -2.04210172e+00 -9.69545659e-02
+  9.51536746e-02  9.39636528e-01  1.32106809e+00 -3.14319853e+00
+  9.07977694e-01 -1.29583441e-01 -1.22899526e-01 -9.85273429e-01
+  9.28775599e-01 -2.76058405e-01 -5.08424181e-01  2.28819598e-01
+ -5.33261746e-01 -6.83505181e-01 -1.96042644e-01 -4.66173247e-04
+ -7.69987862e-01  6.37152552e-01 -1.40666354e-01 -1.43840881e+00
+  8.94753575e-01 -1.22352972e+00 -5.94170379e-01 -6.80620112e-01
+ -1.86551458e+00  6.98668416e-01  6.19404457e-04  1.03267546e+00
+  4.02322595e-01  3.44892919e-01 -2.05404039e-02  2.74299284e-01
+  4.78518990e-01 -5.29114993e-02  7.90913673e-01  2.31926912e-02
+ -9.68071067e-02 -1.26063428e+00 -4.08788450e-01 -4.84139543e-01
+  1.56630578e+00  3.01595773e-01 -1.58435570e-01 -3.56765032e-01
+  1.17443780e+00 -1.97108816e-01  2.33482039e-02 -7.67571723e-01
+ -4.80882898e-01  1.05520702e+00  5.49336755e-01  2.10323471e-01
+  2.48251014e-01 -2.36406694e+00 -3.98543941e-01 -6.96588221e-01
+  9.84492899e-01 -9.38485435e-01  6.27119994e-01 -1.52400455e+00
+ -5.88700651e-03 -1.01724981e+00 -1.35856769e+00 -2.08276310e-01
+ -6.77496740e-01 -3.72832486e-01 -3.93372159e-01 -4.16050434e-01
+  5.88233912e-01 -4.66526114e-01 -1.63477150e-01 -2.26327051e-01
+ -1.25145389e-01 -9.53027474e-01 -9.41047252e-02 -6.33190572e-02
+  1.39971261e+00 -2.06539732e+00 -4.41144688e-01  2.23048816e-02
+  1.64423373e+00  3.67561271e-01  6.62879170e-01  1.82566122e-01
+ -9.28273962e-01  7.96265930e-01  7.81420529e-01  4.32829205e-01
+ -5.08459510e-01 -8.48990274e-02  2.46003481e-01 -6.64093472e-01
+ -4.63199299e-01 -7.97812230e-01  1.25841701e+00 -8.26938654e-02
+  8.75311443e-01  4.77638672e-01  6.86855734e-01 -8.78381595e-01
+ -6.16212429e-02 -3.27673759e-01  5.13540594e-01  3.63748563e-01
+ -2.12016108e-01  1.24609057e-01 -1.34226729e+00  2.00258755e-01
+ -1.13542538e+00 -2.07563170e-01  7.65329807e-01  4.04041663e-01
+  2.43382893e-01  3.78900025e-01  1.24087826e-02  4.25563604e-01
+ -2.39378929e-01  1.69206899e-01  3.47532022e-01 -1.11235805e-01
+  4.52660701e-01 -1.91298462e-01 -6.99634550e-01 -2.09633424e-01
+  2.61488935e-01  3.33789347e-01 -1.37051600e+00 -4.57868231e-01
+ -3.59495120e-01 -3.92163787e-01  1.07046720e-01  9.66405902e-01
+  2.38250937e-01  1.50168566e-02 -1.82647699e-01  3.09556021e-01
+  5.25283338e-01 -3.34102445e-01 -2.33017016e-01  1.20450044e+00
+ -6.56958106e-01 -5.47122831e-02 -2.82011173e-01  7.03035544e-01
+ -5.37906752e-02  3.31301929e-01  3.54665649e-01  8.15086652e-01
+ -2.88154334e-01  6.32379698e-01  1.24715273e+00 -8.51942949e-01
+ -6.49735329e-03  7.05039557e-01 -5.80681758e-01 -9.26964489e-01
+  1.71541510e-01  6.51991916e-01 -4.71225563e-01 -3.78150650e-01]
+```
 
 ### 87. 単語の類似度
 Word similarity<br/>
@@ -430,6 +516,38 @@ Word similarity<br/>
 Read the semantic vector of the word obtained in step 85 and calculate the cosine similarity between "United States" and "U.S.". Note, however, that "U.S." is internally represented as "U.S."<br/>
 读取在步骤85中获得的单词的词向量，并计算"United States"和"U.S."之间的余弦相似度。
 但是请注意，"U.S."在内部表示为"U.S"。
+```python
+import pickle
+import numpy as np
+from scipy import io
+
+def sim_cos(word_a, word_b):
+    """
+    calculate the cosine similarity
+    """
+    mul_ab = np.linalg.norm(word_a) * np.linalg.norm(word_b)
+    if mul_ab == 0:
+        return -1
+    else:
+        return np.dot(word_a, word_b) / mul_ab
+
+if __name__ == '__main__':
+    file_context_matrix_X_PC = './context_matrix_X_PC'
+    file_t_index_dict        = './t_index_dict'
+
+    with open(file_t_index_dict, 'rb') as t_index_dict:
+        t_index_dict = pickle.load(t_index_dict)
+
+    context_matrix_X_PC = io.loadmat(file_context_matrix_X_PC)['context_matrix_X_PC']
+    word_a = context_matrix_X_PC[t_index_dict['United_States']]
+    word_b = context_matrix_X_PC[t_index_dict['U.S']]
+
+    print('Cosine similarity between "United_States" and "U.S":', sim_cos(word_a, word_b))
+```
+```zsh
+➜ python similarity_United_States-US.py
+Cosine similarity between "United_States" and "U.S": 0.8256988144545605
+```
 
 ### 88. 類似度の高い単語10件
 10 words with high similarity<br/>
@@ -441,6 +559,42 @@ Read the semantic vector of the word obtained in step 85,
 and output 10 words with high cosine similarity to "England" and their similarity<br/>
 读取在步骤85中获得的单词的词向量，
 并输出与“England”具有高余弦相似度的10个单词及其相似度
+```python
+import pickle
+import numpy as np
+from scipy import io
+from similarity_cosine import sim_cos
+
+file_context_matrix_X_PC = './context_matrix_X_PC'
+file_t_index_dict        = './t_index_dict'
+
+with open(file_t_index_dict, 'rb') as t_index_dict:
+    t_index_dict = pickle.load(t_index_dict)
+
+context_matrix_X_PC = io.loadmat(file_context_matrix_X_PC)['context_matrix_X_PC']
+
+word_England       = context_matrix_X_PC[t_index_dict['England']]
+words_similarities = [sim_cos(word_England, context_matrix_X_PC[i])
+        for i in range(len(t_index_dict))]
+words_similarities_sorted = np.argsort(words_similarities)
+words = list(t_index_dict.keys())
+
+for index in words_similarities_sorted[-2:-12:-1]:
+    print(words[index].ljust(12, ' '), words_similarities[index])
+```
+```zsh
+➜ python words_similar_with_England.py
+Scotland     0.616724731859635
+Australia    0.5911118851962176
+Wales        0.5624891979996978
+France       0.5618514619134919
+Japan        0.55865118835873
+Germany      0.5419670503592768
+Italy        0.5333627250283722
+Ireland      0.5134767992278451
+Spain        0.48963085196114614
+Europe       0.4636289733997487
+```
 
 ### 89. 加法構成性によるアナロジー
 Analogy with additive constructivity<br/>
