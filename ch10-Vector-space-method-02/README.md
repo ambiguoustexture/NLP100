@@ -166,7 +166,7 @@ Portugal       0.7475578362950815
 Preparation of analogy data<br/>
 准备类比数据
 
-[単語アナロジーの評価データ](https://word2vec.googlecode.com/svn/trunk/questions-words.txt)
+[単語アナロジーの評価データ](https://github.com/ambiguoustexture/NLP-100-Knocks/blob/master/ch10-Vector-space-method-02/questions-words.txt)
 をダウンロードせよ．
 このデータ中で": "で始まる行はセクション名を表す．
 例えば，
@@ -175,7 +175,7 @@ Preparation of analogy data<br/>
 ダウンロードした評価データの中で，
 "family"というセクションに含まれる評価事例を
 抜き出してファイルに保存せよ．<br/>
-Download the [word analogy evaluation data](https://word2vec.googlecode.com/svn/trunk/questions-words.txt). 
+Download the [word analogy evaluation data](https://github.com/ambiguoustexture/NLP-100-Knocks/blob/master/ch10-Vector-space-method-02/questions-words.txt). 
 Lines starting with ":" in this data represent section names. 
 For example, 
 the line ": capital-common-countries" marks the beginning 
@@ -183,8 +183,7 @@ of a section called "capital-common-countries".
 From the downloaded evaluation data, 
 extract the evaluation examples included in the section "family" 
 and save them to a file.<br/>
-下载[单词类比评估数据](https://word2vec.googlecode.com/svn/trunk/questi
-ons-words.txt)。 
+下载[单词类比评估数据](https://github.com/ambiguoustexture/NLP-100-Knocks/blob/master/ch10-Vector-space-method-02/questions-words.txt)。 
 此数据中，以": "开头的行表示章节。 
 例如，行": capital-common-countries"标记了
 名为"capital-common-countries"的部分的开头。 
