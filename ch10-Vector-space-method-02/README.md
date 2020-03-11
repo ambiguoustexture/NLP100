@@ -20,7 +20,7 @@ Apply [word2vec](https://code.google.com/p/word2vec/) to the corpus
 created in step 81 to learn word vectors. 
 Then, convert the learned word vector format and run the program from 86-89.<br/>
 将[word2vec](https://code.google.com/p/word2vec/)应用于在步骤81中创建的语料库以学习单词向量。 
-然后，转换学习的单词矢量格式并运行86-89的程序。
+然后，转换训练得到的词向量格式并运行86-89的程序。
 
 ### 91. アナロジーデータの準備
 Preparation of analogy data<br/>
