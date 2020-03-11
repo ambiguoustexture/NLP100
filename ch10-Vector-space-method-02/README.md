@@ -26,29 +26,29 @@ import pickle
 import numpy as np
 from scipy import io
 from collections import OrderedDict
-import word2vec as w2v
+import word2vec
 
-file_corpus_shaped        = '../ch09-Vector-space-method-01/compound_words_process_result.txt'
-file_word2vec             = './word2vec.txt'
-file_context_matrix_X_w2v = './context_matrix_X_w2v'
-file_t_index_dict_w2v     = './t_index_dict_w2v'
+file_corpus_shaped    = '../../ch09-Vector-space-method-01/compound_words_process_result.txt'
+file_word2vec         = './word2vec.txt'
+file_matrix_w2v       = './matrix_w2v.mat'
+file_t_index_dict_w2v = './t_index_dict_w2v'
 
-w2v.word2vec(train=file_corpus_shaped, output=file_word2vec, size=300, threads=4, binary=0)
+word2vec.word2vec(train=file_corpus_shaped, output=file_word2vec, size=300, threads=4, binary=0)
 
 with open(file_word2vec) as vectors:
     vector = vectors.readline().split(' ')
     dict_size = int(vector[0])
-    context_matrix_X_w2v_size = int(vector[1])
+    matrix_w2v_size = int(vector[1])
 
     t_index_dict_w2v = OrderedDict()
-    context_matrix_X_w2v = np.zeros([dict_size, context_matrix_X_w2v_size], dtype=np.float64)
+    matrix_w2v = np.zeros([dict_size, matrix_w2v_size], dtype=np.float64)
 
     for index, vector in enumerate(vectors):
         vector = vector.strip().split(' ')
         t_index_dict_w2v[vector[0]]    = index
-        context_matrix_X_w2v[index] = vector[1:]
+        matrix_w2v[index] = vector[1:]
 
-io.savemat(file_context_matrix_X_w2v, {'context_matrix_X_w2v': context_matrix_X_w2v})
+io.savemat(file_matrix_w2v, {'matrix_w2v': matrix_w2v})
 
 with open(file_t_index_dict_w2v, 'wb') as t_index:
     pickle.dump(t_index_dict_w2v, t_index)
@@ -57,13 +57,13 @@ with open(file_t_index_dict_w2v, 'wb') as t_index:
 ```zsh
 >>> import pickle
 >>> from scipy import io
->>> file_context_matrix_X_w2v = './context_matrix_X_w2v'
->>> file_t_index_dict_w2v     = './t_index_dict_w2v'
+>>> file_matrix = './matrix_w2v.mat'
+>>> file_t_index_dict_w2v = './t_index_dict_w2v'
 >>> with open(file_t_index_dict_w2v, 'rb') as t_index_dict_w2v:
 ...     t_index_dict_w2v = pickle.load(t_index_dict_w2v)
 ...
->>> file_context_matrix_X_w2v = io.loadmat(file_context_matrix_X_w2v)['context_matrix_X_w2v']
->>> print(file_context_matrix_X_w2v[t_index_dict_w2v['United_States']])
+>>> matrix_w2v = io.loadmat(file_matrix)['matrix_w2v']
+>>> print(matrix_w2v[t_index_dict_w2v['United_States']])
 [ 6.516200e-02 -1.622160e-01 -1.575080e-01  1.431391e+00 -7.549880e-01
  -3.868160e-01  1.033983e+00 -1.062307e+00  1.286642e+00  6.472350e-01
   1.184242e+00  3.849100e-02  4.611260e-01 -8.580850e-01 -3.410800e-01
@@ -241,6 +241,11 @@ Apply this program to the word vector created in 85 and the word vector created 
 查找与向量相似度最高的单词。
 在每种情况的末尾添加单词和相似性。
 将此程序应用于在85中创建的单词向量和在90中创建的单词向量。
+```python
+```
+```zsh
+
+```
 
 ### 93. アナロジータスクの正解率の計算
 Calculating the accuracy rate of analogy tasks<br/>
