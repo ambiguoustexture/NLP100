@@ -242,9 +242,66 @@ Apply this program to the word vector created in 85 and the word vector created 
 在每种情况的末尾添加单词和相似性。
 将此程序应用于在85中创建的单词向量和在90中创建的单词向量。
 ```python
-```
-```zsh
+import time
+import pickle
+from scipy import io
+from similarity_cosine_w2v import sim_cos
 
+def find_max_similarity(file_matrix, file_t_index_dict, file_analogy_data, file_result):
+    # load matrix
+    try:
+        matrix = io.loadmat(file_matrix)['matrix_w2v']
+    except:
+        matrix = io.loadmat(file_matrix)['context_matrix_X_PC']
+    # load t_index_dict
+    with open(file_t_index_dict, 'rb') as t_index_dict:
+        t_index_dict = pickle.load(t_index_dict)
+        keys = list(t_index_dict.keys())
+    # find each max_similarity
+    with open(file_analogy_data) as analogy_data, \
+            open(file_result, 'wt') as result:
+        for line in analogy_data:
+            cols = line.split(' ')
+            try:
+                vec_additive = matrix[t_index_dict[cols[1]]] \
+	                         - matrix[t_index_dict[cols[0]]] \
+	                         + matrix[t_index_dict[cols[2]]]
+                max_similarity, max_index, max_result = -1, 0, ''
+                for index in range(len(t_index_dict)):
+                    similarity = sim_cos(vec_additive, matrix[index])
+                    if similarity > max_similarity:
+                        max_index = index
+                        max_similarity = similarity
+                        max_result = keys[max_index]
+            except KeyError:
+                max_similarity = -1
+                max_result     = ''
+            print('{} {} {}'.format(line.strip(), max_result, max_similarity), file=result)
+
+if __name__ == '__main__':
+    file_matrix_w2v          = '../stuffs_90/matrix_w2v.mat'
+    file_matrix_PC           = '../../ch09-Vector-space-method-01/context_matrix_X_PC'
+    file_t_index_dict_w2v    = '../stuffs_90/t_index_dict_w2v'
+    file_t_index_dict_PC     = '../../ch09-Vector-space-method-01/t_index_dict'
+    file_analogy_data        = '../stuffs_91/questions-words_family.txt'
+    file_result_by_w2v       = './result_w2v.txt'
+    file_result_by_PC        = './result_PC.txt'
+
+    time_start = time.time()
+    find_max_similarity(file_matrix_w2v, file_t_index_dict_w2v, file_analogy_data, file_result_by_w2v)
+    time_end   = time.time()
+    print('With matrix from 90, cost', time_end - time_start, 's.')
+    
+    time_start = time.time()
+    find_max_similarity(file_matrix_PC,  file_t_index_dict_PC, file_analogy_data, file_result_by_PC)
+    time_end   = time.time()
+    print('With matrix from 85, cost', time_end - time_start, 's.')
+```
+word2vec is better than contect co-occurence matrix on time.
+```zsh
+➜ python analogy_data_apply.py
+With matrix from 90, cost 581.1286180019379 s.
+With matrix from 85, cost 2759.7831168174744 s.
 ```
 
 ### 93. アナロジータスクの正解率の計算
@@ -255,6 +312,34 @@ Calculating the accuracy rate of analogy tasks<br/>
 各モデルのアナロジータスクの正解率を求めよ．<br/>
 Using the data created in 92, find the accuracy rate of analogy tasks for each model.<br/>
 使用在92中创建的数据，找到每个模型的类比任务的准确率。
+```python
+file_result_w2v = './stuffs_92/result_w2v.txt'
+file_result_PC  = './stuffs_92/result_PC.txt'
+
+with open(file_result_w2v) as result_w2v:
+    count, total = 0, 0
+    for line in result_w2v:
+        cols = line.split(' ')
+        total += 1
+        if cols[3] == cols[4]:
+            count += 1
+    print('Accuracy of word2vec model:', count / total)
+
+with open(file_result_PC)  as result_PC:
+    count, total = 0, 0
+    for line in result_PC:
+        cols = line.split(' ')
+        total += 1
+        if cols[3] == cols[4]:
+            count += 1
+    print('Accuracy of PCA model:', count / total)
+```
+word2vec is better than contect co-occurence matrix on accuracy.
+```zsh
+➜ python accuracy_of_analogy_tasks.py
+Accuracy of word2vec model: 0.09090909090909091
+Accuracy of PCA model: 0.019762845849802372
+```
 
 ### 94. WordSimilarity-353での類似度計算
 Similarity calculation with WordSimilarity-353<br/>
