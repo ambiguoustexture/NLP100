@@ -397,6 +397,17 @@ Apply principal component analysis to the word context matrix obtained in step 8
 and compress the meaning vector of the word to 300 dimensions.
 将主成分分析应用于在步骤84中获得的单词上下文矩阵，
 并将单词语义向量压缩到300维。
+```python
+>>> from scipy import sparse, io
+>>> file_context_matrix_X = './context_matrix_X'
+>>> context_matrix_X = io.loadmat(file_context_matrix_X)['context_matrix_X']
+>>> context_matrix_X.shape
+(388668, 388599)
+>>> import sklearn.decomposition
+>>> context_matrix_X_PC = sklearn.decomposition.TruncatedSVD(300).fit_transform(context_matrix_X)
+>>> context_matrix_X_PC.shape
+(388668, 300)
+```
 
 ### 86. 単語ベクトルの表示
 Display word vector<br/>
