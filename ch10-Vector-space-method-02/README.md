@@ -446,8 +446,9 @@ calculate the Spearman correlation coefficient between the rankings of models an
 使用94中创建的数据，
 对于每个模型，
 计算模型相似度和人类相似度判断之间的Spearman相关系数。
+
 Spearman's rank correlation coefficient:
-![]()
+![fomula_spearman_coe](https://github.com/ambiguoustexture/NLP-100-Knocks/blob/master/ch10-Vector-space-method-02/Spearman'sRankCorrelationCoefficient.svg)
 
 ```python
 import numpy as np
@@ -502,6 +503,43 @@ word2vecの学習結果から，
 Extract only vectors related to country names 
 from the learning results of word2vec.<br/>
 从word2vec的学习结果中仅提取与国家名称有关的向量。
+```python
+import pickle
+from collections import OrderedDict
+from scipy import io
+import numpy as np
+
+file_t_index_dict = './stuffs_90/t_index_dict_w2v'
+file_matrix       = './stuffs_90/matrix_w2v'
+file_countries    = '../ch09-Vector-space-method-01/countries.txt'
+
+file_t_index_dict_countries = './t_index_dict_countries'
+file_matrix_countries       = './matrix_countries'
+
+with open(file_t_index_dict, 'rb') as t_index_dict:
+    t_index_dict = pickle.load(t_index_dict)
+
+matrix = io.loadmat(file_matrix)['matrix_w2v']
+
+t_index_dict_countries = OrderedDict()
+matrix_countries = np.empty([0, 300], dtype=np.float64)
+count = 0
+
+with open(file_countries) as countries:
+    for country in countries:
+        try:
+            country = country.strip().replace(' ', '_')
+            index = t_index_dict[country]
+            matrix_countries = np.vstack([matrix_countries, matrix[index]])
+            t_index_dict_countries[country] = [count]
+            count += 1
+        except:
+            pass
+
+io.savemat(file_matrix_countries, {'matrix_countries':matrix_countries})
+with open(file_t_index_dict_countries, 'wb') as t_index:
+    pickle.dump(t_index_dict_countries, t_index)
+```
 
 ### 97. k-meansクラスタリング
 k-means clustering<br/>
@@ -511,6 +549,44 @@ k-meansクラスタリングをクラスタ数k=5
 として実行せよ．<br/>
 Perform k-means clustering on word vectors in step 96 with k = 5 clusters.<br/>
 对步骤96中的词向量执行k = 5 均值聚类。
+```python
+# Author: ambiguoustexture
+# Date: 2020-03-11
+
+import pickle
+from collections import OrderedDict
+from scipy import io
+import numpy as np
+from sklearn.cluster import KMeans
+
+file_t_index_dict = './stuffs_96/t_index_dict_countries'
+file_matrix       = './stuffs_96/matrix_countries'
+
+with open(file_t_index_dict, 'rb') as t_index_dict:
+    t_index_dict = pickle.load(t_index_dict)
+
+matrix = io.loadmat(file_matrix)['matrix_countries']
+
+predictions = KMeans(n_clusters=5).fit_predict(matrix)
+
+result = zip(t_index_dict.keys(), predictions)
+
+for country, group in sorted(result, key=lambda x: x[1]):
+    print('{}\t{}'.format(group, country))
+```
+```zsh
+➜ python countries_clusters.py > countries_clusters.txt; head countries_clusters.txt
+0	Republic_of_Indonesia
+0	Republic_of_Singapore
+0	Republic_of_Korea
+0	People's_Republic_of_China
+0	Republic_of_the_Philippines
+0	Mongolia
+0	United_States_of_America
+0	Antigua_and_Barbuda
+0	Grenada
+0	Jamaica
+```
 
 ### 98. Ward法によるクラスタリング
 Clustering by Ward method
