@@ -345,25 +345,94 @@ Accuracy of PCA model: 0.019762845849802372
 Similarity calculation with WordSimilarity-353<br/>
 使用WordSimilarity-353进行相似度计算
 
-[The WordSimilarity-353 Test Collection](http://www.cs.technion.ac.il/~gabr/resources/data/wordsim353/)
+[The WordSimilarity-353 Test Collection](http://www.gabrilovich.com/resources/data/wordsim353/wordsim353.zip)
 の評価データを入力とし，
 1列目と2列目の単語の類似度を計算し，
 各行の末尾に類似度の値を追加するプログラムを作成せよ．
 このプログラムを85で作成した単語ベクトル，
 90で作成した単語ベクトルに対して適用せよ．<br/>
 Create a program that takes the evaluation data 
-of [The WordSimilarity-353 Test Collection](http://www.cs.technion.ac.il/~gabr/resources/data/wordsim353/) 
+of [The WordSimilarity-353 Test Collection](http://www.gabrilovich.com/resources/data/wordsim353/wordsim353.zip)
 as input, 
 calculates the similarity between words in the first and second columns, 
 and adds a similarity value to the end of each line. 
 Apply this program to the word vector 
 created in 85 and the word vector created in 90.<br/>
 创建一个程序，
-将[The WordSimilarity-353 Test Collection](http://www.cs.technion.ac.il/~gabr/resources/data/wordsim353/)
+将[The WordSimilarity-353 Test Collection](http://www.gabrilovich.com/resources/data/wordsim353/wordsim353.zip)
 作为输入，
 计算第一列和第二列中单词之间的相似度，
 并将相似度值添加到每行的末尾。 
 将此程序应用于在85中创建的单词向量和在90中创建的单词向量。
+```python
+import pickle
+from scipy import io
+
+from similarity_cosine import sim_cos
+
+def similarity_bt_cols(file_t_index_dict, file_matrix, file_analogy_data, file_result):
+    with open(file_t_index_dict, 'rb') as t_index_dict:
+        t_index_dict = pickle.load(t_index_dict)
+
+    try:
+        matrix = io.loadmat(file_matrix)['matrix_w2v']
+    except:
+        matrix = io.loadmat(file_matrix)['context_matrix_X_PC']
+
+    with open(file_analogy_data) as analogy_data, \
+            open(file_result, 'wt') as result:
+        flag_header = True
+        for line in analogy_data:
+            if flag_header:
+                flag_header = False
+                continue
+            cols = line.split('\t')
+            try:
+                similarity = sim_cos(matrix[t_index_dict[cols[0]]],
+                        matrix[t_index_dict[cols[1]]])
+            except KeyError:
+                similarity = -1
+            print('{}\t{}'.format(line.strip(), similarity), file=result)
+
+if __name__ == '__main__':
+    file_matrix_w2v       = '../stuffs_90/matrix_w2v'
+    file_matrix_PC        = '../../ch09-Vector-space-method-01/context_matrix_X_PC'
+    file_t_index_dict_w2v = '../stuffs_90/t_index_dict_w2v'
+    file_t_index_dict_PC  = '../../ch09-Vector-space-method-01/t_index_dict'
+    file_analogy_data     = './wordsim353/combined.tab'
+    file_result_w2v       = './result_w2v.tab'
+    file_result_PC        = './result_PC.tab'
+
+    similarity_bt_cols(file_t_index_dict_w2v, file_matrix_w2v, file_analogy_data, file_result_w2v)
+
+    similarity_bt_cols(file_t_index_dict_PC,  file_matrix_PC,  file_analogy_data, file_result_PC)
+```
+```zsh
+➜ head result_PC.tab result_w2v.tab
+==> result_PC.tab <==
+love	sex	6.77	0.25782348177344616
+tiger	cat	7.35	0.4117488504172867
+tiger	tiger	10.00	1.0
+book	paper	7.46	0.35945468558612115
+computer	keyboard	7.62	0.13132779889836232
+computer	internet	7.58	0.24656645292291984
+plane	car	5.77	0.3805249078670078
+train	car	6.31	0.2710147356718218
+telephone	communication	7.50	0.11368421841669417
+television	radio	6.77	0.8109778838923809
+
+==> result_w2v.tab <==
+love	sex	6.77	0.547478873397767
+tiger	cat	7.35	0.7964807866045261
+tiger	tiger	10.00	0.9999999999999998
+book	paper	7.46	0.530107734480692
+computer	keyboard	7.62	0.6525765825029786
+computer	internet	7.58	0.6669298018484214
+plane	car	5.77	0.5516992613290509
+train	car	6.31	0.5956607804285214
+telephone	communication	7.50	0.5763507709928744
+television	radio	6.77	0.7873306257208726
+```
 
 ### 95. WordSimilarity-353での評価
 Evaluation by WordSimilarity-353<br/>
