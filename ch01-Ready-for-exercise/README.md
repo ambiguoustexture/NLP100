@@ -36,7 +36,7 @@ and obtain a concatenated character string.<br/>
 「パトカー」＋「タクシー」の文字を先頭から交互に連結して文字列「パタトクカシーー」を得よ．<br/>
 Obtain the character string "パタトクカシーー" 
 by connecting the letters "パトカー" + "タクシー" alternately from the beginning.<br/>
-通过从头开始交替连接字母“パトカー” +“タクシー”来获取字符串“パタトクカシーー”。
+通过从头开始交替连接“パトカー” +“タクシー”的字符来获取字符串“パタトクカシーー”。
 ```Python
 # In Python Interective Shell
 >>> str0 = "パトカー"
@@ -61,8 +61,7 @@ into words, and make a list of the number of characters (in the alphabet)
 of each word in order of appearance.<br/>
 把句子“Now I need a drink, alcoholic of course, after the heavy lectures involving quantum mechanics.”
 分解为单词，
-并创建一个列表，其中是从头开始按出现的顺序排列的每个单词的字符数（字母）。
-
+并创建一个列表，其中是按从头开始出现的顺序排列的每个单词的字符数。
 ```Python
 # In Python Interective Shell
 >>> str = "Now I need a drink, alcoholic of course, after the heavy lectures involving quantum mechanics."
@@ -87,7 +86,7 @@ Extract the first character of word 1, 5, 6, 7, 8, 9, 15, 16, 19,
 the first two characters of other words.
 And creat an associative array (dictionary or map type) of 
 the extracted string and the word position (the number of the word from the beginning).<br/>
-分解句子“Hi He Lied Because Boron Could Not Oxidize Fluorine. 
+获得句子“Hi He Lied Because Boron Could Not Oxidize Fluorine.
 New Nations Might Also Sign Peace Security Clause. Arthur King Can.”
 的第1、5、6、7、8、9、15、16、19 个单词的第一个字符，其他单词的前两个字符，
 另外，对提取到的字符串和单词的位置（从头开始的单词次序）创建关联数组（字典或map类型）。
@@ -117,7 +116,7 @@ print(res)
 Create a function to get n-gram from a given sequence (string, list, etc.). 
 Using this function, get the word bi-gram and character bi-gram 
 from the sentence "I am an NLPer".<br/>
-创建一个函数，根据给定的序列（字符串，列表等）得到n-gram。
+创建一个函数，得到给定的序列（字符串，列表等）的n-gram。
 使用此函数，从句子“I am a NLPer”中获取词bi-gram和字符bi-gram。
 
 ```Python
@@ -222,7 +221,7 @@ Sentence generation by template<br/>
 Implement a function that accepts the arguments x, y, z 
 and returns the string "x時のyはz". 
 Check the execution result with x=12, y="気温", z=22.4.<br/>
-实现一个接受参数x，y，z并返回字符串“z時のyはz”的函数。
+实现一个接受参数x，y，z并返回字符串“x時のyはz”的函数。
 用x=12, y="気温", z=22.4测试结果。
 
 ```Python
@@ -301,11 +300,11 @@ Give an appropriate English sentence (eg,
 "I couldn't believe that I could actually understand what I was reading: 
 the phenomenal power of the human mind."
 ) And check the results.<br/>
-对于由空格分隔的单词序列，请创建一个程序，
-该程序将字符保留在每个单词的开头和结尾，
+对于由空格分隔的单词序列，创建一个程序，
+该程序保留每个单词开头和结尾的字符，
 并随机重新排列其他字符的顺序。 
-但是，长度不超过4的单词不会重新排列。
-对于一个适当的英语句子（例如，
+但是，长度不超过4的单词不会被重排。
+应用一个适当的英语句子（例如，
 “I couldn't believe that I could actually understand what I was reading : 
 the phenomenal power of the human mind .”
 ）然后检查结果。
