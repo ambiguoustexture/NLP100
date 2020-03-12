@@ -575,17 +575,17 @@ for country, group in sorted(result, key=lambda x: x[1]):
     print('{}\t{}'.format(group, country))
 ```
 ```zsh
-➜ python countries_clusters.py > countries_clusters.txt; head countries_clusters.txt
-0	Republic_of_Indonesia
-0	Republic_of_Singapore
-0	Republic_of_Korea
-0	People's_Republic_of_China
-0	Republic_of_the_Philippines
-0	Mongolia
-0	United_States_of_America
-0	Antigua_and_Barbuda
-0	Grenada
-0	Jamaica
+➜ python countries_clusters.py > countries_clusters.txt; tail countries_clusters.txt
+1	Ireland
+1	Ukraine
+1	Spain
+1	Hungary
+1	Romania
+2	United_States
+3	India
+4	Japan
+4	Canada
+4	New_Zealand
 ```
 
 ### 98. Ward法によるクラスタリング
@@ -599,7 +599,29 @@ Perform hierarchical clustering using the Ward method on word vectors in steps 9
 Visualize the clustering result as a dendrogram.<br/>
 使用Ward方法对步骤96的词向量执行分层聚类。 
 将聚类结果可视化为树状图。
+```python
+import pickle
+from collections import OrderedDict
+from scipy import io
+import numpy as np
 
+from scipy.cluster.hierarchy import ward, dendrogram
+from matplotlib import pyplot as plt
+
+file_t_index_dict = './stuffs_96/t_index_dict_countries'
+file_matrix       = './stuffs_96/matrix_countries'
+
+with open(file_t_index_dict, 'rb') as t_index_dict:
+    t_index_dict = pickle.load(t_index_dict)
+
+matrix = io.loadmat(file_matrix)['matrix_countries']
+
+ward = ward(matrix)
+
+dendrogram(ward, labels=list(t_index_dict.keys()), leaf_font_size=8, orientation='left')
+plt.show()
+```
+![countries_clusters_by_ward](https://github.com/ambiguoustexture/NLP-100-Knocks/blob/master/ch10-Vector-space-method-02/countries_clusters_by_ward.png)
 ### 99. t-SNEによる可視化
 Visualization with t-SNE
 使用t-SNE进行可视化
