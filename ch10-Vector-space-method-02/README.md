@@ -441,12 +441,57 @@ Evaluation by WordSimilarity-353<br/>
 94で作ったデータを用い，
 各モデルが出力する類似度のランキングと，
 人間の類似度判定のランキングの間のスピアマン相関係数を計算せよ．<br/>
-Using the data created in step 94, 
-calculate the Spearman correlation coefficient 
-between the ranking of similarity output from each model 
-and the ranking of human similarity determination.<br/>
-使用在步骤94中创建的数据，
-计算每个模型输出的相似度等级与人类相似度确定等级之间的Spearman相关系数。
+Using the data created in 94,
+calculate the Spearman correlation coefficient between the rankings of models and human similarity judgments.
+使用94中创建的数据，
+对于每个模型，
+计算模型相似度和人类相似度判断之间的Spearman相关系数。
+Spearman's rank correlation coefficient:
+![]()
+
+```python
+import numpy as np
+
+def evaluate(file_result):
+    with open(file_result) as result:
+        human_judgements = []
+        model_judgements = []
+        N = 0
+        for line in result:
+            cols = line.split('\t')
+            human_judgements.append(float(cols[2]))
+            model_judgements.append(float(cols[3]))
+            N += 1
+
+    human_judgements_sorted = np.argsort(human_judgements)
+    model_judgements_sorted = np.argsort(model_judgements)
+
+    human_judgements_order = [0] * N
+    model_judgements_order = [0] * N
+
+    for i in range(N):
+        human_judgements_order[human_judgements_sorted[i]] = i
+        model_judgements_order[model_judgements_sorted[i]] = i
+
+    # calculate the Spearman's rank correlation coefficient
+    sum = 0
+    for i in range(N):
+        sum += pow(human_judgements_order[i] - model_judgements_order[i], 2)
+    spearman_coefficient = 1 - (6 * sum) / (N * (pow(N, 2) - 1))
+    return spearman_coefficient
+
+if __name__ == '__main__':
+    file_result_w2v = './stuffs_94/result_w2v.tab'
+    file_result_PC  = './stuffs_94/result_PC.tab'
+    print('Spearman\'s rank correlation coefficient by word2vec:', evaluate(file_result_w2v))
+    print('Spearman\'s rank correlation coefficient by context co-occurrence matrix:',
+            evaluate(file_result_PC))
+```
+```zsh
+➜ python evaluation_by_wordsim353.py
+Spearman's rank correlation coefficient by word2vec: 0.5161997429036609
+Spearman's rank correlation coefficient by context co-occurrence matrix: 0.22625569082091868
+```
 
 ### 96. 国名に関するベクトルの抽出
 Extract vector about country name<br/>
