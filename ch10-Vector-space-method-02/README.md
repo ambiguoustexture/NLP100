@@ -621,7 +621,7 @@ ward = ward(matrix)
 dendrogram(ward, labels=list(t_index_dict.keys()), leaf_font_size=8, orientation='left')
 plt.show()
 ```
-![countries_clusters_by_ward](https://github.com/ambiguoustexture/NLP-100-Knocks/blob/master/ch10-Vector-space-method-02/countries_clusters_by_ward.png)
+![countries_clusters_by_ward](https://github.com/ambiguoustexture/NLP-100-Knocks/blob/master/ch10-Vector-space-method-02/stuffs_98/countries_clusters_by_ward.png)
 ### 99. t-SNEによる可視化
 Visualization with t-SNE
 使用t-SNE进行可视化
