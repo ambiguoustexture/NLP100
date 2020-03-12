@@ -2,9 +2,7 @@
 # Date: 2020-03-11
 
 import pickle
-from collections import OrderedDict
 from scipy import io
-import numpy as np
 from sklearn.cluster import KMeans
 
 file_t_index_dict = './stuffs_96/t_index_dict_countries'

@@ -1157,13 +1157,13 @@ Apply [word2vec](https://code.google.com/p/word2vec/) to the corpus
 created in step 81 to learn word vectors. 
 Then, convert the learned word vector format and run the program from 86-89.<br/>
 将[word2vec](https://code.google.com/p/word2vec/)应用于在步骤81中创建的语料库以学习单词向量。 
-然后，转换学习的单词矢量格式并运行86-89的程序。
+然后，转换训练得到的单词矢量格式并进行86-89的任务。
 
 ### 91. アナロジーデータの準備
 Preparation of analogy data<br/>
 准备类比数据
 
-[単語アナロジーの評価データ](https://word2vec.googlecode.com/svn/trunk/questions-words.txt)
+[単語アナロジーの評価データ](https://github.com/ambiguoustexture/NLP-100-Knocks/blob/master/ch10-Vector-space-method-02/stuffs_91/questions-words.txt)
 をダウンロードせよ．
 このデータ中で": "で始まる行はセクション名を表す．
 例えば，
@@ -1172,7 +1172,7 @@ Preparation of analogy data<br/>
 ダウンロードした評価データの中で，
 "family"というセクションに含まれる評価事例を
 抜き出してファイルに保存せよ．<br/>
-Download the [word analogy evaluation data](https://word2vec.googlecode.com/svn/trunk/questions-words.txt). 
+Download the [word analogy evaluation data](https://github.com/ambiguoustexture/NLP-100-Knocks/blob/master/ch10-Vector-space-method-02/stuffs_91/questions-words.txt)
 Lines starting with ":" in this data represent section names. 
 For example, 
 the line ": capital-common-countries" marks the beginning 
@@ -1180,7 +1180,7 @@ of a section called "capital-common-countries".
 From the downloaded evaluation data, 
 extract the evaluation examples included in the section "family" 
 and save them to a file.<br/>
-下载[单词类比评估数据](https://word2vec.googlecode.com/svn/trunk/questions-words.txt)。 
+下载[单词类比评估数据](https://github.com/ambiguoustexture/NLP-100-Knocks/blob/master/ch10-Vector-space-method-02/stuffs_91/questions-words.txt)
 此数据中以":"开头的行表示节名称。 
 例如，行": capital-common-countries"标记了
 名为"capital-common-countries"的部分的开头。 
@@ -1205,7 +1205,8 @@ vec(word in the second column) - vec(word in the first column) + vec(word in the
 Find the word with the highest similarity to the vector and its similarity.
 Add the word and similarity to the end of each case. 
 Apply this program to the word vector created in 85 and the word vector created in 90.<br/>
-对于步骤91中创建的评估数据中的每种情况，
+对于步骤91中创建的评估数据中的每种情况，:1227
+
 计算vec(第二列中的单词) - vec(第一列中的单词) + vec(第三列中的单词)，
 查找与向量相似度最高的单词。
 在每种情况的末尾添加单词和相似性。
@@ -1224,21 +1225,21 @@ Using the data created in 92, find the accuracy rate of analogy tasks for each m
 Similarity calculation with WordSimilarity-353<br/>
 使用WordSimilarity-353进行相似度计算
 
-[The WordSimilarity-353 Test Collection](http://www.cs.technion.ac.il/~gabr/resources/data/wordsim353/)
+[The WordSimilarity-353 Test Collection](http://www.gabrilovich.com/resources/data/wordsim353/wordsim353.zip)
 の評価データを入力とし，
 1列目と2列目の単語の類似度を計算し，
 各行の末尾に類似度の値を追加するプログラムを作成せよ．
 このプログラムを85で作成した単語ベクトル，
 90で作成した単語ベクトルに対して適用せよ．<br/>
 Create a program that takes the evaluation data 
-of [The WordSimilarity-353 Test Collection](http://www.cs.technion.ac.il/~gabr/resources/data/wordsim353/) 
+of [The WordSimilarity-353 Test Collection](http://www.gabrilovich.com/resources/data/wordsim353/wordsim353.zip)
 as input, 
 calculates the similarity between words in the first and second columns, 
 and adds a similarity value to the end of each line. 
 Apply this program to the word vector 
 created in 85 and the word vector created in 90.<br/>
 创建一个程序，
-将[The WordSimilarity-353 Test Collection](http://www.cs.technion.ac.il/~gabr/resources/data/wordsim353/)
+将[The WordSimilarity-353 Test Collection](http://www.gabrilovich.com/resources/data/wordsim353/wordsim353.zip)
 作为输入，
 计算第一列和第二列中单词之间的相似度，
 并将相似度值添加到每行的末尾。 
@@ -1255,8 +1256,13 @@ Using the data created in step 94,
 calculate the Spearman correlation coefficient 
 between the ranking of similarity output from each model 
 and the ranking of human similarity determination.<br/>
-使用在步骤94中创建的数据，
-计算每个模型输出的相似度等级与人类相似度确定等级之间的Spearman相关系数。
+使用94中创建的数据，
+对于每个模型，
+计算模型相似度和人类相似度判断之间的Spearman相关系数。
+
+Spearman's rank correlation coefficient:
+
+![fomula_spearman_coe](https://github.com/ambiguoustexture/NLP-100-Knocks/blob/master/ch10-Vector-space-method-02/stuffs_95/Spearman'sRankCorrelationCoefficient.svg)
 
 ### 96. 国名に関するベクトルの抽出
 Extract vector about country name<br/>
