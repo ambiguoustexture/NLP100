@@ -448,6 +448,7 @@ calculate the Spearman correlation coefficient between the rankings of models an
 计算模型相似度和人类相似度判断之间的Spearman相关系数。
 
 Spearman's rank correlation coefficient:
+
 ![fomula_spearman_coe](https://github.com/ambiguoustexture/NLP-100-Knocks/blob/master/ch10-Vector-space-method-02/stuffs_95/Spearman'sRankCorrelationCoefficient.svg)
 
 ```python
