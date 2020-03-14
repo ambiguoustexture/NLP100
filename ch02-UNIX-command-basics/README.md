@@ -1,9 +1,30 @@
 ## 第2章: UNIXコマンドの基礎
 
-[hightemp.txt](http://www.cl.ecei.tohoku.ac.jp/nlp100/data/hightemp.txt)は，日本の最高気温の記録を「都道府県」「地点」「℃」「日」のタブ区切り形式で格納したファイルである．以下の処理を行うプログラムを作成し，hightemp.txtを入力ファイルとして実行せよ．さらに，同様の処理をUNIXコマンドでも実行し，プログラムの実行結果を確認せよ．
+[hightemp.txt](http://www.cl.ecei.tohoku.ac.jp/nlp100/data/hightemp.txt)は，
+日本の最高気温の記録を「都道府県」「地点」「℃」「日」のタブ区切り形式で格納したファイルである．
+以下の処理を行うプログラムを作成し，
+hightemp.txtを入力ファイルとして実行せよ．
+さらに，同様の処理をUNIXコマンドでも実行し，プログラムの実行結果を確認せよ．<br/>
+[hightemp.txt](http://www.cl.ecei.tohoku.ac.jp/nlp100/data/hightemp.txt) 
+is a file that stores the record of the highest temperature in Japan 
+in the tab-delimited format of "prefecture", "point", "℃", and "day". 
+Create a program that performs the following processing and execute hightemp.txt as an input file. 
+In addition, execute the same process using UNIX commands 
+and check the execution result of the program.<br/>
+[hightemp.txt](http://www.cl.ecei.tohoku.ac.jp/nlp100/data/hightemp.txt)
+是一份以制表符分隔的格式存储“日本最高温度”的文件，
+格式为“县”，“地点”，“°C”和“日期”。
+创建可执行以下处理的程序，并以hightemp.txt为输入文件。 
+另外，使用UNIX命令执行相同的处理并检查程序的执行结果。
 
 ### 10. 行数のカウント
-行数をカウントせよ．確認にはwcコマンドを用いよ．
+Row count<br/>
+计算行数
+
+行数をカウントせよ．確認には*wc*コマンドを用いよ．<br/>
+Count the number of lines. Use *wc* command for confirmation.
+计算行数。 使用*wc*命令进行确认。
+
 ```Python
 # In Python Interective Shell
 >>> f = open('hightemp.txt', 'r')
@@ -18,7 +39,12 @@ with *wc*
 ```
 
 ### 11. タブをスペースに置換
-タブ1文字につきスペース1文字に置換せよ．確認にはsedコマンド，trコマンド，もしくはexpandコマンドを用いよ．
+Replace tabs with spaces<br/>
+用空格替换制表符
+
+タブ1文字につきスペース1文字に置換せよ．確認には*sed*コマンド，*tr*コマンド，もしくは*expand*コマンドを用いよ．
+Replace each tab with one space. Use the *sed* command, *tr* command, or *expand* command for confirmation.<br/>
+将每个制表符替换为一个空格。 使用sed，tr 或 expand命令进行确认。
 ```Shell
 # In Python Interective Shell
 >>> f = 'hightemp.txt'
@@ -48,7 +74,17 @@ with *expand*
 ```
 
 ### 12. 1列目をcol1.txtに，2列目をcol2.txtに保存
-各行の1列目だけを抜き出したものをcol1.txtに，2列目だけを抜き出したものをcol2.txtとしてファイルに保存せよ．確認にはcutコマンドを用いよ．
+Save the first column in col1.txt and the second column in col2.txt<br/>
+将第一列保存在col1.txt中，将第二列保存在col2.txt中
+
+各行の1列目だけを抜き出したものをcol1.txtに，
+2列目だけを抜き出したものをcol2.txtとしてファイルに保存せよ．
+確認には*cut*コマンドを用いよ．<br/>
+Save only the first column of each row to col1.txt and save the second column to col2.txt. 
+Use the *cut* command for confirmation.<br/>
+仅将每行的第一列保存到col1.txt，将第二列保存到col2.txt。 
+使用*cut*命令进行确认。
+
 ```Python
 file = 'hightemp.txt'
 
@@ -68,7 +104,18 @@ cut -f2 hightemp.txt > col2_cut.txt
 ```
 
 ### 13. col1.txtとcol2.txtをマージ
-12で作ったcol1.txtとcol2.txtを結合し，元のファイルの1列目と2列目をタブ区切りで並べたテキストファイルを作成せよ．確認にはpasteコマンドを用いよ．
+merge col1.txt and col2.txt<br/>
+合并col1.txt和col2.txt
+
+12で作ったcol1.txtとcol2.txtを結合し，
+元のファイルの1列目と2列目をタブ区切りで並べたテキストファイルを作成せよ．
+確認には*paste*コマンドを用いよ．<br/>
+Combine col1.txt and col2.txt created in step 12, 
+and create a text file in which the first and second columns of the original file are tab-separated. 
+Use the *paste* command for confirmation.<br/>
+合并在步骤12中创建的col1.txt和col2.txt为一个文本文件，
+其中原始文件的第一和第二列用制表符分隔。使用*paste*命令进行确认。
+
 ```Python
 with open('col1.txt') as col1:
     col2 = open('col2.txt')
@@ -85,7 +132,17 @@ with *paste*
 ```
 
 ### 14. 先頭からN行を出力
-自然数Nをコマンドライン引数などの手段で受け取り，入力のうち先頭のN行だけを表示せよ．確認にはheadコマンドを用いよ．
+Output first N lines<br/>
+输出前N行
+
+自然数Nをコマンドライン引数などの手段で受け取り，
+入力のうち先頭のN行だけを表示せよ．確認には*head*コマンドを用いよ．<br/>
+Receive the natural number N by means of a command line argument or other means 
+and display only the first N lines of the input. 
+Use the *head* command for confirmation.<br/>
+通过命令行参数或其他方式获取自然数N，
+只显示输入的前N行。 
+使用*head*命令进行确认。
 ```Python
 file = 'hightemp.txt'
 n = int(input('N: '))
@@ -114,7 +171,19 @@ with *head*
 ```
 
 ### 15. 末尾のN行を出力
-自然数Nをコマンドライン引数などの手段で受け取り，入力のうち末尾のN行だけを表示せよ．確認にはtailコマンドを用いよ．
+Output last N lines<br/>
+输出后N行
+
+自然数Nをコマンドライン引数などの手段で受け取り，
+入力のうち末尾のN行だけを表示せよ．
+確認には*tail*コマンドを用いよ．<br/>
+Receive the natural number N by means of command line arguments or other means 
+and display only the last N lines of the input. 
+Use the *tail* command for confirmation.<br/>
+通过命令行参数或其他方式获取自然数N，
+只显示输入文件的后N行。 
+使用*tail*命令进行确认。
+
 ```Python
 file = 'hightemp.txt'
 n = int(input('N: '))
@@ -143,7 +212,18 @@ with *tail*
 ```
 
 ### 16. ファイルをN分割する
-自然数Nをコマンドライン引数などの手段で受け取り，入力のファイルを行単位でN分割せよ．同様の処理をsplitコマンドで実現せよ．
+Divide files into N parts<br/>
+将文件分成N个
+
+自然数Nをコマンドライン引数などの手段で受け取り，
+入力のファイルを行単位でN分割せよ．
+同様の処理を*split*コマンドで実現せよ．<br/>
+Receive the natural number N by means of command line arguments 
+and divide the input file into N lines. 
+Perform the same processing with the *split* command.<br/>
+通过命令行参数获取自然数N并将输入文件分为N行。
+使用*split*命令执行相同的处理。
+
 ```Python
 lines_count = len(lines)
 
@@ -177,7 +257,15 @@ hightemp_ae
 hightemp_af
 ```
 ### 17. １列目の文字列の異なり
-1列目の文字列の種類（異なる文字列の集合）を求めよ．確認にはsort, uniqコマンドを用いよ．
+Difference of the string in column<br/>
+第一个字符串的差异
+
+1列目の文字列の種類（異なる文字列の集合）を求めよ．確認には*sort*, *uniq*コマンドを用いよ．
+Find the type of string in the first column (a set of different strings). 
+Use the *sort* and *uniq* commands for confirmation.<br/>
+找到第一列中字符串的（一个不同字符串的集合）种类。
+使用*sort*和*uniq*命令进行确认。
+
 ```Python
 file = 'hightemp.txt'
 with open(file) as text:
@@ -212,7 +300,18 @@ with *sort* & *uniq*
 ```
 
 ### 18. 各行を3コラム目の数値の降順にソート
-各行を3コラム目の数値の逆順で整列せよ（注意: 各行の内容は変更せずに並び替えよ）．確認にはsortコマンドを用いよ（この問題はコマンドで実行した時の結果と合わなくてもよい）．
+Sort each row in descending order of the numerical value in the third column<br/>
+按第三列中数值的降序对每一行进行排序
+
+各行を3コラム目の数値の逆順で整列せよ（注意: 各行の内容は変更せずに並び替えよ）．
+確認には*sort*コマンドを用いよ（この問題はコマンドで実行した時の結果と合わなくてもよい）.<br/>
+Sort each line in the reverse order of the numerical values in the third column. 
+(Note: Sort without changing the contents of each line.) 
+Use the *sort* command for confirmation 
+(this problem does not have to match the result of running the command).<br/>
+按第三列中数值的相反顺序对每行进行排序（注意：在不更改每行内容的情况下进行排序）。 
+使用*sort*命令进行确认（此问题不必与运行命令行的结果相匹配）。
+
 ```Python
 file = 'hightemp.txt'
 lines = open(file).readlines()
@@ -231,8 +330,22 @@ with *sort*
 ```
 
 ### 19. 各行の1コラム目の文字列の出現頻度を求め，出現頻度の高い順に並べる
-各行の1列目の文字列の出現頻度を求め，その高い順に並べて表示せよ．確認にはcut, uniq, sortコマンドを用いよ．
-```Python
+Obtain the frequency of appearance of the character string 
+in the first column of each line, 
+and arrange them in descending order of frequency<br/>
+获取每行第一列中字符串出现的频率，并按频率降序排列
+
+各行の1列目の文字列の出現頻度を求め，
+その高い順に並べて表示せよ．
+確認には*cut*, *uniq*, *sort*コマンドを用いよ．<br/>
+<br/>
+Find the appearance frequency of the character string in the first column of each line, 
+and display them in descending order. Use the *cut*, *uniq*, and *sort* commands for confirmation.<br/>
+查找每行中第一列中字符串的出现频率，
+并以降序显示。
+使用*cut*，*uniq*和*sort*命令进行确认。
+
+```python
 from itertools import groupby
 
 file = 'hightemp.txt'
