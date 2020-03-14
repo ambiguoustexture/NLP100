@@ -249,7 +249,6 @@ Perform the same processing with the *split* command.<br/>
 通过命令行参数获取自然数N并将输入文件分为N行。
 使用*split*命令执行相同的处理。
 
-```
 ### 17. １列目の文字列の異なり
 Difference of the string in column<br/>
 第一个字符串的差异
