@@ -65,11 +65,11 @@ with open(file) as file_current:
 
 ### 21. カテゴリ名を含む行を抽出
 Extract rows containing category names<br/>
-提取包含category名称的行
+提取包含 category 名称的行
 
 記事中でカテゴリ名を宣言している行を抽出せよ．<br/>
 Extract the line that declares the category name in the article.<br/>
-提取在文章中声明category名称的行。
+提取在文章中声明 category 名称的行。
 
 ```Python
 pattern_category = re.compile(r'''
@@ -103,7 +103,7 @@ pattern_category = re.compile(r'''
 
 ### 22. カテゴリ名の抽出
 Extract category name<br/>
-提取类别名称
+提取 category 名称
 
 記事のカテゴリ名を（行単位ではなく名前で）抽出せよ．<br/>
 Extract the article category names (by name, not line by line).<br/>
