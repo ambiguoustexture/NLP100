@@ -427,55 +427,132 @@ Get the URL of the flag image using the contents of the template.
 （提示：调用MediaWiki API的imageinfo将文件引用转换为URL）
 
 ## 第4章: 形態素解析
-夏目漱石の小説『吾輩は猫である』の文章（[neko.txt](http://www.cl.ecei.tohoku.ac.jp/nlp100/data/neko.txt)）をMeCabを使って形態素解析し，その結果をneko.txt.mecabというファイルに保存せよ．このファイルを用いて，以下の問に対応するプログラムを実装せよ．<br/>
-Morphologically analyze the text of Soseki Natsume's novel "I am a cat" using MeCab, 
-and save the results in a file called neko.txt.mecab. 
-Use this file to implement a program that addresses the following questions.
+Morphological analysis<br/>
+形态分析
 
-なお，問題37, 38, 39は[matplotlib](http://matplotlib.org/)
-もしくは[Gnuplot](http://www.gnuplot.info/)を用いるとよい．<br>
-For problems 37, 38, and 39, use matplotlib or Gnuplot.
+夏目漱石の小説『吾輩は猫である』の文章
+（[neko.txt](http://www.cl.ecei.tohoku.ac.jp/nlp100/data/neko.txt)）をMeCabを使って形態素解析し，
+その結果をneko.txt.mecabというファイルに保存せよ．
+このファイルを用いて，以下の問に対応するプログラムを実装せよ．<br/>
+Morphologically analyze the text([neko.txt](http://www.cl.ecei.tohoku.ac.jp/nlp100/data/neko.txt)) 
+of Soseki Natsume's novel "I am a cat" using MeCab, 
+and save the results in a file called neko.txt.mecab. 
+Use this file to implement a program that addresses the following questions.<br/>
+使用MeCab对夏目漱石的小说“我是猫”的文本
+（[neko.txt](http://www.cl.ecei.tohoku.ac.jp/nlp100/data/neko.txt)）进行形态分析，
+并将结果保存在名为neko.txt.mecab的文件中。 使用此文件实现解决以下问题的程序：
+
+なお，問題37, 38, 39は[matplotlib](http://matplotlib.org/)もしくは[Gnuplot](http://www.gnuplot.info/)を用いるとよい．<br/>
+For problems 37, 38, and 39, use [matplotlib](http://matplotlib.org/) 
+or [Gnuplot](http://www.gnuplot.info/).<br/>
+对于步骤37、38和39，使用[matplotlib](http://matplotlib.org/)
+或[Gnuplot](http://www.gnuplot.info/)。
 
 ### 30. 形態素解析結果の読み込み
-形態素解析結果（neko.txt.mecab）を読み込むプログラムを実装せよ．ただし，各形態素は表層形（surface），基本形（base），品詞（pos），品詞細分類1（pos1）をキーとするマッピング型に格納し，1文を形態素（マッピング型）のリストとして表現せよ．第4章の残りの問題では，ここで作ったプログラムを活用せよ．<br/>
+Read morphological analysis results<br/>
+形態素解析結果の読み込み
+
+形態素解析結果（neko.txt.mecab）を読み込むプログラムを実装せよ．
+ただし，各形態素は表層形（surface），
+基本形（base），品詞（pos），
+品詞細分類1（pos1）をキーとするマッピング型に格納し，
+1文を形態素（マッピング型）のリストとして表現せよ．
+第4章の残りの問題では，ここで作ったプログラムを活用せよ．<br/>
 Implement a program that reads the result of morphological analysis (neko.txt.mecab).
-However, each morpheme is stored in a mapping type with the surface type (surface), basic type (base), part of speech (pos), and part of speech class 1 (pos1) as keys, and one sentence is represented as a list of morphemes (mapping type) Please.
-Use the program you created here for the rest of Chapter 4.
+However, each morpheme is stored in a mapping type with the surface type (surface), 
+basic type (base), part of speech (pos), 
+and part of speech class 1 (pos1) as keys, 
+and one sentence is represented as a list of morphemes (mapping type) Please.
+Use the program you created here for the rest of Chapter 4.<br/>
+实现一个程序，用以读取形态分析的结果（neko.txt.mecab）。 
+另外，每个语素都以映射类型存储，其中以
+表层类型（surface），
+基本类型（base），词性（pos）和词性分类1（pos1）作为键值，
+并且一个句子表示为一组语素（映射类型）。
+将此处创建的程序用于第4章的其余部分。
 
 ### 31. 動詞
+verb<br/>
+动词
+
 動詞の表層形をすべて抽出せよ．<br/>
-Extract all verb surface forms.
+Extract all verb surface forms.<br/>
+提取所有动词的表层形式。
 
 ### 32. 動詞の原形
+Verb form<br/>
+动词原形
+
 動詞の原形をすべて抽出せよ．<br/>
-Extract all verb forms.
+Extract all verb forms.<br/>
+提取所有动词的原型。
 
 ### 33. サ変名詞
+nouns which verbs can be formed by adding "する" to<br/>
+可以通过后加“する”变成动词的名词
+
 サ変接続の名詞をすべて抽出せよ．<br/>
-Extract all nouns which verbs can be formed by adding "する" to.
+Extract all nouns which verbs can be formed by adding "する" to.<br/>
+提取所有可以通过后加“する”变成动词的名词。
 
 ### 34. 「AのB」
+
 2つの名詞が「の」で連結されている名詞句を抽出せよ．<br/>
-Extract a noun phrase where two nouns are connected by "の".
+Extract a noun phrase where two nouns are connected by "の".<br/>
+提取由“の”连接的名词词组
 
 ### 35. 名詞の連接
+Noun concatenation<br/>
+名词串联
+
 名詞の連接（連続して出現する名詞）を最長一致で抽出せよ．<br/>
-Extract the concatenation of nouns (nouns that appear consecutively) with the longest match.
+Extract the concatenation of nouns (nouns that appear consecutively) with the longest match.<br/>
+提取最长的串联的名词词组
 
 ### 36. 単語の出現頻度
-文章中に出現する単語とその出現頻度を求め，出現頻度の高い順に並べよ．<br/>
-Find the words that appear in the text and their frequency of occurrence, and arrange them in descending order of frequency of appearance.
+Occurrence of ward<br/>
+词的出现频率
+
+文章中に出現する単語とその出現頻度を求め，
+出現頻度の高い順に並べよ．<br/>
+Find the words that appear in the text and their frequency of occurrence, 
+and arrange them in descending order of frequency of appearance.<br/>
+找到出现在文本中的单词及其出现的频率，
+并按照出现频率的降序排列它们。
 
 ### 37. 頻度上位10語
+The 10 most frequently occurring words<br/>
+词频最高的10个词
+
 出現頻度が高い10語とその出現頻度をグラフ（例えば棒グラフなど）で表示せよ．<br/>
-Display the 10 most frequently occurring words and their frequency of occurrence in a graph (eg a bar graph).
+Display the 10 most frequently occurring words and their frequency of occurrence 
+in a graph (eg a bar graph).<br/>
+在图（例如条形图）中展示10个最频繁出现的单词及其出现频率。
 
 ### 38. ヒストグラム
-単語の出現頻度のヒストグラム（横軸に出現頻度，縦軸に出現頻度をとる単語の種類数を棒グラフで表したもの）を描け．<br/>
-Draw a histogram of the frequency of occurrence of the word (the horizontal axis represents the frequency of appearance, and the vertical axis represents the number of types of words whose appearance frequency is represented by a bar graph).
+histogram<br/>
+直方图
+
+単語の出現頻度のヒストグラム
+（横軸に出現頻度，縦軸に出現頻度をとる単語の種類数を棒グラフで表したもの）を描け．<br/>
+Draw a histogram of the frequency of occurrence of the word 
+(the horizontal axis represents the frequency of appearance, 
+and the vertical axis represents the number of types of words 
+whose appearance frequency is represented by a bar graph).<br/>
+绘制词频直方图
+（横轴表示出现频率，纵轴表示出现频率以条形图表示的单词种数）。
+
 ### 39. Zipfの法則
-単語の出現頻度順位を横軸，その出現頻度を縦軸として，両対数グラフをプロットせよ．<br/>
-Plot a log-logarithmic graph with the frequency of occurrence of words on the horizontal axis and the frequency of occurrence on the vertical axis.
+Zipf's law<br/>
+齐夫定律
+
+単語の出現頻度順位を横軸，
+その出現頻度を縦軸として，両対数グラフをプロットせよ．<br/>
+Plot a log-logarithmic graph with the frequency of occurrence 
+of words on the horizontal axis and the frequency of occurrence on the vertical axis.<br/>
+用横轴表示按词频顺序排列的词，
+竖轴表示词对应的词频，绘制对数图。
+
 ## 第5章: 係り受け解析
 Chapter 5: Dependency Analysis<br/>
 第5章：依存句法分析
