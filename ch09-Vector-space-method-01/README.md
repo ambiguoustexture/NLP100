@@ -62,9 +62,9 @@ However, with this method, marks such as periods and parentheses
 at the end of the sentence are included in the word. 
 So, after dividing the text of each line of the corpus into a list of tokens with blank characters, 
 perform the following processing on each token to remove marks from words.<br/>
-将句子转换为词序列最简单的方法是将其分解为带有空格的词。
-但是，使用这种方法，会产生末尾附带句点和括号之类记号的词。
-因此，在将语料库的每一行文本划分为带有空格字符的标记列表之后，
+将句子转换为词序列最简单的方法，是以空格将其切分为词。
+但是，使用这种方法，会产生末尾带有句点和括号之类符号的词。
+因此，在将语料库的每一行文本划分为标记列表之后，
 对每个标记执行以下处理以便从单词中去除记号。
 
 - トークンの先頭と末尾に出現する次の文字を削除: .,!?;:()[]'"<br/>
